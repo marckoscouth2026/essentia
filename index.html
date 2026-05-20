@@ -90,6 +90,13 @@
             padding: 24px 0;
             transition: var(--transition);
             background: transparent;
+			/* AS LINHAS DE CORREÇÃO ABAIXO: */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;     /* Força o menu a ter o mesmo tamanho máximo do site */
+    margin: 0 auto;        /* Centraliza o menu perfeitamente na tela */
+    width: 100%;
         }
 
         .navbar.scrolled {
