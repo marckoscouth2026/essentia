@@ -94,9 +94,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;     /* Força o menu a ter o mesmo tamanho máximo do site */
-    margin: 0 auto;        /* Centraliza o menu perfeitamente na tela */
+    			/* AS LINHAS DE AJUSTE CIRÚRGICO ABAIXO: */
+    max-width: 1400px;       /* Aumentamos de 1200px para 1400px para o menu abrir */
+    margin: 0 auto;          /* Mantém tudo centralizado na tela */
     width: 100%;
+    padding-left: 64px;      /* Empurra a logo sutilmente para bater com a margem do texto */
+    padding-right: 64px;     /* Empurra o botão Lista VIP para bater com a foto da garrafa */
+    box-sizing: border-box;  /* Garante que o cálculo de tamanho fique perfeito */
         }
 
         .navbar.scrolled {
