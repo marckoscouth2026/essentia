@@ -81,27 +81,27 @@
         }
 
         /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;A
-            right: 0;
-            z-index: 1000;
-            padding: 24px 0;
-            transition: var(--transition);
-            background: transparent;
-			/* AS LINHAS DE CORREÇÃO ABAIXO: */
+       .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 24px 0;
+    transition: var(--transition);
+    background: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    			/* AS LINHAS DE AJUSTE CIRÚRGICO ABAIXO: */
-    max-width: 1400px;       /* Aumentamos de 1200px para 1400px para o menu abrir */
-    margin: 0 auto;          /* Mantém tudo centralizado na tela */
-    width: calc(100% - 48px)
-    padding-left: 0px;      /* Empurra a logo sutilmente para bater com a margem do texto */
-    padding-right: 0px;     /* Empurra o botão Lista VIP para bater com a foto da garrafa */
-    box-sizing: border-box;  /* Garante que o cálculo de tamanho fique perfeito */
-        }
+    
+    /* AS LINHAS DE ALINHAMENTO PERFEITO ABAIXO: */
+    max-width: 1200px;       /* Casamento exato com a largura padrão do resto do site */
+    margin: 0 auto;          /* Centraliza o bloco perfeitamente na tela */
+    width: calc(100% - 48px);/* Dá o recuo exato de 24px de cada lado, batendo com a margem do container */
+    padding-left: 0;         /* Zera os paddings antigos que estavam desalinhando */
+    padding-right: 0;
+    box-sizing: border-box;
+}
 
         .navbar.scrolled {
             background: rgba(8, 10, 8, 0.95);
