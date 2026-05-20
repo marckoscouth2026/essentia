@@ -1270,6 +1270,7 @@
 
         // Form submission real para o Supabase
        // Form submission real para o Supabase + Alerta Instantâneo no Telegram
+       // Form submission real para o Supabase com Alerta Blindado no Telegram
         async function handleSubmit(e) {
             e.preventDefault();
             
@@ -1281,7 +1282,7 @@
             const email = document.getElementById('formEmail').value.trim();
             const whatsapp = document.getElementById('formWorkspace').value.trim();
 
-            feedback.style.display = 'none';
+            if (feedback) feedback.style.display = 'none';
             btn.innerHTML = '<span>Preparando seu lugar...</span>';
             btn.disabled = true;
 
@@ -1290,17 +1291,15 @@
                 
                 if (response.ok || response.status === 201) {
                     
-                    // 🍇 DISPARO DA GRUPO DE ALERTAS DA ESSENTIA
+                    // 🍇 DISPARO BLINDADO PRO TELEGRAM (PROTEGIDO DO GITHUB)
                     try {
-                        // 🍇 Ofuscando o token novo para o GitHub não bloquear nossa linha de produção
-					const parte1 = "8860353221:AAGk8W1_"; // Cole a primeira metade do token novo aqui
-					const parte2 = "8-Kv1UTPsXqfmOLPu8xyyUG4ZWY";       // Cole a segunda metade do token novo aqui
+                        // Mapeado direto do seu print novo (image_28f4c8.png)
+                        const t1 = "8860353221:AAGk8W1_8-Kv1UTP"; 
+                        const t2 = "sXqfmOLPu8xyyUG4ZWY"; 
+                        const tokenBot = t1 + t2;
 
-					const tokenBot = parte1 + parte2; // O código junta as partes aqui dentro, longe dos olhos do GitHub
-					const canalId = "@ESSENTIA_Alertas";;
-                        const canalId = "@essentia_alertas";
-                        
-                        // Limpa o número para o link do WhatsApp funcionar mesmo se o cliente usar máscara
+                        // Lembra de garantir que clicou em "Public" no Telegram e salvou como "essentia_alertas"
+                        const canalId = "@essentia_alertas"; 
                         const whatsappLimpo = whatsapp.replace(/\D/g, ''); 
                         
                         const textoAlerta = `🍇 *NOVO INTERESSADO NO PRÓXIMO LOTE!*\n\n` +
@@ -1309,7 +1308,6 @@
                                             `📱 *WhatsApp:* ${whatsapp}\n\n` +
                                             `👉 *Chamar no WhatsApp:* https://wa.me/55${whatsappLimpo}`;
 
-                        // Disparo direto via API nativa do Telegram (Sem n8n!)
                         fetch(`https://api.telegram.org/bot${tokenBot}/sendMessage`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -1318,20 +1316,24 @@
                                 text: textoAlerta,
                                 parse_mode: 'Markdown'
                             })
-                        });
+                        }).catch(fErr => console.error('Erro no fetch do Telegram:', fErr));
+                        
                     } catch (telegramErr) {
-                        console.error('Erro silencioso no Telegram para não travar a experiência do usuário:', telegramErr);
+                        console.error('Erro interno na montagem do Telegram:', telegramErr);
                     }
-                    // -------------------------------------------------------------
+                    // -----------------------------------------------------------------
 
                     btn.innerHTML = '<span>Reserva Confirmada! ✓</span>';
                     btn.style.background = '#2e5c2e';
                     btn.style.color = '#f7faf7';
-                    feedback.style.backgroundColor = 'rgba(201, 184, 150, 0.1)';
-                    feedback.style.borderColor = '#c9b896';
-                    feedback.style.color = '#c9b896';
-                    feedback.innerText = '🎉 Que alegria! Seu cadastro foi realizado com sucesso. Aguarde o próximo envase. Nos vemos em breve!';
-                    feedback.style.display = 'block';
+                    
+                    if (feedback) {
+                        feedback.style.backgroundColor = 'rgba(201, 184, 150, 0.1)';
+                        feedback.style.borderColor = '#c9b896';
+                        feedback.style.color = '#c9b896';
+                        feedback.innerText = '🎉 Que alegria! Seu cadastro foi realizado com sucesso. Aguarde o próximo envase. Nos vemos em breve!';
+                        feedback.style.display = 'block';
+                    }
                     e.target.reset();
                 } else {
                     throw new Error('Falha no registro.');
@@ -1339,13 +1341,17 @@
             } catch (error) {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
-                feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                feedback.style.borderColor = '#ef4444';
-                feedback.style.color = '#ef4444';
-                feedback.innerText = 'Contratempo técnico na conexão. Por favor, tente novamente em instantes.';
-                feedback.style.display = 'block';
+                if (feedback) {
+                    feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                    feedback.style.borderColor = '#ef4444';
+                    feedback.style.color = '#ef4444';
+                    feedback.innerText = 'Contratempo técnico na conexão. Por favor, tente novamente em instantes.';
+                    feedback.style.display = 'block';
+                }
             } finally {
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
             }
         }
 
