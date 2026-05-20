@@ -1268,6 +1268,7 @@
 
         // Form submission real para o Supabase com Alerta Blindado no Telegram
         // Form submission real para o Supabase com Alerta Blindado no Telegram
+      // Form submission real para o Supabase com Alerta Blindado no Telegram
         async function handleSubmit(e) {
             e.preventDefault();
             
@@ -1284,7 +1285,7 @@
             btn.disabled = true;
 
             try {
-                // Ajustado para bater com as colunas reais do seu Supabase (name e phone)
+                // Batendo 100% com o Schema Visualizer real (nome, email, whatsapp)
                 const endpoint = `${SUPABASE_URL}/rest/v1/leads_essentia`;
                 const response = await fetch(endpoint, {
                     method: 'POST',
@@ -1295,9 +1296,9 @@
                         'Prefer': 'return=minimal'
                     },
                     body: JSON.stringify({
-                        name: nome,      // <--- Antes estava 'nome', corrigido para 'name'
+                        nome: nome,        // Voltou para português conforme image_2a4328
                         email: email,
-                        phone: whatsapp  // <--- Antes estava 'whatsapp', corrigido para 'phone'
+                        whatsapp: whatsapp  // Voltou para português conforme image_2a4328
                     })
                 });
                 
