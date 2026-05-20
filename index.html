@@ -81,27 +81,25 @@
         }
 
         /* NAVBAR */
-       .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 24px 0;
-    transition: var(--transition);
-    background: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    /* AS LINHAS DE ALINHAMENTO PERFEITO ABAIXO: */
-    max-width: 1200px;       /* Casamento exato com a largura padrão do resto do site */
-    margin: 0 auto;          /* Centraliza o bloco perfeitamente na tela */
-    width: calc(100% - 48px);/* Dá o recuo exato de 24px de cada lado, batendo com a margem do container */
-    padding-left: 0;         /* Zera os paddings antigos que estavam desalinhando */
-    padding-right: 0;
-    box-sizing: border-box;
-}
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px 0;
+            transition: var(--transition);
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: calc(100% - 48px);
+            padding-left: 0;
+            padding-right: 0;
+            box-sizing: border-box;
+        }
 
         .navbar.scrolled {
             background: rgba(8, 10, 8, 0.95);
@@ -323,7 +321,7 @@
             letter-spacing: 1px;
         }
 
-        /* Hero Visual - Sua Linda Etiqueta */
+        /* Hero Visual */
         .hero-visual {
             display: flex;
             justify-content: center;
@@ -687,7 +685,7 @@
             line-height: 1.7;
         }
 
-        /* CTA (Lista VIP) */
+        /* CTA */
         .cta-section {
             background: linear-gradient(180deg, var(--color-black) 0%, var(--color-dark) 100%);
             padding: 120px 0;
@@ -717,7 +715,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            text-align: left;
+            text-align: text-align;
         }
 
         .cta-input {
@@ -939,7 +937,7 @@
                     </div>
                     <h3 class="feature-title">Ponto Máximo de Suavidade</h3>
                     <p class="feature-description">
-                        Acompanhamos o cultivo diariamente para interromper o ciclo no momento mais equilibrado. O resultado é uma bebida refrescante e sem aquela acidez ou amargor agressivo.
+                        Acompanhamos o cultivation diariamente para interromper o ciclo no momento mais equilibrado. O resultado é uma bebida refrescante e sem aquela acidez ou amargor agressivo.
                     </p>
                 </div>
                 <div class="feature-card animate-on-scroll">
@@ -997,7 +995,7 @@
                         </div>
 
                         <ul class="specs-list">
-                            <li><span>Base Cultivada</span> <span>Chá Preto</span></li>
+                            <option><span>Base Cultivada</span> <span>Chá Preto</span></option>
                             <li><span>Foco de Bem-Estar</span> <span>Cuidado Ativo</span></li>
                         </ul>
                     </div>
@@ -1133,7 +1131,7 @@
     <section class="lifestyle section" id="estilo">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <div class="section-label">Sua Rotina com Mais Vida</div>
+                <div class="section-label">Sua Rotina com slot Mais Vida</div>
                 <h2 class="section-title">Cultivando Bons Momentos</h2>
                 <p class="section-subtitle">
                     Integre a nutrição viva da ESSENTIA nos seus rituais de disposição, bem-estar e leveza.
@@ -1200,9 +1198,9 @@
                 <div class="footer-column">
                     <h4>Nossas Edições</h4>
                     <ul class="footer-links">
-						<li><a href="#sabores">Essentia Deep Red(Uva Integral)</a></li>
+                        <li><a href="#sabores">Essentia Deep Red(Uva Integral)</a></li>
                         <li><a href="#sabores">Essentia Gold</a></li>
-                        <li><a href="#sabores">Essentia Green</a></li
+                        <li><a href="#sabores">Essentia Green</a></li>
                     </ul>
                 </div>
             </div>
@@ -1268,9 +1266,7 @@
             observer.observe(el);
         });
 
-        // Form submission real para o Supabase
-       // Form submission real para o Supabase + Alerta Instantâneo no Telegram
-       // Form submission real para o Supabase com Alerta Blindado no Telegram
+        // Form submission real para o Supabase com Alerta Blindado no Telegram
         async function handleSubmit(e) {
             e.preventDefault();
             
@@ -1293,12 +1289,10 @@
                     
                     // 🍇 DISPARO BLINDADO PRO TELEGRAM (PROTEGIDO DO GITHUB)
                     try {
-                        // Mapeado direto do seu print novo (image_28f4c8.png)
                         const t1 = "8860353221:AAGk8W1_8-Kv1UTP"; 
                         const t2 = "sXqfmOLPu8xyyUG4ZWY"; 
                         const tokenBot = t1 + t2;
 
-                        // Lembra de garantir que clicou em "Public" no Telegram e salvou como "essentia_alertas"
                         const canalId = "@essentia_alertas"; 
                         const whatsappLimpo = whatsapp.replace(/\D/g, ''); 
                         
