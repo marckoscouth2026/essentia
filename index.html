@@ -1269,6 +1269,7 @@
         });
 
         // Form submission real para o Supabase
+       // Form submission real para o Supabase + Alerta Instantâneo no Telegram
         async function handleSubmit(e) {
             e.preventDefault();
             
@@ -1288,6 +1289,36 @@
                 const response = await sendToSupabase(nome, email, whatsapp);
                 
                 if (response.ok || response.status === 201) {
+                    
+                    // 🍇 DISPARO DA GRUPO DE ALERTAS DA ESSENTIA
+                    try {
+                        const tokenBot = "8860353221:AAFEWoOlnOd7D_0dshueA-qelaWGhE-1_YI";
+                        const canalId = "@ESSENTIA_Alertas";
+                        
+                        // Limpa o número para o link do WhatsApp funcionar mesmo se o cliente usar máscara
+                        const whatsappLimpo = whatsapp.replace(/\D/g, ''); 
+                        
+                        const textoAlerta = `🍇 *NOVO INTERESSADO NO PRÓXIMO LOTE!*\n\n` +
+                                            `👤 *Nome:* ${nome}\n` +
+                                            `✉️ *E-mail:* ${email}\n` +
+                                            `📱 *WhatsApp:* ${whatsapp}\n\n` +
+                                            `👉 *Chamar no WhatsApp:* https://wa.me/55${whatsappLimpo}`;
+
+                        // Disparo direto via API nativa do Telegram (Sem n8n!)
+                        fetch(`https://api.telegram.org/bot${tokenBot}/sendMessage`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                chat_id: canalId,
+                                text: textoAlerta,
+                                parse_mode: 'Markdown'
+                            })
+                        });
+                    } catch (telegramErr) {
+                        console.error('Erro silencioso no Telegram para não travar a experiência do usuário:', telegramErr);
+                    }
+                    // -------------------------------------------------------------
+
                     btn.innerHTML = '<span>Reserva Confirmada! ✓</span>';
                     btn.style.background = '#2e5c2e';
                     btn.style.color = '#f7faf7';
