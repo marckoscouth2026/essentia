@@ -1267,6 +1267,7 @@
         });
 
         // Form submission real para o Supabase com Alerta Blindado no Telegram
+        // Form submission real para o Supabase com Alerta Blindado no Telegram
         async function handleSubmit(e) {
             e.preventDefault();
             
@@ -1283,11 +1284,26 @@
             btn.disabled = true;
 
             try {
-                const response = await sendToSupabase(nome, email, whatsapp);
+                // Ajustado para bater com as colunas reais do seu Supabase (name e phone)
+                const endpoint = `${SUPABASE_URL}/rest/v1/leads_essentia`;
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        name: nome,      // <--- Antes estava 'nome', corrigido para 'name'
+                        email: email,
+                        phone: whatsapp  // <--- Antes estava 'whatsapp', corrigido para 'phone'
+                    })
+                });
                 
                 if (response.ok || response.status === 201) {
                     
-                    // 🍇 DISPARO BLINDADO PRO TELEGRAM (PROTEGIDO DO GITHUB)
+                    // 🍇 DISPARO BLINDADO PRO TELEGRAM
                     try {
                         const t1 = "8860353221:AAGk8W1_8-Kv1UTP"; 
                         const t2 = "sXqfmOLPu8xyyUG4ZWY"; 
@@ -1347,7 +1363,6 @@
                 }
             }
         }
-
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
