@@ -80,16 +80,16 @@
             padding: 100px 0;
         }
 
-        /* NAVBAR */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 24px 0;
+            padding: 8px 0; /* Reduzido o padding da barra para o fundo preto não ficar largo */
             transition: var(--transition);
-            background: transparent;
+            background: rgba(8, 10, 8, 0.85); /* Fundo com opacidade premium */
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -99,24 +99,29 @@
             padding-left: 0;
             padding-right: 0;
             box-sizing: border-box;
+            border-bottom: 1px solid rgba(31, 43, 31, 0.4);
         }
 
         .navbar.scrolled {
-            background: rgba(8, 10, 8, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--color-border);
-            padding: 16px 0;
+            padding: 6px 0; /* Mantém a logo imponente e a barra justa ao rolar */
+            background: rgba(8, 10, 8, 0.98);
         }
 
         .navbar .container {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            width: 100%;
         }
-
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            height: 85px; /* Altura garantida para manter a marca imponente */
+        }
         .nav-logo img {
-            height: 120px;
+            height: 85px; /* TAMANHO IDEAL: Mantém a logo grande e visível, sem estourar */
             width: auto;
+            object-fit: contain;
             transition: var(--transition);
         }
         @media (max-width: 768px) {
@@ -181,10 +186,17 @@
             display: flex;
             align-items: center;
             position: relative;
-            padding-top: 120px;
+            padding-top: 160px;
             background: linear-gradient(180deg, var(--color-black) 0%, var(--color-dark) 100%);
         }
-
+    @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 0;
+                width: calc(100% - 32px);
+            }
+            .nav-logo img { height: 45px; } /* Ajuste proporcional para mobile */
+            .hero { padding-top: 130px; }
+        }
         .hero-bg-pattern {
             position: absolute;
             inset: 0;
