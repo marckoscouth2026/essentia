@@ -124,16 +124,14 @@
             object-fit: contain;
             transition: var(--transition);
         }
-        @media (max-width: 768px) {
-            .nav-logo img { height: 36px; }
-        }
-
+       /* ==================== BLOCO DE NAVEGAÇÃO E LINKS (DESKTOP) ==================== */
         .nav-links {
             display: flex;
             align-items: center;
             gap: 40px;
             list-style: none;
         }
+        
         .nav-links a {
             color: var(--color-gray-light);
             text-decoration: none;
@@ -164,7 +162,7 @@
         }
 
         .menu-toggle {
-            display: none;
+            display: none; /* Oculto no Desktop */
             flex-direction: column;
             gap: 6px;
             cursor: pointer;
@@ -180,6 +178,62 @@
             transition: var(--transition);
         }
 
+        /* ==================== AJUSTE E RESPONSIVIDADE MOBILE (768PX) ==================== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 0;
+                width: calc(100% - 32px);
+            }
+            
+            .nav-logo img { 
+                height: 55px; /* Mantém a logo grande e imponente no celular a pedido do CEO */
+            }
+
+            /* Transforma o menu em uma gaveta flutuante (Overlay Premium) */
+            .nav-links {
+                display: none; /* Oculta a linha bagunçada do meio da página */
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 100vh;
+                width: 100vw;
+                background: rgba(8, 10, 8, 0.98); /* Fundo escuro orgânico */
+                backdrop-filter: blur(15px);
+                justify-content: center;
+                align-items: center;
+                gap: 35px;
+                z-index: 999;
+                padding: 24px;
+                box-sizing: border-box;
+            }
+
+            /* Força o display flex apenas quando a classe active for injetada via JS */
+            .nav-links.active { 
+                display: flex !important; 
+            }
+
+            .nav-links a {
+                font-size: 1.2rem; /* Legibilidade para telas de toque */
+                letter-spacing: 2px;
+            }
+
+            .nav-cta {
+                width: 80%;
+                text-align: center;
+                padding: 14px 0;
+                margin-top: 10px;
+            }
+
+            /* Ativa o botão hambúrguer no canto superior direito */
+            .menu-toggle { 
+                display: flex !important; 
+                z-index: 1001; /* Fica por cima da gaveta para permitir o fechamento */
+                position: relative;
+            }
+        }
         /* HERO */
         .hero {
             min-height: 100vh;
