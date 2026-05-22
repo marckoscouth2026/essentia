@@ -899,9 +899,9 @@
                 <img src="logo_ESSENTIA.png" alt="ESSENTIA - Nutrição Viva">
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#diferenciais">Nossa Filosofia</a></li>
-                <li><a href="#sabores">Edições Limitadas</a></li>
-                <li><a href="#sobre">Cuidado Artesanal</a></li>
+                <li><a href="#nossa-filosofia">Nossa Filosofia</a></li>
+                <li><a href="#edicoes-limitadas">Edições Limitadas</a></li>
+                <li><a href="#cuidado-artesanal">Cuidado Artesanal</a></li>
                 <li><a href="#estilo">Bem-Estar</a></li>
                 <li><a href="#lista-vip" class="nav-cta">Próximo Lote</a></li>
             </ul>
@@ -922,7 +922,7 @@
                 <p class="hero-subtitle">Nutrição Viva • Frescor Orgânico</p>
                 <p class="hero-description">
                     A evolução da Kombucha Artesanal. Esqueça as bebidas industriais artificiais e ácidas. 
-                    Criamos uma experiência viva, leve and naturalmente frisante, feita para trazer equilíbrio, 
+                    Criamos uma experiência viva, leve and naturally frisante, feita para trazer equilíbrio, 
                     alegria ao paladar e vitalidade para o seu dia a dia.
                 </p>
                 <div class="hero-actions">
@@ -930,7 +930,7 @@
                         <span>Acompanhe o Nosso Próximo Envase</span>
                         <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
                     </a>
-                    <a href="#diferenciais" class="btn-secondary">
+                    <a href="#nossa-filosofia" class="btn-secondary">
                         <span>Conhecer o Cuidado</span>
                     </a>
                 </div>
@@ -978,7 +978,7 @@
         </div>
     </section>
 
-    <section class="features section" id="diferenciais">
+    <section class="features section" id="nossa-filosofia">
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-label">O Segredo do Sabor</div>
@@ -1003,7 +1003,7 @@
                     </div>
                     <h3 class="feature-title">Ponto Máximo de Suavidade</h3>
                     <p class="feature-description">
-                        Acompanhamos o cultivo diariamente para interromper o ciclo no momento mais equilibrado. O resultado é uma bebida refrescante e sem aquela acidez ou amargor agressivo.
+                        Acompanhamos o cultivo diariamente para interromper o ciclo no momento mais equilibrado. O resultado é uma bebida refrescante and sem aquela acidez ou amargor agressivo.
                     </p>
                 </div>
                 <div class="feature-card animate-on-scroll">
@@ -1019,7 +1019,7 @@
         </div>
     </section>
 
-   <section class="flavors section" id="sabores">
+   <section class="flavors section" id="edicoes-limitadas">
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-label">Nossas Criações</div>
@@ -1145,7 +1145,7 @@
         </div>
     </section>
 
-    <section class="about section" id="sobre">
+    <section class="about section" id="cuidado-artesanal">
     <div class="container">
         <div class="about-image animate-on-scroll">
             <div class="about-image-main" style="padding: 0; overflow: hidden; background: none;">
@@ -1237,10 +1237,7 @@
                     <input type="text" id="formNome" class="cta-input" placeholder="Como quer ser chamado?" required>
                     <input type="email" id="formEmail" class="cta-input" placeholder="Seu e-mail" required>
                     <input type="tel" id="formWorkspace" class="cta-input" placeholder="Seu WhatsApp (para avisos rápidos)" required>
-                    <button type="submit" class="btn-primary" style="width: 100%;">
-                        <span>Me avise quando estiver pronto</span>
-                        <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
-                    </button>
+                    <input type="submit" class="btn-primary" style="width: 100%; border: none;" value="Me avise quando estiver pronto">
                 </form>
                 <p id="formFeedback" style="margin-top: 16px; font-size: 0.95rem; display: none; border: 1px solid transparent; padding: 12px; border-radius: 4px; font-weight: 500;"></p>
             </div>
@@ -1257,16 +1254,16 @@
                 <div class="footer-column">
                     <h4>Filosofia</h4>
                     <ul class="footer-links">
-                        <li><a href="#diferenciais">Nosso Cuidado</a></li>
-                        <li><a href="#sobre">Produção Afetiva</a></li>
+                        <li><a href="#nossa-filosofia">Nosso Cuidado</a></li>
+                        <li><a href="#cuidado-artesanal">Produção Afetiva</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Nossas Edições</h4>
                     <ul class="footer-links">
-                        <li><a href="#sabores">Essentia Deep Red(Uva Integral)</a></li>
-                        <li><a href="#sabores">Essentia Gold</a></li>
-                        <li><a href="#sabores">Essentia Green</a></li>
+                        <li><a href="#edicoes-limitadas">Essentia Deep Red(Uva Integral)</a></li>
+                        <li><a href="#edicoes-limitadas">Essentia Gold</a></li>
+                        <li><a href="#edicoes-limitadas">Essentia Green</a></li>
                     </ul>
                 </div>
             </div>
@@ -1333,21 +1330,19 @@
         });
 
         // Form submission real para o Supabase com Alerta Blindado no Telegram
-        // Form submission real para o Supabase com Alerta Blindado no Telegram
-      // Form submission real para o Supabase com Alerta Blindado no Telegram
         async function handleSubmit(e) {
             e.preventDefault();
             
-            const btn = e.target.querySelector('button');
+            const btn = e.target.querySelector('input[type="submit"]');
             const feedback = document.getElementById('formFeedback');
-            const originalText = btn.innerHTML;
+            const originalValue = btn.value;
             
             const nome = document.getElementById('formNome').value.trim();
             const email = document.getElementById('formEmail').value.trim();
             const whatsapp = document.getElementById('formWorkspace').value.trim();
 
             if (feedback) feedback.style.display = 'none';
-            btn.innerHTML = '<span>Preparando seu lugar...</span>';
+            btn.value = 'Preparando seu lugar...';
             btn.disabled = true;
 
             try {
@@ -1362,9 +1357,9 @@
                         'Prefer': 'return=minimal'
                     },
                     body: JSON.stringify({
-                        nome: nome,        // Voltou para português conforme image_2a4328
+                        nome: nome,
                         email: email,
-                        whatsapp: whatsapp  // Voltou para português conforme image_2a4328
+                        whatsapp: whatsapp
                     })
                 });
                 
@@ -1399,7 +1394,7 @@
                         console.error('Erro interno na montagem do Telegram:', telegramErr);
                     }
 
-                    btn.innerHTML = '<span>Reserva Confirmada! ✓</span>';
+                    btn.value = 'Reserva Confirmada! ✓';
                     btn.style.background = '#2e5c2e';
                     btn.style.color = '#f7faf7';
                     
@@ -1415,7 +1410,7 @@
                     throw new Error('Falha no registro.');
                 }
             } catch (error) {
-                btn.innerHTML = originalText;
+                btn.value = originalValue;
                 btn.disabled = false;
                 if (feedback) {
                     feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
