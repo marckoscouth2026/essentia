@@ -86,9 +86,9 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 8px 0; /* Reduzido o padding da barra para o fundo preto não ficar largo */
+            padding: 8px 0;
             transition: var(--transition);
-            background: rgba(8, 10, 8, 0.85); /* Fundo com opacidade premium */
+            background: rgba(8, 10, 8, 0.85);
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
@@ -103,7 +103,7 @@
         }
 
         .navbar.scrolled {
-            padding: 6px 0; /* Mantém a logo imponente e a barra justa ao rolar */
+            padding: 6px 0;
             background: rgba(8, 10, 8, 0.98);
         }
 
@@ -116,15 +116,15 @@
         .nav-logo {
             display: flex;
             align-items: center;
-            height: 85px; /* Altura garantida para manter a marca imponente */
+            height: 85px;
         }
         .nav-logo img {
-            height: 85px; /* TAMANHO IDEAL: Mantém a logo grande e visível, sem estourar */
+            height: 85px;
             width: auto;
             object-fit: contain;
             transition: var(--transition);
         }
-       /* ==================== BLOCO DE NAVEGAÇÃO E LINKS (DESKTOP) ==================== */
+
         .nav-links {
             display: flex;
             align-items: center;
@@ -162,7 +162,7 @@
         }
 
         .menu-toggle {
-            display: none; /* Oculto no Desktop */
+            display: none;
             flex-direction: column;
             gap: 6px;
             cursor: pointer;
@@ -178,7 +178,6 @@
             transition: var(--transition);
         }
 
-        /* ==================== AJUSTE E RESPONSIVIDADE MOBILE (768PX) ==================== */
         @media (max-width: 768px) {
             .navbar {
                 padding: 10px 0;
@@ -186,12 +185,11 @@
             }
             
             .nav-logo img { 
-                height: 55px; /* Mantém a logo grande e imponente no celular a pedido do CEO */
+                height: 55px;
             }
 
-            /* Transforma o menu em uma gaveta flutuante (Overlay Premium) */
             .nav-links {
-                display: none; /* Oculta a linha bagunçada do meio da página */
+                display: none;
                 flex-direction: column;
                 position: fixed;
                 top: 0;
@@ -200,7 +198,7 @@
                 bottom: 0;
                 height: 100vh;
                 width: 100vw;
-                background: rgba(8, 10, 8, 0.98); /* Fundo escuro orgânico */
+                background: rgba(8, 10, 8, 0.98);
                 backdrop-filter: blur(15px);
                 justify-content: center;
                 align-items: center;
@@ -210,13 +208,12 @@
                 box-sizing: border-box;
             }
 
-            /* Força o display flex apenas quando a classe active for injetada via JS */
             .nav-links.active { 
                 display: flex !important; 
             }
 
             .nav-links a {
-                font-size: 1.2rem; /* Legibilidade para telas de toque */
+                font-size: 1.2rem;
                 letter-spacing: 2px;
             }
 
@@ -227,13 +224,13 @@
                 margin-top: 10px;
             }
 
-            /* Ativa o botão hambúrguer no canto superior direito */
             .menu-toggle { 
                 display: flex !important; 
-                z-index: 1001; /* Fica por cima da gaveta para permitir o fechamento */
+                z-index: 1001;
                 position: relative;
             }
         }
+
         /* HERO */
         .hero {
             min-height: 100vh;
@@ -243,14 +240,16 @@
             padding-top: 160px;
             background: linear-gradient(180deg, var(--color-black) 0%, var(--color-dark) 100%);
         }
-    @media (max-width: 768px) {
+
+        @media (max-width: 768px) {
             .navbar {
                 padding: 10px 0;
                 width: calc(100% - 32px);
             }
-            .nav-logo img { height: 45px; } /* Ajuste proporcional para mobile */
+            .nav-logo img { height: 45px; }
             .hero { padding-top: 130px; }
         }
+
         .hero-bg-pattern {
             position: absolute;
             inset: 0;
@@ -455,7 +454,7 @@
             color: var(--color-gold);
         }
 
-        /* FEATURES / PILARES DA SAÚDE */
+        /* SECTION HEADERS */
         .section-header {
             text-align: center;
             max-width: 700px;
@@ -496,6 +495,7 @@
             line-height: 1.7;
         }
 
+        /* GRID STRUCTURES */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -542,7 +542,7 @@
             line-height: 1.7;
         }
 
-        /* SABORES COM ALMA ARTESANAL */
+        /* FLAVORS */
         .flavors-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -624,7 +624,7 @@
             font-weight: 500;
         }
 
-        /* ABOUT / NOSSA FILOSOFIA */
+        /* ABOUT SECTION */
         .about {
             background: var(--color-dark);
         }
@@ -705,7 +705,7 @@
             line-height: 1.6;
         }
 
-        /* LIFESTYLE / BEM ESTAR */
+        /* LIFESTYLE */
         .lifestyle-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -859,7 +859,6 @@
             color: var(--color-gray-dark);
         }
 
-        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .hero .container,
             .about .container {
@@ -899,9 +898,9 @@
                 <img src="logo_ESSENTIA.png" alt="ESSENTIA - Nutrição Viva">
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#diferenciais">Nossa Filosofia</a></li>
-                <li><a href="#sabores">Edições Limitadas</a></li>
-                <li><a href="#sobre">Cuidado Artesanal</a></li>
+                <li><a href="#filosofia">Nossa Filosofia</a></li>
+                <li><a href="#edicoes">Edições Limitadas</a></li>
+                <li><a href="#cuidado">Cuidado Artesanal</a></li>
                 <li><a href="#estilo">Bem-Estar</a></li>
                 <li><a href="#lista-vip" class="nav-cta">Próximo Lote</a></li>
             </ul>
@@ -922,7 +921,7 @@
                 <p class="hero-subtitle">Nutrição Viva • Frescor Orgânico</p>
                 <p class="hero-description">
                     A evolução da Kombucha Artesanal. Esqueça as bebidas industriais artificiais e ácidas. 
-                    Criamos uma experience viva, leve e naturalmente frisante, feita para trazer equilíbrio, 
+                    Criamos uma experiência viva, leve e naturalmente frisante, feita para trazer equilíbrio, 
                     alegria ao paladar e vitalidade para o seu dia a dia.
                 </p>
                 <div class="hero-actions">
@@ -930,7 +929,7 @@
                         <span>Acompanhe o Nosso Próximo Envase</span>
                         <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
                     </a>
-                    <a href="#diferenciais" class="btn-secondary">
+                    <a href="#filosofia" class="btn-secondary">
                         <span>Conhecer o Cuidado</span>
                     </a>
                 </div>
@@ -978,51 +977,58 @@
         </div>
     </section>
 
-    <section class="features section" id="diferenciais">
+    <section class="about section" id="filosofia">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-label">O Segredo do Sabor</div>
-                <h2 class="section-title">O Verdadeiro Padrão ESSENTIA</h2>
-                <p class="section-subtitle">
-                    Nossa dedicação une o respeito ao tempo da natureza com um cuidado minucioso para entregar suavidade incomparável.
-                </p>
+            <div class="about-image animate-on-scroll">
+                <div class="about-image-main" style="padding: 0; overflow: hidden; background: none;">
+                    <img src="garrafa_essentia pura.png" alt="Garrafa ESSENTIA Pura" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(8, 10, 8, 0.75); padding: 8px 16px; border: 1px solid var(--color-border); backdrop-filter: blur(5px);">
+                        <p style="font-size:0.85rem; letter-spacing:2px; color:var(--color-kraft); font-weight:600; margin: 0; text-transform: uppercase;">ESSENTIA KOMBUCHA ARTESANAL</p>
+                    </div>
+                </div>
             </div>
-            <div class="features-grid">
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <i data-lucide="sparkles" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3 class="feature-title">Efervescência Natural</h3>
-                    <p class="feature-description">
-                        Nossas bolhas nascem do próprio tempo de maturação das plantas. Um frisante nativo delicado que massageia o paladar, sem gás injetado mecanicamente.
-                    </p>
+            <div class="about-content">
+                <div class="section-header animate-on-scroll" style="text-align: left; margin: 0 0 32px;">
+                    <div class="section-label">Nossa Filosofia</div>
+                    <h2 class="section-title">O Cuidado de Quem Faz com Amor</h2>
                 </div>
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <i data-lucide="heart" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3 class="feature-title">Ponto Máximo de Suavidade</h3>
-                    <p class="feature-description">
-                        Acompanhamos o cultivo diariamente para interromper o ciclo no momento mais equilibrado. O resultado é uma bebida refrescante e sem aquela acidez ou amargor agressivo.
-                    </p>
-                </div>
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">
-                        <i data-lucide="flower" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3 class="feature-title">Botânicos Colhidos Frescos</h3>
-                    <p class="feature-description">
-                        Infusões aromáticas e ricas, tudo orgânico. Os aromas voláteis mais puros chegam intactos à sua garrafa, preservando o sabor.
-                    </p>
-                </div>
+                <ul class="about-list">
+                    <li class="animate-on-scroll">
+                        <div class="about-list-icon">
+                            <i data-lucide="sun" style="width:14px;height:14px;"></i>
+                        </div>
+                        <div class="about-list-text">
+                            <h4>Respeito ao Ritmo da Terra</h4>
+                            <p>Nutrimos a nossa cultura com blends puros de chás para garantir que a colônia cresça feliz e saudável, gerando notas idênticas e ricas a cada novo lote.</p>
+                        </div>
+                    </li>
+                    <li class="animate-on-scroll">
+                        <div class="about-list-icon">
+                            <i data-lucide="droplet" style="width:14px;height:14px;"></i>
+                        </div>
+                        <div class="about-list-text">
+                            <h4>Extratos Puros e Verdadeiros</h4>
+                            <p>Nossos sabores vêm da fruta e da folha de verdade. Não aceitamos xaropes químicos ou corantes artificiais. É a natureza em estado líquido.</p>
+                        </div>
+                    </li>
+                    <li class="animate-on-scroll">
+                        <div class="about-list-icon">
+                            <i data-lucide="shield-check" style="width:14px;height:14px;"></i>
+                        </div>
+                        <div class="about-list-text">
+                            <h4>Envase Seguro e Delicado</h4>
+                            <p>Cada garrafa recebe uma folga perfeita no gargalo, permitindo que a efervescência ganhe corpo de forma segura e atinja a textura frisante ideal.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
-   <section class="flavors section" id="sabores">
+    <section class="flavors section" id="edicoes">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <div class="section-label">Nossas Criações</div>
+                <div class="section-label">Edições Limitadas</div>
                 <h2 class="section-title">Nossos Carros-Chefes</h2>
                 <p class="section-subtitle">
                     Micro-lotes exclusivos e limitados, criados artesanalmente para nutrir seu corpo com alegria, energia e bem-estar.
@@ -1145,51 +1151,43 @@
         </div>
     </section>
 
-    <section class="about section" id="sobre">
-    <div class="container">
-        <div class="about-image animate-on-scroll">
-            <div class="about-image-main" style="padding: 0; overflow: hidden; background: none;">
-                <img src="garrafa_essentia pura.png" alt="Garrafa ESSENTIA Pura" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                
-                <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(8, 10, 8, 0.75); padding: 8px 16px; border: 1px solid var(--color-border); backdrop-filter: blur(5px);">
-                    <p style="font-size:0.85rem; letter-spacing:2px; color:var(--color-kraft); font-weight:600; margin: 0; text-transform: uppercase;">ESSENTIA KOMBUCHA ARTESANAL</p>
-                </div>
+    <section class="features section" id="cuidado">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">Cuidado Artesanal</div>
+                <h2 class="section-title">O Verdadeiro Padrão ESSENTIA</h2>
+                <p class="section-subtitle">
+                    Nossa dedicação une o respeito ao tempo da natureza com um cuidado minucioso para entregar suavidade incomparável.
+                </p>
             </div>
-        </div>
-            <div class="about-content">
-                <div class="section-header animate-on-scroll">
-                    <div class="section-label">Nossa Filosofia</div>
-                    <h2 class="section-title">O Cuidado de Quem Faz com Amor</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i data-lucide="sparkles" style="width:28px;height:28px;"></i>
+                    </div>
+                    <h3 class="feature-title">Efervescência Natural</h3>
+                    <p class="feature-description">
+                        Nossas bolhas nascem do próprio tempo de maturação das plantas. Um frisante nativo delicado que massageia o paladar, sem gás injetado mecanicamente.
+                    </p>
                 </div>
-                <ul class="about-list">
-                    <li class="animate-on-scroll">
-                        <div class="about-list-icon">
-                            <i data-lucide="sun" style="width:14px;height:14px;"></i>
-                        </div>
-                        <div class="about-list-text">
-                            <h4>Respeito ao Ritmo da Terra</h4>
-                            <p>Nutrimos a nossa cultura com blends puros de chás para garantir que a colônia cresça feliz e saudável, gerando notas idênticas e ricas a cada novo lote.</p>
-                        </div>
-                    </li>
-                    <li class="animate-on-scroll">
-                        <div class="about-list-icon">
-                            <i data-lucide="droplet" style="width:14px;height:14px;"></i>
-                        </div>
-                        <div class="about-list-text">
-                            <h4>Extratos Puros e Verdadeiros</h4>
-                            <p>Nossos sabores vêm da fruta e da folha de verdade. Não aceitamos xaropes químicos ou corantes artificiais. É a natureza em estado líquido.</p>
-                        </div>
-                    </li>
-                    <li class="animate-on-scroll">
-                        <div class="about-list-icon">
-                            <i data-lucide="shield-check" style="width:14px;height:14px;"></i>
-                        </div>
-                        <div class="about-list-text">
-                            <h4>Envase Seguro e Delicado</h4>
-                            <p>Cada garrafa recebe uma folga perfeita no gargalo, permitindo que a efervescência ganhe corpo de forma segura e atinja a textura frisante ideal.</p>
-                        </div>
-                    </li>
-                </ul>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i data-lucide="heart" style="width:28px;height:28px;"></i>
+                    </div>
+                    <h3 class="feature-title">Ponto Máximo de Suavidade</h3>
+                    <p class="feature-description">
+                        Acompanhamos o cultivo diariamente para interromper o ciclo no momento mais equilibrado. O resultado é uma bebida refrescante e sem aquela acidez ou amargor agressivo.
+                    </p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i data-lucide="flower" style="width:28px;height:28px;"></i>
+                    </div>
+                    <h3 class="feature-title">Botânicos Colhidos Frescos</h3>
+                    <p class="feature-description">
+                        Infusões aromáticas e ricas, tudo orgânico. Os aromas voláteis mais puros chegam intactos à sua garrafa, preservando o sabor.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -1197,7 +1195,7 @@
     <section class="lifestyle section" id="estilo">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <div class="section-label">Sua Rotina com Mais Vida</div>
+                <div class="section-label">Bem-Estar</div>
                 <h2 class="section-title">Cultivando Bons Momentos</h2>
                 <p class="section-subtitle">
                     Integre a nutrição viva da ESSENTIA nos seus rituais de disposição, bem-estar e leveza.
@@ -1257,16 +1255,16 @@
                 <div class="footer-column">
                     <h4>Filosofia</h4>
                     <ul class="footer-links">
-                        <li><a href="#diferenciais">Nosso Cuidado</a></li>
-                        <li><a href="#sobre">Produção Afetiva</a></li>
+                        <li><a href="#filosofia">Nosso Cuidado</a></li>
+                        <li><a href="#cuidado">Produção Afetiva</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Nossas Edições</h4>
                     <ul class="footer-links">
-                        <li><a href="#sabores">Essentia Deep Red(Uva Integral)</a></li>
-                        <li><a href="#sabores">Essentia Gold</a></li>
-                        <li><a href="#sabores">Essentia Green</a></li>
+                        <li><a href="#edicoes">Essentia Deep Red (Uva Integral)</a></li>
+                        <li><a href="#edicoes">Essentia Gold</a></li>
+                        <li><a href="#edicoes">Essentia Green</a></li>
                     </ul>
                 </div>
             </div>
@@ -1423,7 +1421,7 @@
             }
         }
 
-        // Smooth scroll corrigido para acompanhar o clique real
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
