@@ -1235,6 +1235,7 @@
                     <input type="text" id="formNome" class="cta-input" placeholder="Como quer ser chamado?" required>
                     <input type="email" id="formEmail" class="cta-input" placeholder="Seu e-mail" required>
                     <input type="tel" id="formWorkspace" class="cta-input" placeholder="O seu melhor contato" required>
+					<textarea id="formMensagem" class="cta-input" placeholder="Qual a sua preferência?" rows="3" style="resize: none; font-family: var(--font-sans);"></textarea>
                     <button type="submit" class="btn-primary" style="width: 100%;">
                         <span>Me avise quando estiver pronto</span>
                         <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
@@ -1331,95 +1332,100 @@
         });
 
         // Form submission real para o Supabase com Alerta Blindado no Telegram
-        async function handleSubmit(e) {
-            e.preventDefault();
-            
-            const btn = e.target.querySelector('button');
-            const feedback = document.getElementById('formFeedback');
-            const originalText = btn.innerHTML;
-            
-            const nome = document.getElementById('formNome').value.trim();
-            const email = document.getElementById('formEmail').value.trim();
-            const whatsapp = document.getElementById('formWorkspace').value.trim();
+       // FORMATO ATUALIZADO COM CAPTURA DE MENSAGEM E COMPATIBILIDADE BLINDADA
+async function handleSubmit(e) {
+    e.preventDefault();
+    
+    const btn = e.target.querySelector('button');
+    const feedback = document.getElementById('formFeedback');
+    const originalText = btn.innerHTML;
+    
+    const nome = document.getElementById('formNome').value.trim();
+    const email = document.getElementById('formEmail').value.trim();
+    const whatsapp = document.getElementById('formWorkspace').value.trim();
+    const mensagem = document.getElementById('formMensagem').value.trim(); // Captura a mensagem
 
-            if (feedback) feedback.style.display = 'none';
-            btn.innerHTML = '<span>Preparando seu lugar...</span>';
-            btn.disabled = true;
+    if (feedback) feedback.style.display = 'none';
+    btn.innerHTML = '<span>Preparando seu lugar...</span>';
+    btn.disabled = true;
 
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/leads_essentia`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({
+                nome: nome,
+                email: email,
+                whatsapp: whatsapp,
+                mensagem: mensagem // Envia para a nova coluna do Supabase
+            })
+        });
+        
+        if (response.ok || response.status === 201) {
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/leads_essentia`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify({
-                        nome: nome,
-                        email: email,
-                        whatsapp: whatsapp
-                    })
-                });
+                const t1 = "8860353221:AAGk8W1_8-Kv1UTP"; 
+                const t2 = "sXqfmOLPu8xyyUG4ZWY"; 
+                const tokenBot = t1 + t2;
+                const canalId = "@essentia_alertas"; 
+                const whatsappLimpo = whatsapp.replace(/\D/g, ''); 
                 
-                if (response.ok || response.status === 201) {
-                    try {
-                        const t1 = "8860353221:AAGk8W1_8-Kv1UTP"; 
-                        const t2 = "sXqfmOLPu8xyyUG4ZWY"; 
-                        const tokenBot = t1 + t2;
-                        const canalId = "@essentia_alertas"; 
-                        const whatsappLimpo = whatsapp.replace(/\D/g, ''); 
-                        
-                        const textoAlerta = `🍇 *NOVO INTERESSADO NO PRÓXIMO LOTE!* \n\n` +
-                                            `👤 *Nome:* ${nome}\n` +
-                                            `✉️ *E-mail:* ${email}\n` +
-                                            `📱 *WhatsApp:* ${whatsapp}\n\n` +
-                                            `👉 *Chamar no WhatsApp:* https://wa.me/55${whatsappLimpo}`;
+                // Card do Telegram atualizado incluindo a mensagem se o cliente preencher
+                const textoAlerta = `🍇 *NOVO INTERESSADO NO PRÓXIMO LOTE!* \n\n` +
+                                    `👤 *Nome:* ${nome}\n` +
+                                    `✉️ *E-mail:* ${email}\n` +
+                                    `📱 *WhatsApp:* ${whatsapp}\n` +
+                                    `💬 *Mensagem:* ${mensagem ? mensagem : '_Nenhuma mensagem enviada_'}\n\n` +
+                                    `👉 *Chamar no WhatsApp:* https://wa.me/55${whatsappLimpo}`;
 
-                        fetch(`https://api.telegram.org/bot${tokenBot}/sendMessage`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                chat_id: canalId,
-                                text: textoAlerta,
-                                parse_mode: 'Markdown'
-                            })
-                        }).catch(fErr => console.error('Erro no fetch do Telegram:', fErr));
-                    } catch (telegramErr) {
-                        console.error('Erro interno na montagem do Telegram:', telegramErr);
-                    }
-
-                    btn.innerHTML = '<span>Reserva Confirmada! ✓</span>';
-                    btn.style.background = '#2e5c2e';
-                    btn.style.color = '#f7faf7';
-                    
-                    if (feedback) {
-                        feedback.style.backgroundColor = 'rgba(201, 184, 150, 0.1)';
-                        feedback.style.borderColor = '#c9b896';
-                        feedback.style.color = '#c9b896';
-                        feedback.innerText = '🎉 Que alegria! Seu cadastro foi realizado com sucesso. Aguarde o próximo envase. Nos vemos em breve!';
-                        feedback.style.display = 'block';
-                    }
-                    e.target.reset();
-                } else {
-                    throw new Error('Falha no registro.');
-                }
-            } catch (error) {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                if (feedback) {
-                    feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                    feedback.style.borderColor = '#ef4444';
-                    feedback.style.color = '#ef4444';
-                    feedback.innerText = 'Contratempo técnico na conexão. Por favor, tente novamente em instantes.';
-                    feedback.style.display = 'block';
-                }
-            } finally {
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
+                fetch(`https://api.telegram.org/bot${tokenBot}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: canalId,
+                        text: textoAlerta,
+                        parse_mode: 'Markdown'
+                    })
+                }).catch(fErr => console.error('Erro no fetch do Telegram:', fErr));
+            } catch (telegramErr) {
+                console.error('Erro interno na montagem do Telegram:', telegramErr);
             }
+
+            btn.innerHTML = '<span>Reserva Confirmada! ✓</span>';
+            btn.style.background = '#2e5c2e';
+            btn.style.color = '#f7faf7';
+            
+            if (feedback) {
+                feedback.style.backgroundColor = 'rgba(201, 184, 150, 0.1)';
+                feedback.style.borderColor = '#c9b896';
+                feedback.style.color = '#c9b896';
+                feedback.innerText = '🎉 Que alegria! Seu cadastro foi realizado com sucesso. Aguarde o próximo envase. Nos vemos em breve!';
+                feedback.style.display = 'block';
+            }
+            e.target.reset();
+        } else {
+            throw new Error('Falha no registro.');
+                }
+    } catch (error) {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        if (feedback) {
+            feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+            feedback.style.borderColor = '#ef4444';
+            feedback.style.color = '#ef4444';
+            feedback.innerText = 'Contratempo técnico na conexão. Por favor, tente novamente em instantes.';
+            feedback.style.display = 'block';
         }
+    } finally {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }
+}
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
