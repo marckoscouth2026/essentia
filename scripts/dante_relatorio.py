@@ -73,7 +73,7 @@ Dados dos leads nas últimas 24 horas:
 # 3. Chama a Groq (modelo gratuito Llama 3 8B)
 # ------------------------------------------------------------------
 completion = groq_client.chat.completions.create(
-    model="llama3-8b-8192",  # gratuito, rápido e eficiente
+    model="llama-3.1-8b-instant",  # gratuito, rápido e eficiente
     messages=[
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_message}
