@@ -19,9 +19,6 @@ groq_client = Groq(api_key=GROQ_API_KEY)
 
 # ------------------------------------------------------------------
 # 1. Busca os leads das últimas 24h (via view leads_24h)
-#    A view foi criada com:
-#    CREATE OR REPLACE VIEW leads_24h AS
-#    SELECT * FROM leads_essentia WHERE created_at > NOW() - INTERVAL '1 day';
 # ------------------------------------------------------------------
 try:
     response = supabase.table("leads_24h").select("*").execute()
@@ -34,6 +31,14 @@ if not leads:
     dados_brutos = "Nenhum lead novo nas últimas 24 horas."
 else:
     dados_brutos = str(leads)
+
+# NOVO: Busca o total de leads da base
+try:
+    total_response = supabase.table("leads_essentia").select("*", count="exact").execute()
+    total_leads = total_response.count
+except Exception as e:
+    print(f"Erro ao buscar total de leads: {e}")
+    total_leads = "?"
 
 # ------------------------------------------------------------------
 # 2. System Prompt – Personalidade Dante, especialista Essentia
@@ -55,22 +60,36 @@ Regras para o relatório:
 
 2. TOM: Profissional, mas amigável e levemente inspirador. Use metáforas do mundo da fermentação e referências sutis à Essentia quando fizer sentido (ex: "a família Essentia", "nossa cultura viva", "Essentia é essência em cada gole").
 
-3. ADAPTAÇÃO A DADOS ESCASSOS: Se não houver leads novos, não invente números. Gere um relatório motivacional com foco em sugestão de conteúdo para atrair leads e análise de sazonalidade.
+3. ADAPTAÇÃO A DADOS ESCASSOS: Se não houver leads novos ou se forem poucos, não invente números. Gere um relatório motivacional com foco em sugestão de conteúdo para atrair leads mais qualificados. Sugira posts interativos (enquetes, quizzes, "me conte nos comentários") que estimulem respostas.
 
 4. PRIVACIDADE: Nunca mencione nomes completos, e-mails ou telefones dos leads. Agrupe apenas por padrões (ex: "a maioria veio do Instagram", ou "muitos perguntaram sobre segunda fermentação").
 
 5. FORMATO: Texto puro, pronto para ser enviado via Telegram. Sem markdown complexo, apenas emojis e quebras de linha.
+
+6. CRIATIVIDADE ESTRATÉGICA: Ao sugerir a ideia de post, seja específico e original. Evite hooks genéricos como "Descubra os benefícios". Em vez disso, use:
+   - Números ou listas ("3 sinais de que seu intestino precisa de kombucha")
+   - Perguntas provocativas ("Por que você ainda não experimentou kombucha de gengibre?")
+   - Desafios ou curiosidades ("O que acontece com seu corpo na primeira semana de kombucha?")
+   - Storytelling rápido ("Como a Essentia transformou a digestão de um cliente")
+
+7. CTA INTELIGENTE: O call-to-action deve ser adequado ao funil:
+   - Lead frio: "Salva esse post", "Compartilhe com alguém", "Comente sua dúvida"
+   - Lead morno: "Baixe nosso guia grátis", "Conheça nossos sabores no site"
+   - Lead quente: "Aproveite o cupom ESSENTIA10", "Garanta seu kit degustação"
 """
 
+# NOVO: Inclui o total de leads na user_message
 user_message = f"""Analise os dados abaixo e gere o relatório matinal conforme seu System Prompt.
 
 Dados dos leads nas últimas 24 horas:
 {dados_brutos}
 
+Total de leads na base: {total_leads}
+
 (NOTA: Cada objeto do array representa um lead. Use os campos disponíveis, como "mensagem", para identificar padrões ou intenções. Ignore dados pessoais como nome, email e whatsapp na resposta final.)"""
 
 # ------------------------------------------------------------------
-# 3. Chama a Groq (modelo gratuito Llama 3 8B)
+# 3. Chama a Groq (modelo gratuito Llama 3.1 8B Instant)
 # ------------------------------------------------------------------
 completion = groq_client.chat.completions.create(
     model="llama-3.1-8b-instant",  # gratuito, rápido e eficiente
