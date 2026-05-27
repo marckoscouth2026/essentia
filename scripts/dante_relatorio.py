@@ -63,7 +63,7 @@ resp_designer = groq_client.chat.completions.create(
     model="llama-3.1-8b-instant",
     messages=[{"role":"system","content":prompt_designer},
               {"role":"user","content":user_designer}],
-    temperature=0.7, max_tokens=500
+    temperature=0.7, max_tokens=800
 )
 visual = resp_designer.choices[0].message.content
 
