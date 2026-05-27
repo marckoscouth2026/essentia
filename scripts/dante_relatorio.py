@@ -81,9 +81,27 @@ pack_final = f"""🧠 PACK CEREBRAL ESSENTIA
 {visual}
 """
 
-# 7. Enviar para o Telegram
-url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-payload = {"chat_id": TELEGRAM_CHAT_ID, "text": pack_final}
-response = requests.post(url, json=payload)
-print("Pack multiagente enviado!")
-print("Resposta do Telegram:", response.json())
+# 7. Enviar para o Telegram dividindo em partes menores que 4000 caracteres
+def enviar_mensagem_longa(chat_id, texto, bot_token):
+    max_chars = 4000  # margem de segurança
+    partes = []
+    while len(texto) > max_chars:
+        # procura uma quebra de linha para dividir de forma limpa
+        split_point = texto.rfind('\n', 0, max_chars)
+        if split_point == -1:
+            split_point = max_chars
+        partes.append(texto[:split_point])
+        texto = texto[split_point:].lstrip('\n')
+    partes.append(texto)
+    
+    for i, parte in enumerate(partes):
+        prefixo = f"[Parte {i+1}/{len(partes)}]\n\n" if len(partes) > 1 else ""
+        payload = {
+            "chat_id": chat_id,
+            "text": prefixo + parte
+        }
+        resp = requests.post(f"https://api.telegram.org/bot{bot_token}/sendMessage", json=payload)
+        print(f"Parte {i+1} enviada:", resp.json())
+
+enviar_mensagem_longa(TELEGRAM_CHAT_ID, pack_final, TELEGRAM_BOT_TOKEN)
+print("Pack multiagente enviado com sucesso!")
