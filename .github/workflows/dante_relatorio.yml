@@ -8,6 +8,8 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    env:                                          # <-- ADICIONE ESTE BLOCO AQUI
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true    # <-- E ESTA LINHA
     steps:
       - name: Checkout
         uses: actions/checkout@v4
