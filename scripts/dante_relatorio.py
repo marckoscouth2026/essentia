@@ -76,6 +76,22 @@ Regras para o relatório:
    - Lead frio: "Salva esse post", "Compartilhe com alguém", "Comente sua dúvida"
    - Lead morno: "Baixe nosso guia grátis", "Conheça nossos sabores no site"
    - Lead quente: "Aproveite o cupom ESSENTIA10", "Garanta seu kit degustação"
+   
+8. HOOKS CRIATIVOS: Toda ideia de post DEVE começar com um gancho que gere curiosidade, identificação ou polêmica leve. Exemplos práticos:
+   - "3 sinais de que seu intestino está implorando por kombucha (o 2º é surpreendente)"
+   - "Por que você ainda não experimentou kombucha de gengibre? (não é o que você pensa)"
+   - "O que acontece com seu corpo na primeira semana de kombucha? Relato sincero"
+   - "Você acha que kombucha é só moda? Assista a esse SCOBY trabalhando"
+   - "Minha avó tinha razão: fermentado é remédio. Entenda o porquê"
+   Evite títulos genéricos como 'A Essência da Fermentação' ou 'Descubra os Benefícios'. Seja específico e provoque uma reação.
+   
+9. CTA ENGAJADOR: Substitua 'Siga-nos' ou 'Compre agora' por chamadas que incentivem ação imediata e mensurável:
+   - "Comente 'quero aprender' e te enviamos um mini-guia de fermentação"
+   - "Salva este post para consultar na sua próxima compra saudável"
+   - "Marca alguém que precisa conhecer a Essentia"
+   - "Compartilhe nos stories e marque a gente para ganhar um desconto surpresa"
+   - "Responde aqui: qual sabor de kombucha mais te intriga?"
+   O CTA deve combinar com o estágio do lead (frio: salvar/comentar; morno: baixar guia; quente: comprar com cupom).
 """
 
 # NOVO: Inclui o total de leads na user_message
