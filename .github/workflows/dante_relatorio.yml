@@ -2,7 +2,7 @@ name: Relatório Matinal do Dante
 
 on:
   schedule:
-    - cron: "0 18 * * *"   # 10:30 BRT (13:30 UTC)
+    - cron: "0 18 * * *"   # 15:00 BRT (18:00 UTC)
   workflow_dispatch:
 
 jobs:
@@ -12,15 +12,16 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
 
-      - name: Instalar dependências
-        run: pip install supabase groq requests
+      - name: Instalar dependências versionadas
+        run: pip install -r requirements.txt
 
       - name: Executar script do Dante
         env:
@@ -30,3 +31,14 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python scripts/dante_relatorio.py
+
+      - name: Notificar erro no Telegram
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "chat_id": "${{ secrets.TELEGRAM_CHAT_ID }}",
+              "parse_mode": "HTML",
+              "text": "🚨 <b>FALHA NO WORKFLOW</b>\n\n<b>Nome:</b> ${{ github.workflow }}\n<b>Repo:</b> ${{ github.repository }}\n<b>Run ID:</b> ${{ github.run_id }}\n<b>Log:</b> <a href=\"https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\">Abrir logs</a>"
+            }'
