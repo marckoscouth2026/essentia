@@ -66,7 +66,7 @@ resp_redator = groq_client.chat.completions.create(
     model="llama-3.1-8b-instant",
     messages=[{"role":"system","content":prompt_redator},
               {"role":"user","content":user_redator}],
-    temperature=0.8, max_tokens=1000
+    temperature=0.8, max_tokens=1200
 )
 legendas = resp_redator.choices[0].message.content
 
@@ -78,7 +78,7 @@ resp_designer = groq_client.chat.completions.create(
     model="llama-3.1-8b-instant",
     messages=[{"role":"system","content":prompt_designer},
               {"role":"user","content":user_designer}],
-    temperature=0.7, max_tokens=800
+    temperature=0.7, max_tokens=900
 )
 visual = resp_designer.choices[0].message.content
 
