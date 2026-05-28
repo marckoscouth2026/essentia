@@ -88,15 +88,13 @@ visual = resp_designer.choices[0].message.content
 def extrair_prompt_imagem(texto_visual):
     """Extrai o prompt de imagem em inglês do bloco do Designer."""
     import re
-    # Procura por texto entre aspas duplas que pareça um prompt longo
-    match = re.search(r'"(.*?ambient|.*?photorealistic|.*?rustic.*?)"', texto_visual, re.DOTALL | re.IGNORECASE)
+    # Primeiro, tenta encontrar o bloco do DALL-E (geralmente em inglês)
+    match = re.search(r'"(?:a|an|the)\s[\w\s,.\-()]+(?:photorealistic|lighting|rustic|ambient|atmosphere|wooden|bottle|natural)[\w\s,.\-()]*"', texto_visual, re.DOTALL | re.IGNORECASE)
     if match:
-        return match.group(1).strip()
-    # Fallback: procura qualquer texto entre aspas com mais de 50 caracteres
-    matches = re.findall(r'"(.*?)"', texto_visual, re.DOTALL)
-    for m in matches:
-        if len(m) > 50:
-            return m.strip()
+        prompt = match.group(0).strip('"')
+        print(f"Prompt extraído: {prompt}")
+        return prompt
+    print("Nenhum prompt em inglês encontrado.")
     return None
 
 prompt_imagem = extrair_prompt_imagem(visual)
@@ -104,59 +102,60 @@ prompt_imagem = extrair_prompt_imagem(visual)
 if prompt_imagem:
     print(f"Gerando imagem com prompt: {prompt_imagem[:100]}...")
     
-    # Envia o pedido para a Stable Horde
     horde_payload = {
         "prompt": prompt_imagem + ", natural lighting, earthy tones, photorealistic, high quality",
         "params": {"width": 512, "height": 512, "steps": 20, "n": 1}
     }
     headers = {"apikey": STABLE_HORDE_KEY}
     
-    horde_response = requests.post(
-        "https://stablehorde.net/api/v2/generate/text2img",
-        json=horde_payload,
-        headers=headers
-    )
-    
-    if horde_response.status_code == 202:
-        task_id = horde_response.json()["id"]
-        print(f"Task ID: {task_id}. Aguardando geração...")
+    try:
+        horde_response = requests.post(
+            "https://stablehorde.net/api/v2/generate/text2img",
+            json=horde_payload,
+            headers=headers,
+            timeout=30
+        )
+        print(f"Status code: {horde_response.status_code}")
+        print(f"Resposta bruta: {horde_response.text[:200]}")
         
-        # Aguarda a conclusão (máximo 3 minutos)
-        image_url = None
-        tentativas = 0
-        while not image_url and tentativas < 36:
-            time.sleep(5)
-            status_resp = requests.get(f"https://stablehorde.net/api/v2/generate/status/{task_id}")
-            data = status_resp.json()
-            if data.get("done"):
-                image_url = data["generations"][0]["img"]
-                break
-            tentativas += 1
-        
-        if image_url:
-            print("Imagem gerada com sucesso!")
-            # Baixa a imagem
-            img_data = requests.get(image_url).content
+        if horde_response.status_code == 202:
+            task_id = horde_response.json()["id"]
+            print(f"Task ID: {task_id}. Aguardando geração...")
             
-            # Envia a imagem para o Telegram com a primeira legenda
-            primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
-            caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
+            image_url = None
+            tentativas = 0
+            while not image_url and tentativas < 36:
+                time.sleep(5)
+                status_resp = requests.get(f"https://stablehorde.net/api/v2/generate/status/{task_id}")
+                data = status_resp.json()
+                if data.get("done"):
+                    image_url = data["generations"][0]["img"]
+                    break
+                tentativas += 1
             
-            telegram_photo_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
-            files = {"photo": ("post_essentia.png", img_data)}
-            photo_response = requests.post(
-                telegram_photo_url,
-                data={"chat_id": TELEGRAM_CHAT_ID, "caption": caption},
-                files=files
-            )
-            print("Imagem enviada:", photo_response.json())
+            if image_url:
+                print("Imagem gerada com sucesso!")
+                img_data = requests.get(image_url).content
+                
+                primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
+                caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
+                
+                telegram_photo_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
+                files = {"photo": ("post_essentia.png", img_data)}
+                photo_response = requests.post(
+                    telegram_photo_url,
+                    data={"chat_id": TELEGRAM_CHAT_ID, "caption": caption},
+                    files=files
+                )
+                print("Imagem enviada:", photo_response.json())
+            else:
+                print("Timeout na geração da imagem. O pack de texto será enviado normalmente.")
         else:
-            print("Timeout na geração da imagem.")
-    else:
-        print("Erro na Stable Horde:", horde_response.json())
+            print(f"Erro na Stable Horde (status {horde_response.status_code}): {horde_response.text}")
+    except Exception as e:
+        print(f"Erro na geração de imagem: {e}. O pack de texto será enviado normalmente.")
 else:
-    print("Nenhum prompt de imagem encontrado no texto do Designer.")
-
+    print("Nenhum prompt de imagem encontrado. Seguindo com o pack de texto.")
 # ------------------------------------------------------------------
 # 7. Monta e envia o pack de texto
 # ------------------------------------------------------------------
