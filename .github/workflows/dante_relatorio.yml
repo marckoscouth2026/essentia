@@ -2,14 +2,14 @@ name: Relatório Matinal do Dante
 
 on:
   schedule:
-  - cron: "30 16 * * *"   # 13:30 BRT (16:30 UTC) - teste
+    - cron: "0 18 * * *"   # 10:30 BRT (13:30 UTC)
   workflow_dispatch:
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    env:                                          # <-- ADICIONE ESTE BLOCO AQUI
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true    # <-- E ESTA LINHA
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
         uses: actions/checkout@v6
