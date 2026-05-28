@@ -85,15 +85,15 @@ visual = resp_designer.choices[0].message.content
 # ------------------------------------------------------------------
 # 6. Gerador de Imagem (Stable Horde)
 # ------------------------------------------------------------------
-def extrair_prompt_imagem(texto_visual):
-    """Extrai o prompt de imagem do bloco do Designer, usando o marcador IMAGEM:"""
-    import re
-    # 1. Tenta o formato obrigatório: IMAGEM: texto
-    match = re.search(r'IMAGEM:\s*(.*)', texto_visual, re.IGNORECASE)
+# 1. Tenta o formato obrigatório: IMAGEM: texto
+    match = re.search(r'IMAGEM:\s*(.+)', texto_visual, re.IGNORECASE)
     if match:
         prompt = match.group(1).strip()
-        print(f"Prompt extraído via IMAGEM: {prompt}")
-        return prompt
+        # Remove asteriscos que possam ter vindo do markdown
+        prompt = prompt.strip('*').strip()
+        if prompt:
+            print(f"Prompt extraído via IMAGEM: {prompt}")
+            return prompt
     # 2. Fallback: bloco ```prompt (caso o Designer ignore a instrução)
     match = re.search(r'```prompt\s*\n(.*?)\n```', texto_visual, re.DOTALL | re.IGNORECASE)
     if match:
