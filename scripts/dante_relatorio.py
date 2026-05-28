@@ -110,7 +110,7 @@ def extrair_prompt_imagem(texto_visual):
     print("Nenhum prompt em inglês encontrado.")
     return None
 
- def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="flux"):
+def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="flux"):
     """Gera imagem via Pollinations.ai (gratuito, sem API key)"""
     from urllib.parse import quote
     encoded_prompt = quote(prompt)
