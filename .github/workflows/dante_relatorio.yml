@@ -2,7 +2,7 @@ name: Relatório Matinal do Dante
 
 on:
   schedule:
-    - cron: "0 18 * * *"   # 15:00 BRT (18:00 UTC)
+    - cron: "40 18 * * *"   # 15:00 BRT (18:00 UTC)
   workflow_dispatch:
 
 jobs:
