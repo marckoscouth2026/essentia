@@ -86,74 +86,74 @@ visual = resp_designer.choices[0].message.content
 # 6. Gerador de Imagem (Stable Horde)
 # ------------------------------------------------------------------
 def extrair_prompt_imagem(texto_visual):
-    """Extrai o prompt de imagem em inglês do bloco do Designer."""
+    """Extrai o prompt de imagem do bloco do Designer, usando o marcador IMAGEM:"""
     import re
-    # Primeiro, tenta encontrar o bloco do DALL-E (geralmente em inglês)
-    match = re.search(r'"(?:a|an|the)\s[\w\s,.\-()]+(?:photorealistic|lighting|rustic|ambient|atmosphere|wooden|bottle|natural)[\w\s,.\-()]*"', texto_visual, re.DOTALL | re.IGNORECASE)
+    # 1. Tenta o formato obrigatório: IMAGEM: texto
+    match = re.search(r'IMAGEM:\s*(.*)', texto_visual, re.IGNORECASE)
     if match:
-        prompt = match.group(0).strip('"')
-        print(f"Prompt extraído: {prompt}")
+        prompt = match.group(1).strip()
+        print(f"Prompt extraído via IMAGEM: {prompt}")
+        return prompt
+    # 2. Fallback: bloco ```prompt (caso o Designer ignore a instrução)
+    match = re.search(r'```prompt\s*\n(.*?)\n```', texto_visual, re.DOTALL | re.IGNORECASE)
+    if match:
+        prompt = match.group(1).strip()
+        print(f"Prompt extraído via bloco: {prompt}")
+        return prompt
+    # 3. Último fallback: qualquer frase em inglês com palavra-chave visual
+    match = re.search(r'(?:a|an|the)\s[\w\s,.\-()]{30,}(?:photorealistic|rustic|wooden|bottle|natural|lighting|kombucha)[\w\s,.\-()]*', texto_visual, re.DOTALL | re.IGNORECASE)
+    if match:
+        prompt = match.group(0).strip()
+        print(f"Prompt extraído via fallback: {prompt}")
         return prompt
     print("Nenhum prompt em inglês encontrado.")
     return None
 
+# 6. Gerador de Imagem (Pollinations.ai)
+def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="flux"):
+    """
+    Gera uma imagem usando a API gratuita da Pollinations.ai.
+    Não requer chave de API, cadastro ou polling.
+    Retorna os bytes da imagem ou None em caso de erro.
+    """
+    from urllib.parse import quote
+    encoded_prompt = quote(prompt)
+    url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?model={model}&width={width}&height={height}&nologo=true"
+    
+    print(f"Gerando imagem com Pollinations.ai: {prompt[:100]}...")
+    
+    try:
+        response = requests.get(url, timeout=60)
+        if response.status_code == 200:
+            print("Imagem gerada com sucesso!")
+            return response.content
+        else:
+            print(f"Erro na Pollinations.ai (status {response.status_code}): {response.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"Erro na geração de imagem: {e}")
+        return None
+
+# --- Fluxo de geração da imagem ---
 prompt_imagem = extrair_prompt_imagem(visual)
 
 if prompt_imagem:
-    print(f"Gerando imagem com prompt: {prompt_imagem[:100]}...")
+    img_data = gerar_imagem_pollinations(prompt_imagem)
     
-    horde_payload = {
-        "prompt": prompt_imagem + ", natural lighting, earthy tones, photorealistic, high quality",
-        "params": {"width": 512, "height": 512, "steps": 20, "n": 1}
-    }
-    headers = {"apikey": STABLE_HORDE_KEY}
-    
-    try:
-        horde_response = requests.post(
-            "https://stablehorde.net/api/v2/generate/text2img",
-            json=horde_payload,
-            headers=headers,
-            timeout=30
-        )
-        print(f"Status code: {horde_response.status_code}")
-        print(f"Resposta bruta: {horde_response.text[:200]}")
+    if img_data:
+        primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
+        caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
         
-        if horde_response.status_code == 202:
-            task_id = horde_response.json()["id"]
-            print(f"Task ID: {task_id}. Aguardando geração...")
-            
-            image_url = None
-            tentativas = 0
-            while not image_url and tentativas < 36:
-                time.sleep(5)
-                status_resp = requests.get(f"https://stablehorde.net/api/v2/generate/status/{task_id}")
-                data = status_resp.json()
-                if data.get("done"):
-                    image_url = data["generations"][0]["img"]
-                    break
-                tentativas += 1
-            
-            if image_url:
-                print("Imagem gerada com sucesso!")
-                img_data = requests.get(image_url).content
-                
-                primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
-                caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
-                
-                telegram_photo_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
-                files = {"photo": ("post_essentia.png", img_data)}
-                photo_response = requests.post(
-                    telegram_photo_url,
-                    data={"chat_id": TELEGRAM_CHAT_ID, "caption": caption},
-                    files=files
-                )
-                print("Imagem enviada:", photo_response.json())
-            else:
-                print("Timeout na geração da imagem. O pack de texto será enviado normalmente.")
-        else:
-            print(f"Erro na Stable Horde (status {horde_response.status_code}): {horde_response.text}")
-    except Exception as e:
-        print(f"Erro na geração de imagem: {e}. O pack de texto será enviado normalmente.")
+        telegram_photo_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
+        files = {"photo": ("post_essentia.png", img_data)}
+        photo_response = requests.post(
+            telegram_photo_url,
+            data={"chat_id": TELEGRAM_CHAT_ID, "caption": caption},
+            files=files
+        )
+        print("Imagem enviada para o Telegram:", photo_response.json())
+    else:
+        print("A geração da imagem falhou. O pack de texto será enviado normalmente.")
 else:
     print("Nenhum prompt de imagem encontrado. Seguindo com o pack de texto.")
 # ------------------------------------------------------------------
