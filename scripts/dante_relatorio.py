@@ -12,7 +12,6 @@ SUPABASE_KEY = os.environ["SUPABASE_KEY"]
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 GROQ_API_KEY = os.environ["GROQ_API_KEY"]
-STABLE_HORDE_KEY = os.environ.get("STABLE_HORDE_KEY", "0000000000")  # anon key gratuita
 
 # Inicializa clientes
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -83,24 +82,26 @@ resp_designer = groq_client.chat.completions.create(
 visual = resp_designer.choices[0].message.content
 
 # ------------------------------------------------------------------
-# 6. Gerador de Imagem (Stable Horde)
+# 6. Gerador de Imagem (Pollinations.ai)
 # ------------------------------------------------------------------
-# 1. Tenta o formato obrigatório: IMAGEM: texto
+def extrair_prompt_imagem(texto_visual):
+    """Extrai o prompt de imagem do bloco do Designer, usando o marcador IMAGEM:"""
+    import re
+    # 1. Tenta o formato obrigatório: IMAGEM: texto
     match = re.search(r'IMAGEM:\s*(.+)', texto_visual, re.IGNORECASE)
     if match:
         prompt = match.group(1).strip()
-        # Remove asteriscos que possam ter vindo do markdown
         prompt = prompt.strip('*').strip()
         if prompt:
             print(f"Prompt extraído via IMAGEM: {prompt}")
             return prompt
-    # 2. Fallback: bloco ```prompt (caso o Designer ignore a instrução)
+    # 2. Fallback: bloco ```prompt
     match = re.search(r'```prompt\s*\n(.*?)\n```', texto_visual, re.DOTALL | re.IGNORECASE)
     if match:
         prompt = match.group(1).strip()
         print(f"Prompt extraído via bloco: {prompt}")
         return prompt
-    # 3. Último fallback: qualquer frase em inglês com palavra-chave visual
+    # 3. Último fallback: frase em inglês com palavra-chave visual
     match = re.search(r'(?:a|an|the)\s[\w\s,.\-()]{30,}(?:photorealistic|rustic|wooden|bottle|natural|lighting|kombucha)[\w\s,.\-()]*', texto_visual, re.DOTALL | re.IGNORECASE)
     if match:
         prompt = match.group(0).strip()
@@ -109,19 +110,12 @@ visual = resp_designer.choices[0].message.content
     print("Nenhum prompt em inglês encontrado.")
     return None
 
-# 6. Gerador de Imagem (Pollinations.ai)
 def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="flux"):
-    """
-    Gera uma imagem usando a API gratuita da Pollinations.ai.
-    Não requer chave de API, cadastro ou polling.
-    Retorna os bytes da imagem ou None em caso de erro.
-    """
+    """Gera imagem via Pollinations.ai (gratuito, sem API key)"""
     from urllib.parse import quote
     encoded_prompt = quote(prompt)
     url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?model={model}&width={width}&height={height}&nologo=true"
-    
     print(f"Gerando imagem com Pollinations.ai: {prompt[:100]}...")
-    
     try:
         response = requests.get(url, timeout=60)
         if response.status_code == 200:
@@ -134,16 +128,13 @@ def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="flux"):
         print(f"Erro na geração de imagem: {e}")
         return None
 
-# --- Fluxo de geração da imagem ---
 prompt_imagem = extrair_prompt_imagem(visual)
 
 if prompt_imagem:
     img_data = gerar_imagem_pollinations(prompt_imagem)
-    
     if img_data:
         primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
         caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
-        
         telegram_photo_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
         files = {"photo": ("post_essentia.png", img_data)}
         photo_response = requests.post(
@@ -153,11 +144,12 @@ if prompt_imagem:
         )
         print("Imagem enviada para o Telegram:", photo_response.json())
     else:
-        print("A geração da imagem falhou. O pack de texto será enviado normalmente.")
+        print("Falha ao gerar imagem. Seguindo com o pack de texto.")
 else:
     print("Nenhum prompt de imagem encontrado. Seguindo com o pack de texto.")
+
 # ------------------------------------------------------------------
-# 7. Monta e envia o pack de texto
+# 7. Envia o pack de texto
 # ------------------------------------------------------------------
 pack_final = f"""🧠 PACK CEREBRAL ESSENTIA
 
@@ -182,7 +174,6 @@ def enviar_mensagem_longa(chat_id, texto, bot_token):
         partes.append(texto[:split_point])
         texto = texto[split_point:].lstrip('\n')
     partes.append(texto)
-    
     for i, parte in enumerate(partes):
         prefixo = f"[Parte {i+1}/{len(partes)}]\n\n" if len(partes) > 1 else ""
         payload = {"chat_id": chat_id, "text": prefixo + parte}
