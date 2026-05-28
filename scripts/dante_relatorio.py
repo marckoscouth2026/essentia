@@ -1,184 +1,85 @@
+#!/usr/bin/env python3
 import os
-from supabase import create_client
+import sys
+import logging
+from datetime import datetime, timezone
+from supabase import create_client, Client
 from groq import Groq
 import requests
-import time
 
-# ------------------------------------------------------------------
-# Variáveis de ambiente
-# ------------------------------------------------------------------
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_KEY"]
-TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
-GROQ_API_KEY = os.environ["GROQ_API_KEY"]
-
-# Inicializa clientes
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-groq_client = Groq(api_key=GROQ_API_KEY)
-
-# ------------------------------------------------------------------
-# 1. Busca dados dos leads
-# ------------------------------------------------------------------
-try:
-    response = supabase.table("leads_24h").select("*").execute()
-    leads = response.data
-except:
-    leads = []
-
-try:
-    total_response = supabase.table("leads_essentia").select("*", count="exact").execute()
-    total_leads = total_response.count
-except:
-    total_leads = "?"
-
-dados_brutos = str(leads) if leads else "Nenhum lead novo."
-
-# ------------------------------------------------------------------
-# 2. Carrega prompts especializados
-# ------------------------------------------------------------------
-def load_prompt(filename):
-    with open(f"scripts/prompts/{filename}", "r") as f:
-        return f.read()
-
-prompt_estrategista = load_prompt("estrategista.txt")
-prompt_redator = load_prompt("redator.txt")
-prompt_designer = load_prompt("designer.txt")
-
-# ------------------------------------------------------------------
-# 3. Estrategista
-# ------------------------------------------------------------------
-user_estrategista = f"Dados dos leads:\n{dados_brutos}\nTotal na base: {total_leads}"
-resp_estrategista = groq_client.chat.completions.create(
-    model="llama-3.1-8b-instant",
-    messages=[{"role":"system","content":prompt_estrategista},
-              {"role":"user","content":user_estrategista}],
-    temperature=0.7, max_tokens=800
+# Configuração de logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    datefmt="%H:%M:%S UTC"
 )
-relatorio_estrategista = resp_estrategista.choices[0].message.content
+logger = logging.getLogger(__name__)
 
-# ------------------------------------------------------------------
-# 4. Redator
-# ------------------------------------------------------------------
-user_redator = f"Relatório estratégico:\n{relatorio_estrategista}\n\nGere 3 legendas baseadas nesse insight."
-resp_redator = groq_client.chat.completions.create(
-    model="llama-3.1-8b-instant",
-    messages=[{"role":"system","content":prompt_redator},
-              {"role":"user","content":user_redator}],
-    temperature=0.8, max_tokens=1200
-)
-legendas = resp_redator.choices[0].message.content
+def load_env_vars():
+    """Carrega e valida variáveis de ambiente."""
+    required = ["SUPABASE_URL", "SUPABASE_KEY", "GROQ_API_KEY", 
+                "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"]
+    for var in required:
+        if not os.getenv(var):
+            logger.error(f"Variável de ambiente ausente: {var}")
+            sys.exit(1)
 
-# ------------------------------------------------------------------
-# 5. Designer (prompt visual)
-# ------------------------------------------------------------------
-user_designer = f"Legendas criadas:\n{legendas}\n\nGere um prompt de imagem ou storyboard visual para a primeira legenda."
-resp_designer = groq_client.chat.completions.create(
-    model="llama-3.1-8b-instant",
-    messages=[{"role":"system","content":prompt_designer},
-              {"role":"user","content":user_designer}],
-    temperature=0.7, max_tokens=900
-)
-visual = resp_designer.choices[0].message.content
-
-# ------------------------------------------------------------------
-# 6. Gerador de Imagem (Pollinations.ai)
-# ------------------------------------------------------------------
-def extrair_prompt_imagem(texto_visual):
-    """Extrai o prompt de imagem do bloco do Designer, usando o marcador IMAGEM:"""
-    import re
-    # 1. Tenta o formato obrigatório: IMAGEM: texto
-    match = re.search(r'IMAGEM:\s*(.+)', texto_visual, re.IGNORECASE)
-    if match:
-        prompt = match.group(1).strip()
-        prompt = prompt.strip('*').strip()
-        if prompt:
-            print(f"Prompt extraído via IMAGEM: {prompt}")
-            return prompt
-    # 2. Fallback: bloco ```prompt
-    match = re.search(r'```prompt\s*\n(.*?)\n```', texto_visual, re.DOTALL | re.IGNORECASE)
-    if match:
-        prompt = match.group(1).strip()
-        print(f"Prompt extraído via bloco: {prompt}")
-        return prompt
-    # 3. Último fallback: frase em inglês com palavra-chave visual
-    match = re.search(r'(?:a|an|the)\s[\w\s,.\-()]{30,}(?:photorealistic|rustic|wooden|bottle|natural|lighting|kombucha)[\w\s,.\-()]*', texto_visual, re.DOTALL | re.IGNORECASE)
-    if match:
-        prompt = match.group(0).strip()
-        print(f"Prompt extraído via fallback: {prompt}")
-        return prompt
-    print("Nenhum prompt em inglês encontrado.")
-    return None
-
-def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="flux"):
-    """Gera imagem via Pollinations.ai (gratuito, sem API key)"""
-    from urllib.parse import quote
-    encoded_prompt = quote(prompt)
-    url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?model={model}&width={width}&height={height}&nologo=true"
-    print(f"Gerando imagem com Pollinations.ai: {prompt[:100]}...")
+def fetch_data(supabase: Client):
+    """Exemplo: Busca dados do Supabase."""
     try:
-        response = requests.get(url, timeout=60)
-        if response.status_code == 200:
-            print("Imagem gerada com sucesso!")
-            return response.content
-        else:
-            print(f"Erro na Pollinations.ai (status {response.status_code}): {response.text[:200]}")
-            return None
+        response = supabase.table("seus_dados").select("*").limit(50).execute()
+        logger.info(f"Dados coletados: {len(response.data)} registros")
+        return response.data
     except Exception as e:
-        print(f"Erro na geração de imagem: {e}")
-        return None
+        logger.error(f"Falha ao buscar dados: {e}")
+        raise
 
-prompt_imagem = extrair_prompt_imagem(visual)
-
-if prompt_imagem:
-    img_data = gerar_imagem_pollinations(prompt_imagem)
-    if img_data:
-        primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
-        caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
-        telegram_photo_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
-        files = {"photo": ("post_essentia.png", img_data)}
-        photo_response = requests.post(
-            telegram_photo_url,
-            data={"chat_id": TELEGRAM_CHAT_ID, "caption": caption},
-            files=files
+def generate_report_with_groq(data, groq_client: Groq) -> str:
+    """Gera relatório usando a IA."""
+    prompt = f"Resuma os seguintes dados em formato de relatório matinal:\n{str(data)}"
+    try:
+        completion = groq_client.chat.completions.create(
+            model="llama-3.1-70b-versatile",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+            max_tokens=800
         )
-        print("Imagem enviada para o Telegram:", photo_response.json())
-    else:
-        print("Falha ao gerar imagem. Seguindo com o pack de texto.")
-else:
-    print("Nenhum prompt de imagem encontrado. Seguindo com o pack de texto.")
+        return completion.choices[0].message.content
+    except Exception as e:
+        logger.error(f"Falha na geração com Groq: {e}")
+        raise
 
-# ------------------------------------------------------------------
-# 7. Envia o pack de texto
-# ------------------------------------------------------------------
-pack_final = f"""🧠 PACK CEREBRAL ESSENTIA
+def send_to_telegram(message: str):
+    """Envia o relatório para o Telegram."""
+    url = f"https://api.telegram.org/bot{os.getenv('TELEGRAM_BOT_TOKEN')}/sendMessage"
+    payload = {
+        "chat_id": os.getenv("TELEGRAM_CHAT_ID"),
+        "parse_mode": "HTML",
+        "text": f"📊 <b>Relatório Matinal - {datetime.now(timezone.utc).strftime('%d/%m/%Y')}</b>\n\n{message}"
+    }
+    response = requests.post(url, json=payload, timeout=10)
+    response.raise_for_status()
+    logger.info("Relatório enviado com sucesso para o Telegram.")
 
-{relatorio_estrategista}
+def main():
+    load_env_vars()
+    logger.info("Iniciando pipeline do Dante...")
+    
+    supabase: Client = create_client(
+        os.getenv("SUPABASE_URL"),
+        os.getenv("SUPABASE_KEY")
+    )
+    groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    
+    data = fetch_data(supabase)
+    report = generate_report_with_groq(data, groq_client)
+    send_to_telegram(report)
+    
+    logger.info("Pipeline finalizado com sucesso.")
 
-━━━━━━━━━━━━━━━
-📝 VARIAÇÕES DE LEGENDA
-{legendas}
-
-━━━━━━━━━━━━━━━
-🎨 DIREÇÃO VISUAL
-{visual}
-"""
-
-def enviar_mensagem_longa(chat_id, texto, bot_token):
-    max_chars = 4000
-    partes = []
-    while len(texto) > max_chars:
-        split_point = texto.rfind('\n', 0, max_chars)
-        if split_point == -1:
-            split_point = max_chars
-        partes.append(texto[:split_point])
-        texto = texto[split_point:].lstrip('\n')
-    partes.append(texto)
-    for i, parte in enumerate(partes):
-        prefixo = f"[Parte {i+1}/{len(partes)}]\n\n" if len(partes) > 1 else ""
-        payload = {"chat_id": chat_id, "text": prefixo + parte}
-        resp = requests.post(f"https://api.telegram.org/bot{bot_token}/sendMessage", json=payload)
-        print(f"Parte {i+1} enviada:", resp.json())
-
-enviar_mensagem_longa(TELEGRAM_CHAT_ID, pack_final, TELEGRAM_BOT_TOKEN)
-print("Pack v3.0 enviado com sucesso!")
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        logger.critical(f"Erro fatal no script: {e}")
+        sys.exit(1)  # Retorna código 1 → dispara o step `if: failure()` do GitHub Actions
