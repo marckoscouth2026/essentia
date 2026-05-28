@@ -27,7 +27,7 @@ def load_env_vars():
 def fetch_data(supabase: Client):
     """Exemplo: Busca dados do Supabase."""
     try:
-        response = supabase.table("seus_dados").select("*").limit(50).execute()
+        response = supabase.table("leads_24h").select("*").limit(50).execute()
         logger.info(f"Dados coletados: {len(response.data)} registros")
         return response.data
     except Exception as e:
