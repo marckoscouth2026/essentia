@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "0 13 * * *"   # 15:00 BRT (18:00 UTC)
   workflow_dispatch:
-   repository_dispatch:
+  repository_dispatch:
     types: [dante-cron]
 
 jobs:
