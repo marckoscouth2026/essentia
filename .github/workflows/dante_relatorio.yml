@@ -34,14 +34,23 @@ jobs:
           DEBUG: "true"  # Ativa logs detalhados no script
         run: python scripts/dante_relatorio.py
 
-      - name: Notificar erro no Telegram
-        if: failure()
+      - name: Notificar sucesso no Telegram
+        if: success()
         env:
           TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
-          RUN_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         run: |
-          MESSAGE="🚨 <b>FALHA NO WORKFLOW</b>%0A<b>Repo:</b> ${{ github.repository }}%0A<b>Log:</b> <a href=\"$RUN_URL\">Ver detalhes</a>"
           curl -s -X POST "https://api.telegram.org/bot$TG_TOKEN/sendMessage" \
             -H "Content-Type: application/json" \
-            -d "{\"chat_id\": \"$TG_CHAT\", \"parse_mode\": \"HTML\", \"text\": \"$MESSAGE\"}"
+            -d "{\"chat_id\": \"$TG_CHAT\", \"text\": \"✅ Relatório do Dante gerado com sucesso às $(date -u +'%H:%M UTC')\"}"
+
+      - name: Notificar erro no Telegram
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "chat_id": "${{ secrets.TELEGRAM_CHAT_ID }}",
+              "parse_mode": "HTML",
+              "text": "🚨 <b>FALHA NO WORKFLOW</b>\n\n<b>Nome:</b> ${{ github.workflow }}\n<b>Repo:</b> ${{ github.repository }}\n<b>Run ID:</b> ${{ github.run_id }}\n<b>Log:</b> <a href=\"https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\">Abrir logs</a>"
+            }'
