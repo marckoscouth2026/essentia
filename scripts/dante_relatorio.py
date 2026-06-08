@@ -109,7 +109,7 @@ def extrair_prompt_imagem(texto_visual):
         return prompt
     print("Nenhum prompt em inglês encontrado.")
     return None
-def gerar_imagem_nano_banana(prompt, width=1024, height=1024):
+#def gerar_imagem_nano_banana(prompt, width=1024, height=1024):
     """Gera imagem via Nano Banana Pro API (gratuita, sem chave)"""
     from urllib.parse import quote
     encoded_prompt = quote(prompt)
