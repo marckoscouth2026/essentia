@@ -109,35 +109,55 @@ def extrair_prompt_imagem(texto_visual):
     print("Nenhum prompt em inglês encontrado.")
     return None
 
-def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="turbo"):
-    """Gera imagem via Pollinations.ai com até 3 tentativas em caso de fila."""
-    from urllib.parse import quote
-    encoded_prompt = quote(prompt)
-    url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?model={model}&width={width}&height={height}&nologo=true"
+def gerar_imagem_google(prompt, width=1024, height=1024):
+    """Gera imagem via Google AI Studio (Gemini) — gratuito e estável."""
+    import json
+    import base64
     
-    for tentativa in range(1, 4):
-        print(f"Tentativa {tentativa}/3 com Pollinations.ai: {prompt[:80]}...")
-        try:
-            response = requests.get(url, timeout=90)
-            if response.status_code == 200:
-                print("Imagem gerada com sucesso!")
-                return response.content
-            elif response.status_code == 402:
-                print(f"Fila cheia (402). Aguardando 30 segundos...")
-                time.sleep(30)
-            else:
-                print(f"Erro na Pollinations (status {response.status_code}): {response.text[:150]}")
-                break
-        except Exception as e:
-            print(f"Erro de conexão: {e}")
-            time.sleep(10)
-    return None
+    api_key = os.environ.get("GOOGLE_API_KEY")
+    if not api_key:
+        print("GOOGLE_API_KEY não configurada. Pulando geração de imagem.")
+        return None
+    
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key={api_key}"
+    
+    headers = {"Content-Type": "application/json"}
+    payload = {
+        "contents": [{
+            "parts": [{"text": f"Generate a {width}x{height} photorealistic image: {prompt}"}]
+        }],
+        "generationConfig": {
+            "temperature": 0.7,
+            "maxOutputTokens": 2048
+        }
+    }
+    
+    print(f"Gerando imagem com Google AI Studio: {prompt[:80]}...")
+    
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=90)
+        if response.status_code == 200:
+            data = response.json()
+            # Extrai a imagem da resposta
+            for part in data.get("candidates", [{}])[0].get("content", {}).get("parts", []):
+                if "inlineData" in part:
+                    image_bytes = base64.b64decode(part["inlineData"]["data"])
+                    print("Imagem gerada com sucesso via Google AI Studio!")
+                    return image_bytes
+            print("Resposta do Google não continha imagem. Resposta:", json.dumps(data, indent=2)[:300])
+            return None
+        else:
+            print(f"Erro no Google AI Studio (status {response.status_code}): {response.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"Erro na geração com Google AI Studio: {e}")
+        return None
 
 # --- Fluxo de geração da imagem ---
 prompt_imagem = extrair_prompt_imagem(visual)
 
 if prompt_imagem:
-    img_data = gerar_imagem_pollinations(prompt_imagem)
+    img_data = gerar_imagem_google(prompt_imagem)
     if img_data:
         primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
         caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
