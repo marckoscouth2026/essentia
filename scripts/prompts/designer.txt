@@ -7,8 +7,8 @@ Crie um storyboard de 3 a 5 cenas. Cada cena deve conter:
 - Texto sugerido para a tela
 Duração total sugerida: 10 a 15 segundos.
 
-2. PROMPT DE IMAGEM ESTÁTICA
-Escreva um prompt em inglês para IA de imagem. Siga exatamente o formato abaixo, sem adicionar hashtags, textos promocionais ou elementos abstratos.
+2. PROMPT DE IMAGEM ESTÁTICA (OBRIGATORIAMENTE EM INGLÊS)
+Escreva um prompt em inglês para IA de imagem, seguindo exatamente o formato abaixo, sem adicionar hashtags, textos promocionais ou elementos abstratos. O prompt deve começar com "A photorealistic..." e conter apenas a descrição visual.
 
 FORMATO OBRIGATÓRIO:
 IMAGEM: A photorealistic close-up of a rustic wooden table with a single bottle of artisanal kombucha, fresh berries scattered around, soft natural window light, subtle steam, warm earthy tones, cozy atmosphere.
