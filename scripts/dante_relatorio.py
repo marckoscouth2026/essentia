@@ -82,16 +82,15 @@ resp_designer = groq_client.chat.completions.create(
 visual = resp_designer.choices[0].message.content
 
 # ------------------------------------------------------------------
-# 6. Gerador de Imagem (Pollinations.ai)
+# 6. Gerador de Imagem (Pollinations.ai com retry)
 # ------------------------------------------------------------------
 def extrair_prompt_imagem(texto_visual):
-    """Extrai o prompt de imagem do bloco do Designer, usando o marcador IMAGEM:"""
+    """Extrai o prompt de imagem do bloco do Designer."""
     import re
-    # 1. Tenta o formato obrigatório: IMAGEM: texto
+    # 1. Formato obrigatório: IMAGEM: texto
     match = re.search(r'IMAGEM:\s*(.+)', texto_visual, re.IGNORECASE)
     if match:
-        prompt = match.group(1).strip()
-        prompt = prompt.strip('*').strip()
+        prompt = match.group(1).strip().strip('*').strip()
         if prompt:
             print(f"Prompt extraído via IMAGEM: {prompt}")
             return prompt
@@ -109,58 +108,35 @@ def extrair_prompt_imagem(texto_visual):
         return prompt
     print("Nenhum prompt em inglês encontrado.")
     return None
-#def gerar_imagem_nano_banana(prompt, width=1024, height=1024):
-    """Gera imagem via Nano Banana Pro API (gratuita, sem chave)"""
-    from urllib.parse import quote
-    encoded_prompt = quote(prompt)
-    url = f"https://api.nanobanana.ai/generate?prompt={encoded_prompt}&width={width}&height={height}"
-    
-    print(f"Gerando imagem com Nano Banana: {prompt[:100]}...")
-    
-    try:
-        response = requests.get(url, timeout=60)
-        if response.status_code == 200:
-            print("Imagem gerada com sucesso!")
-            return response.content
-        else:
-            print(f"Erro no Nano Banana (status {response.status_code}): {response.text[:200]}")
-            return None
-    except Exception as e:
-        print(f"Erro na geração com Nano Banana: {e}")
-        return None
+
 def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="turbo"):
-    """Gera imagem via Pollinations.ai com uma retentativa em caso de fila cheia."""
+    """Gera imagem via Pollinations.ai com até 3 tentativas em caso de fila."""
     from urllib.parse import quote
-    import time
-    
     encoded_prompt = quote(prompt)
     url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?model={model}&width={width}&height={height}&nologo=true"
     
-    for tentativa in range(2):
-        print(f"Tentativa {tentativa+1} com Pollinations.ai: {prompt[:100]}...")
+    for tentativa in range(1, 4):
+        print(f"Tentativa {tentativa}/3 com Pollinations.ai: {prompt[:80]}...")
         try:
-            response = requests.get(url, timeout=60)
+            response = requests.get(url, timeout=90)
             if response.status_code == 200:
                 print("Imagem gerada com sucesso!")
                 return response.content
             elif response.status_code == 402:
-                print(f"Fila cheia (402). Aguardando 20 segundos antes de tentar novamente...")
-                time.sleep(20)
+                print(f"Fila cheia (402). Aguardando 30 segundos...")
+                time.sleep(30)
             else:
-                print(f"Erro na Pollinations.ai (status {response.status_code}): {response.text[:200]}")
+                print(f"Erro na Pollinations (status {response.status_code}): {response.text[:150]}")
                 break
         except Exception as e:
-            print(f"Erro na geração de imagem: {e}")
-            break
+            print(f"Erro de conexão: {e}")
+            time.sleep(10)
     return None
 
+# --- Fluxo de geração da imagem ---
 prompt_imagem = extrair_prompt_imagem(visual)
 
 if prompt_imagem:
-    img_data = gerar_imagem_pollinations(prompt_imagem)
-    img_data = gerar_imagem_nano_banana(prompt_imagem)
-if not img_data:
-    print("Tentando Pollinations como fallback...")
     img_data = gerar_imagem_pollinations(prompt_imagem)
     if img_data:
         primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
@@ -174,7 +150,7 @@ if not img_data:
         )
         print("Imagem enviada para o Telegram:", photo_response.json())
     else:
-        print("Falha ao gerar imagem. Seguindo com o pack de texto.")
+        print("Falha ao gerar imagem após 3 tentativas. Seguindo com o pack de texto.")
 else:
     print("Nenhum prompt de imagem encontrado. Seguindo com o pack de texto.")
 
