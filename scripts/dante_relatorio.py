@@ -109,7 +109,7 @@ def extrair_prompt_imagem(texto_visual):
     print("Nenhum prompt em inglês encontrado.")
     return None
 
-ddef gerar_imagem_huggingface(prompt, width=1024, height=1024):
+def gerar_imagem_huggingface(prompt, width=1024, height=1024):
     """Gera imagem via Hugging Face (Stable Diffusion) — gratuito e estável."""
     api_key = os.environ.get("HF_API_KEY")
     if not api_key:
