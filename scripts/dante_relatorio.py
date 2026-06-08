@@ -81,16 +81,16 @@ resp_designer = groq_client.chat.completions.create(
 )
 visual = resp_designer.choices[0].message.content
 
-# ------------------------------------------------------------------
-# 6. Gerador de Imagem (Pollinations.ai com retry)
+# 6. Gerador de Imagem (Hugging Face)
 # ------------------------------------------------------------------
 def extrair_prompt_imagem(texto_visual):
-    """Extrai o prompt de imagem do bloco do Designer."""
+    """Extrai o prompt de imagem do bloco do Designer, usando o marcador IMAGEM:"""
     import re
-    # 1. Formato obrigatório: IMAGEM: texto
+    # 1. Tenta o formato obrigatório: IMAGEM: texto
     match = re.search(r'IMAGEM:\s*(.+)', texto_visual, re.IGNORECASE)
     if match:
-        prompt = match.group(1).strip().strip('*').strip()
+        prompt = match.group(1).strip()
+        prompt = prompt.strip('*').strip()
         if prompt:
             print(f"Prompt extraído via IMAGEM: {prompt}")
             return prompt
@@ -108,6 +108,54 @@ def extrair_prompt_imagem(texto_visual):
         return prompt
     print("Nenhum prompt em inglês encontrado.")
     return None
+
+def gerar_imagem_huggingface(prompt, width=1024, height=1024):
+    """Gera imagem via Hugging Face (Stable Diffusion) — gratuito e estável."""
+    api_key = os.environ.get("HF_API_KEY")
+    if not api_key:
+        print("HF_API_KEY não configurada. Pulando geração de imagem.")
+        return None
+
+    url = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1"
+    headers = {"Authorization": f"Bearer {api_key}"}
+    payload = {
+        "inputs": prompt,
+        "parameters": {"width": width, "height": height}
+    }
+
+    print(f"Gerando imagem com Hugging Face: {prompt[:80]}...")
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=90)
+        if response.status_code == 200:
+            print("Imagem gerada com sucesso!")
+            return response.content
+        else:
+            print(f"Erro no Hugging Face (status {response.status_code}): {response.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"Erro na geração com Hugging Face: {e}")
+        return None
+
+# --- Fluxo de geração da imagem ---
+prompt_imagem = extrair_prompt_imagem(visual)
+
+if prompt_imagem:
+    img_data = gerar_imagem_huggingface(prompt_imagem)
+    if img_data:
+        primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
+        caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
+        telegram_photo_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
+        files = {"photo": ("post_essentia.png", img_data)}
+        photo_response = requests.post(
+            telegram_photo_url,
+            data={"chat_id": TELEGRAM_CHAT_ID, "caption": caption},
+            files=files
+        )
+        print("Imagem enviada para o Telegram:", photo_response.json())
+    else:
+        print("Falha ao gerar imagem. Seguindo com o pack de texto.")
+else:
+    print("Nenhum prompt de imagem encontrado. Seguindo com o pack de texto.")
 
 def gerar_imagem_huggingface(prompt, width=1024, height=1024):
     """Gera imagem via Hugging Face (Stable Diffusion) — gratuito e estável."""
