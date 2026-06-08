@@ -109,55 +109,38 @@ def extrair_prompt_imagem(texto_visual):
     print("Nenhum prompt em inglês encontrado.")
     return None
 
-def gerar_imagem_google(prompt, width=1024, height=1024):
-    """Gera imagem via Google AI Studio (Gemini) — gratuito e estável."""
-    import json
-    import base64
-    
-    api_key = os.environ.get("GOOGLE_API_KEY")
+ddef gerar_imagem_huggingface(prompt, width=1024, height=1024):
+    """Gera imagem via Hugging Face (Stable Diffusion) — gratuito e estável."""
+    api_key = os.environ.get("HF_API_KEY")
     if not api_key:
-        print("GOOGLE_API_KEY não configurada. Pulando geração de imagem.")
+        print("HF_API_KEY não configurada. Pulando geração de imagem.")
         return None
-    
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key={api_key}"
-    
-    headers = {"Content-Type": "application/json"}
+
+    url = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1"
+    headers = {"Authorization": f"Bearer {api_key}"}
     payload = {
-        "contents": [{
-            "parts": [{"text": f"Generate a {width}x{height} photorealistic image: {prompt}"}]
-        }],
-        "generationConfig": {
-            "temperature": 0.7,
-            "maxOutputTokens": 2048
-        }
+        "inputs": prompt,
+        "parameters": {"width": width, "height": height}
     }
-    
-    print(f"Gerando imagem com Google AI Studio: {prompt[:80]}...")
-    
+
+    print(f"Gerando imagem com Hugging Face: {prompt[:80]}...")
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=90)
         if response.status_code == 200:
-            data = response.json()
-            # Extrai a imagem da resposta
-            for part in data.get("candidates", [{}])[0].get("content", {}).get("parts", []):
-                if "inlineData" in part:
-                    image_bytes = base64.b64decode(part["inlineData"]["data"])
-                    print("Imagem gerada com sucesso via Google AI Studio!")
-                    return image_bytes
-            print("Resposta do Google não continha imagem. Resposta:", json.dumps(data, indent=2)[:300])
-            return None
+            print("Imagem gerada com sucesso!")
+            return response.content
         else:
-            print(f"Erro no Google AI Studio (status {response.status_code}): {response.text[:200]}")
+            print(f"Erro no Hugging Face (status {response.status_code}): {response.text[:200]}")
             return None
     except Exception as e:
-        print(f"Erro na geração com Google AI Studio: {e}")
+        print(f"Erro na geração com Hugging Face: {e}")
         return None
 
 # --- Fluxo de geração da imagem ---
 prompt_imagem = extrair_prompt_imagem(visual)
 
 if prompt_imagem:
-    img_data = gerar_imagem_google(prompt_imagem)
+   img_data = gerar_imagem_huggingface(prompt_imagem)
     if img_data:
         primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
         caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
