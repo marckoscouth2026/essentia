@@ -109,7 +109,25 @@ def extrair_prompt_imagem(texto_visual):
         return prompt
     print("Nenhum prompt em inglês encontrado.")
     return None
-
+def gerar_imagem_nano_banana(prompt, width=1024, height=1024):
+    """Gera imagem via Nano Banana Pro API (gratuita, sem chave)"""
+    from urllib.parse import quote
+    encoded_prompt = quote(prompt)
+    url = f"https://api.nanobanana.ai/generate?prompt={encoded_prompt}&width={width}&height={height}"
+    
+    print(f"Gerando imagem com Nano Banana: {prompt[:100]}...")
+    
+    try:
+        response = requests.get(url, timeout=60)
+        if response.status_code == 200:
+            print("Imagem gerada com sucesso!")
+            return response.content
+        else:
+            print(f"Erro no Nano Banana (status {response.status_code}): {response.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"Erro na geração com Nano Banana: {e}")
+        return None
 def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="turbo"):
     """Gera imagem via Pollinations.ai (gratuito, sem API key)"""
     from urllib.parse import quote
@@ -131,6 +149,10 @@ def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="turbo"):
 prompt_imagem = extrair_prompt_imagem(visual)
 
 if prompt_imagem:
+    img_data = gerar_imagem_pollinations(prompt_imagem)
+    img_data = gerar_imagem_nano_banana(prompt_imagem)
+if not img_data:
+    print("Tentando Pollinations como fallback...")
     img_data = gerar_imagem_pollinations(prompt_imagem)
     if img_data:
         primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
