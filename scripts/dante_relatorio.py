@@ -141,7 +141,7 @@ prompt_imagem = extrair_prompt_imagem(visual)
 
 if prompt_imagem:
    img_data = gerar_imagem_huggingface(prompt_imagem)
-    if img_data:
+if img_data:
         primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0] if "**Opção" in legendas else legendas
         caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
         telegram_photo_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
