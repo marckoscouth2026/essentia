@@ -129,22 +129,30 @@ def gerar_imagem_nano_banana(prompt, width=1024, height=1024):
         print(f"Erro na geração com Nano Banana: {e}")
         return None
 def gerar_imagem_pollinations(prompt, width=1024, height=1024, model="turbo"):
-    """Gera imagem via Pollinations.ai (gratuito, sem API key)"""
+    """Gera imagem via Pollinations.ai com uma retentativa em caso de fila cheia."""
     from urllib.parse import quote
+    import time
+    
     encoded_prompt = quote(prompt)
     url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?model={model}&width={width}&height={height}&nologo=true"
-    print(f"Gerando imagem com Pollinations.ai: {prompt[:100]}...")
-    try:
-        response = requests.get(url, timeout=60)
-        if response.status_code == 200:
-            print("Imagem gerada com sucesso!")
-            return response.content
-        else:
-            print(f"Erro na Pollinations.ai (status {response.status_code}): {response.text[:200]}")
-            return None
-    except Exception as e:
-        print(f"Erro na geração de imagem: {e}")
-        return None
+    
+    for tentativa in range(2):
+        print(f"Tentativa {tentativa+1} com Pollinations.ai: {prompt[:100]}...")
+        try:
+            response = requests.get(url, timeout=60)
+            if response.status_code == 200:
+                print("Imagem gerada com sucesso!")
+                return response.content
+            elif response.status_code == 402:
+                print(f"Fila cheia (402). Aguardando 20 segundos antes de tentar novamente...")
+                time.sleep(20)
+            else:
+                print(f"Erro na Pollinations.ai (status {response.status_code}): {response.text[:200]}")
+                break
+        except Exception as e:
+            print(f"Erro na geração de imagem: {e}")
+            break
+    return None
 
 prompt_imagem = extrair_prompt_imagem(visual)
 
