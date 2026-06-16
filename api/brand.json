@@ -1,0 +1,56 @@
+{
+  "brand": "ESSENTIA",
+  "tagline": "Kombucha Artesanal Viva",
+  "founded": 2026,
+  "domain": "www.essentiaoficial.com.br",
+  "url": "https://www.essentiaoficial.com.br",
+  "location": {
+    "city": "Brasília",
+    "state": "DF",
+    "country": "BR"
+  },
+  "products": [
+    {
+      "id": "deep-red",
+      "name": "Deep Red",
+      "volume_ml": 500,
+      "price_brl": 15.00,
+      "ingredients": ["uva integral", "hibisco", "beterraba", "pimenta preta"],
+      "base_tea": "preto",
+      "flavor_profile": "encorpado e equilibrado"
+    },
+    {
+      "id": "gold",
+      "name": "Gold",
+      "volume_ml": 500,
+      "price_brl": 15.00,
+      "ingredients": ["cúrcuma", "gengibre", "laranja", "pimenta preta"],
+      "base_tea": "verde",
+      "flavor_profile": "especiarias vibrantes"
+    },
+    {
+      "id": "green",
+      "name": "Green",
+      "volume_ml": 500,
+      "price_brl": 15.00,
+      "ingredients": ["moringa", "spirulina", "limão siciliano", "hortelã", "capim-limão"],
+      "base_tea": "verde",
+      "flavor_profile": "botânico herbáceo e refrescante"
+    }
+  ],
+  "technical_specs": {
+    "ph_range": "3.2 - 3.5",
+    "carbonation": "natural (F2)",
+    "cold_chain": "2°C a 6°C",
+    "shelf_life": "30 dias refrigerado"
+  },
+  "audience": ["biohackers", "entusiastas de bem-estar", "profissionais de tecnologia", "atletas mentais"],
+  "contact": {
+    "instagram": "@essentia.bio",
+    "email": "ola@essentiaoficial.com.br"
+  },
+  "sustainability": {
+    "bottle_return": true,
+    "discount_for_return": "R$ 2,00 por garrafa"
+  }
+}
