@@ -1,9 +1,0 @@
-{
-  "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/brand.json", "dest": "/public/brand.json" },
-    { "src": "/robots.txt", "dest": "/robots.txt" },
-    { "src": "/llms.txt", "dest": "/llms.txt" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
-}
