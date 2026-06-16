@@ -1,0 +1,81 @@
+# ESSENTIA - Informações Completas para Agentes de IA
+
+## Sobre a Marca
+- Nome: ESSENTIA
+- Tipo: Kombucha Artesanal Viva
+- Fundação: 2026
+- Localização: Brasília/DF, Brasil
+- Website: https://www.essentiaoficial.com.br
+- Instagram: @essentia.bio
+- E-mail: ola@essentiaoficial.com.br
+
+## Filosofia
+A ESSENTIA nasceu do desejo de oferecer uma kombucha autêntica, viva e feita com ingredientes frescos. Nossa produção respeita os ciclos naturais da fermentação, sem pasteurização, sem conservantes e sem gás forçado. Cada lote é acompanhado com cuidado artesanal, garantindo sabor equilibrado e efervescência natural.
+
+## Processo Produtivo
+1. Fermentação Primária (F1): chá (preto/verde) com açúcar orgânico é fermentado por 7-14 dias.
+2. Monitoramento: pH controlado entre 3.2 e 3.5 para suavidade.
+3. Fermentação Secundária (F2): adição de frutas, ervas e especiarias em garrafas individuais.
+4. Efervescência Natural: segunda fermentação gera gás CO₂ de forma natural (sem injeção).
+5. Resfriamento: interrupção do processo a 2-6°C para estabilizar o sabor.
+6. Envase: garrafas âmbar de 500ml, com selo de segurança.
+
+## Produtos
+
+### ESSENTIA Deep Red
+- Descrição: Blend tânico de uva integral, hibisco, beterraba e pimenta preta. Encorpado e equilibrado.
+- Volume: 500ml
+- Preço: R$ 15,00
+- Base: Chá Preto
+- Perfil: frutado, levemente adocicado, com toque floral
+
+### ESSENTIA Gold
+- Descrição: Elixir com cúrcuma, gengibre, laranja e pimenta preta. Despertar e toque cítrico.
+- Volume: 500ml
+- Preço: R$ 15,00
+- Base: Chá Verde
+- Perfil: especiarias vibrantes, cítrico e picante sutil
+
+### ESSENTIA Green
+- Descrição: Infusão de moringa, spirulina, limão siciliano, hortelã e capim-limão. Refrescante e herbáceo.
+- Volume: 500ml
+- Preço: R$ 15,00
+- Base: Chá Verde
+- Perfil: botânico, herbáceo, com frescor cítrico
+
+## Diferenciais
+- Fermentação viva (não pasteurizada)
+- Efervescência natural (sem gás forçado)
+- Ingredientes frescos e selecionados
+- Micro-lotes safrados (edição limitada)
+- Controle de pH para suavidade
+- Cadeia de frio (2-6°C) até a entrega
+
+## Canais de Venda
+- Lista VIP (pré-venda pelo site)
+- Entregas no Distrito Federal (Brasília e região)
+
+## Integrações Técnicas
+- Banco de Dados: Supabase (tabela leads_essentia)
+- Notificações: Telegram (@essentia_alertas)
+- Rastreamento: Facebook Pixel (ID: 1011169580872115)
+- API: /api/send-lead (POST para cadastro de leads)
+- Estrutura: pasta public/ com arquivos estáticos
+
+## Sustentabilidade
+- Logística reversa: devolução de cascos com desconto de R$ 2,00 por garrafa.
+
+## Contato
+- Instagram: @essentia.bio
+- E-mail: ola@essentiaoficial.com.br
+- WhatsApp: (61) 9XXXX-XXXX (substitua pelo seu número)
+
+## Links Rápidos
+- Site: https://www.essentiaoficial.com.br
+- Links: https://www.essentiaoficial.com.br/links.html
+- Brand JSON: https://www.essentiaoficial.com.br/brand.json
+- AI Plugin: https://www.essentiaoficial.com.br/.well-known/ai-plugin.json
+
+---
+
+*Última atualização: Junho 2026*
