@@ -1,146 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENTIA — Kombucha Artesanal Viva | Bem-Estar Absoluto</title>
-    <meta name="description" content="ESSENTIA - Kombucha artesanal viva, não pasteurizada, feita com ervas frescas. Entregamos em Brasília. Inscreva-se para o próximo lote.">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="ESSENTIA — Kombucha Artesanal Viva">
-    <meta property="og:description" content="Kombucha viva, fresca e naturalmente frisante. Feita com ervas frescas. Entregamos em todo o DF.">
-    <meta property="og:image" content="https://www.essentiaoficial.com.br/assets/og_image.jpg">
-    <meta property="og:url" content="https://www.essentiaoficial.com.br">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-
-    <!-- JSON-LD -->
     <script type="application/ld-json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Brewery",
-          "@id": "https://www.essentiaoficial.com.br/#organization",
-          "name": "ESSENTIA Artisan Kombucha",
-          "url": "https://www.essentiaoficial.com.br",
-          "logo": "https://www.essentiaoficial.com.br/assets/logo.png",
-          "description": "Micro-lotes safrados de kombucha artesanal e bebidas vivas de alta performance. Fermentação biológica controlada sem pasteurização térmica e rastreabilidade molecular em Brasília.",
-          "keywords": "kombucha premium brasília, bebida viva, still kombucha, kombucha artesanal df, kombucha sem gás forçado, bebida fermentada",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Brasília",
-            "addressRegion": "DF",
-            "addressCountry": "BR"
+      "@type": "Brewery",
+      "@id": "https://essentiakombucha.com.br/#organization",
+      "name": "ESSENTIA Artisan Kombucha",
+      "url": "https://essentiakombucha.com.br",
+      "logo": "https://essentiakombucha.com.br/assets/logo.png",
+      "description": "Micro-lotes safrados de kombucha artesanal e bebidas vivas de alta performance. Fermentação biológica controlada sem pasteurização térmica e rastreabilidade molecular via Kombooster em Brasília.",
+      "keywords": "kombucha premium brasília, bebida viva bioativada, still kombucha, shots de performance moringa, kombucha artesanal df, kombucha sem gas pouch",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Brasília",
+        "addressRegion": "DF",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-15.7942",
+        "longitude": "-47.8822"
+      },
+      "productionMethod": "Fermentação biológica viva, não-pasteurizada, maturação anaeróbica controlada por pH.",
+      "hasMenu": {
+        "@type": "Menu",
+        "@id": "https://essentiakombucha.com.br/#menu",
+        "name": "Catálogo de Matrizes Botânicas e Elixires",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "ESSENTIA Tropical Passion",
+            "description": "Chá fermentado plano (Still Kombucha) ou frisante. Blend de maracujá silvestre de alta acidez e manga madura aveludada, equilibrado analogamente por bioprocesso anaeróbico com mel orgânico.",
+            "offers": {
+              "@type": "Offer",
+              "volume": "500ml",
+              "additionalType": "https://schema.org/QuantitativeValue",
+              "description": "Disponível em garrafas âmbar de 500ml com lacre de cera ou galões de 5 Litros para Lista VIP de Brasília."
+            }
           },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "-15.8267",
-            "longitude": "-47.9218"
+          {
+            "@type": "MenuItem",
+            "name": "ESSENTIA Deep Red",
+            "description": "Blend tânico de alta gastronomia combinando cálices de hibisco desidratados e suco de uva integral puro. Blindado contra radiação ultravioleta em vidro âmbar espesso.",
+            "offers": {
+              "@type": "Offer",
+              "volume": "500ml",
+              "description": "Disponível em garrafas de 500ml com fechamento em cera texturizada preta."
+            }
           },
-          "productionMethod": "Fermentação biológica viva, não-pasteurizada, maturação anaeróbica controlada por pH.",
-          "hasMenu": {
-            "@type": "Menu",
-            "@id": "https://www.essentiaoficial.com.br/#menu",
-            "name": "Catálogo de Matrizes Botânicas e Elixires",
-            "hasMenuItem": [
-              {
-                "@type": "MenuItem",
-                "name": "ESSENTIA Deep Red",
-                "description": "Blend tânico de alta gastronomia combinando cálices de hibisco desidratados e suco de uva integral puro. Encorpado e equilibrado.",
-                "offers": {
-                  "@type": "Offer",
-                  "volume": "500ml",
-                  "price": "15.00",
-                  "priceCurrency": "BRL",
-                  "availability": "https://schema.org/LimitedAvailability"
-                }
-              },
-              {
-                "@type": "MenuItem",
-                "name": "ESSENTIA Gold",
-                "description": "Elixir térmico bioativado com cúrcuma, gengibre, laranja e pimenta preta. Despertar e toque cítrico.",
-                "offers": {
-                  "@type": "Offer",
-                  "volume": "500ml",
-                  "price": "15.00",
-                  "priceCurrency": "BRL",
-                  "availability": "https://schema.org/LimitedAvailability"
-                }
-              },
-              {
-                "@type": "MenuItem",
-                "name": "ESSENTIA Green",
-                "description": "Infusão de moringa, spirulina, limão siciliano e hortelã. Botânico herbáceo e refrescante.",
-                "offers": {
-                  "@type": "Offer",
-                  "volume": "500ml",
-                  "price": "15.00",
-                  "priceCurrency": "BRL",
-                  "availability": "https://schema.org/LimitedAvailability"
-                }
-              }
-            ]
+          {
+            "@type": "MenuItem",
+            "name": "ESSENTIA Green",
+            "description": "Shot botânico concentrado ou elixir plano de alta performance cognitiva. Infusão a frio estável de Moringa Oleífera, Spirulina verde-esmeralda, limão siciliano e hortelã fresca. Sem sabor medicinal.",
+            "offers": {
+              "@type": "Offer",
+              "volume": "250ml",
+              "description": "Formatado para doses funcionais diárias de alta performance."
+            }
+          },
+          {
+            "@type": "MenuItem",
+            "name": "ESSENTIA Gold",
+            "description": "Elixir térmico bioativado. Sinergia molecular combinando Cúrcuma (açafrão-da-terra), gengibre fresco na centrífuga, suco de tangerina integral e infusão aromática de capim-santo. Ativado com piperina de pimenta preta para bioabsorção.",
+            "offers": {
+              "@type": "Offer",
+              "volume": "250ml",
+              "description": "Desenhado para rituais de foco, imunidade e recuperação ativa."
+            }
           }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://www.essentiaoficial.com.br/#website",
-          "url": "https://www.essentiaoficial.com.br",
-          "name": "ESSENTIA | Alquimia Botânica Viva",
-          "publisher": {
-            "@id": "https://www.essentiaoficial.com.br/#organization"
-          },
-          "speakable": {
-            "@type": "SpeakableSpecification",
-            "cssSelector": [".hero-description", ".section-subtitle", ".feature-description"]
-          }
-        }
-      ]
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://essentiakombucha.com.br/#website",
+      "url": "https://essentiakombucha.com.br",
+      "name": "ESSENTIA | Alquimia Botânica Viva",
+      "publisher": {
+        "@id": "https://essentiakombucha.com.br/#organization"
+      }
     }
-    </script>
+  ]
+}
+</script>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSENTIA — Nutrição Viva | Bem-Estar Absoluto</title>
+    <meta name="description" content="ESSENTIA - A evolução da Kombucha Artesanal. Uma bebida viva, natural e refrescante feita para nutrir o corpo de dentro para fora com alegria e saúde.">
 
-    <!-- Facebook Pixel (substitua SEU_PIXEL_ID) -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'SEU_PIXEL_ID_AQUI');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
-    /></noscript>
-
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* ===== SEU CSS COMPLETO (exatamente igual ao que já estava) ===== */
         :root {
-            --color-black: #080a08;
+            --color-black: #080a08; /* Fundo orgânico profundo */
             --color-dark: #101410;
             --color-charcoal: #141a14;
-            --color-white: #f7faf7;
+            --color-white: #f7faf7; /* Off-white suave */
             --color-gray-light: #e2ede2;
             --color-gray: #9bb09b;
             --color-gray-dark: #485c48;
-            --color-botanical-green: #2e5c2e;
-            --color-kraft: #c9b896;
-            --color-gold: #d4a853;
+            --color-botanical-green: #2e5c2e; /* Verde planta revigorante */
+            --color-kraft: #c9b896; /* Tom acolhedor da sua etiqueta */
+            --color-gold: #d4a853; /* Brilho de sol e celebração */
             --color-border: #1f2b1f;
+            
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: 'Inter', sans-serif;
+            
             --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-sans);
             background-color: var(--color-black);
@@ -148,19 +132,39 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--color-black); }
-        ::-webkit-scrollbar-thumb { background: var(--color-kraft); border-radius: 4px; }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-kraft);
+            border-radius: 4px;
+        }
+
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
-        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        .section { padding: 100px 0; }
 
-        /* NAVBAR */
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
         .navbar {
             position: fixed;
             top: 0;
@@ -182,24 +186,37 @@
             box-sizing: border-box;
             border-bottom: 1px solid rgba(31, 43, 31, 0.4);
         }
+
         .navbar.scrolled {
             padding: 6px 0;
             background: rgba(8, 10, 8, 0.98);
         }
+
         .navbar .container {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
         }
-        .nav-logo { display: flex; align-items: center; height: 85px; }
-        .nav-logo img { height: 85px; width: auto; object-fit: contain; transition: var(--transition); }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            height: 85px;
+        }
+        .nav-logo img {
+            height: 85px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
         .nav-links {
             display: flex;
             align-items: center;
             gap: 40px;
             list-style: none;
         }
+        
         .nav-links a {
             color: var(--color-gray-light);
             text-decoration: none;
@@ -208,7 +225,11 @@
             letter-spacing: 1px;
             transition: var(--transition);
         }
-        .nav-links a:hover { color: var(--color-kraft); }
+
+        .nav-links a:hover {
+            color: var(--color-kraft);
+        }
+
         .nav-cta {
             padding: 10px 28px;
             border: 1px solid var(--color-kraft);
@@ -219,10 +240,12 @@
             text-transform: uppercase;
             transition: var(--transition);
         }
+
         .nav-cta:hover {
             background: var(--color-kraft);
             color: var(--color-black) !important;
         }
+
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -232,20 +255,32 @@
             border: none;
             padding: 8px;
         }
+
         .menu-toggle span {
             width: 24px;
             height: 1px;
             background: var(--color-white);
             transition: var(--transition);
         }
+
         @media (max-width: 768px) {
-            .navbar { padding: 10px 0; width: calc(100% - 32px); }
-            .nav-logo img { height: 55px; }
+            .navbar {
+                padding: 10px 0;
+                width: calc(100% - 32px);
+            }
+            
+            .nav-logo img { 
+                height: 55px;
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
                 position: fixed;
-                top: 0; left: 0; right: 0; bottom: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
                 height: 100vh;
                 width: 100vw;
                 background: rgba(8, 10, 8, 0.98);
@@ -257,10 +292,28 @@
                 padding: 24px;
                 box-sizing: border-box;
             }
-            .nav-links.active { display: flex !important; }
-            .nav-links a { font-size: 1.2rem; letter-spacing: 2px; }
-            .nav-cta { width: 80%; text-align: center; padding: 14px 0; margin-top: 10px; }
-            .menu-toggle { display: flex !important; z-index: 1001; position: relative; }
+
+            .nav-links.active { 
+                display: flex !important; 
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
+            .nav-cta {
+                width: 80%;
+                text-align: center;
+                padding: 14px 0;
+                margin-top: 10px;
+            }
+
+            .menu-toggle { 
+                display: flex !important; 
+                z-index: 1001;
+                position: relative;
+            }
         }
 
         /* HERO */
@@ -272,11 +325,16 @@
             padding-top: 160px;
             background: linear-gradient(180deg, var(--color-black) 0%, var(--color-dark) 100%);
         }
+
         @media (max-width: 768px) {
-            .navbar { padding: 10px 0; width: calc(100% - 32px); }
+            .navbar {
+                padding: 10px 0;
+                width: calc(100% - 32px);
+            }
             .nav-logo img { height: 45px; }
             .hero { padding-top: 130px; }
         }
+
         .hero-bg-pattern {
             position: absolute;
             inset: 0;
@@ -285,6 +343,7 @@
                 radial-gradient(circle at 85% 70%, rgba(201, 184, 150, 0.08) 0%, transparent 50%);
             pointer-events: none;
         }
+
         .hero .container {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
@@ -293,6 +352,7 @@
             position: relative;
             z-index: 1;
         }
+
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -306,6 +366,7 @@
             color: var(--color-kraft);
             margin-bottom: 24px;
         }
+
         .hero-title {
             font-family: var(--font-serif);
             font-size: clamp(2.8rem, 4.5vw, 4rem);
@@ -313,8 +374,9 @@
             line-height: 1.15;
             margin-bottom: 16px;
             letter-spacing: 1px;
-            color: var(--color-white);
+            color: var(--white);
         }
+
         .hero-subtitle {
             font-size: 1.1rem;
             color: var(--color-kraft);
@@ -323,6 +385,7 @@
             margin-bottom: 24px;
             font-weight: 500;
         }
+
         .hero-description {
             font-size: 1.05rem;
             color: var(--color-gray-light);
@@ -331,11 +394,13 @@
             max-width: 540px;
             font-weight: 300;
         }
+
         .hero-actions {
             display: flex;
             gap: 16px;
             margin-bottom: 48px;
         }
+
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -353,7 +418,12 @@
             transition: var(--transition);
             text-decoration: none;
         }
-        .btn-primary:hover { background: var(--color-gold); transform: translateY(-2px); }
+
+        .btn-primary:hover {
+            background: var(--color-gold);
+            transform: translateY(-2px);
+        }
+
         .btn-secondary {
             display: inline-flex;
             align-items: center;
@@ -371,96 +441,515 @@
             transition: var(--transition);
             text-decoration: none;
         }
-        .btn-secondary:hover { border-color: var(--color-kraft); color: var(--color-kraft); transform: translateY(-2px); }
-        .hero-stats { display: flex; gap: 32px; }
-        .hero-stat { padding-left: 16px; border-left: 2px solid var(--color-kraft); }
-        .hero-stat-number { font-size: 1.5rem; font-weight: 700; color: var(--color-kraft); line-height: 1; }
-        .hero-stat-label { font-size: 0.75rem; color: var(--color-gray); margin-top: 4px; letter-spacing: 1px; }
-        .hero-visual { display: flex; justify-content: center; align-items: center; }
-        .etiqueta-container { max-width: 300px; margin: 0 auto; text-align: center; }
-        .etiqueta-img { width: 100%; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)); transition: transform 0.3s ease; border-radius: 8px; }
-        .etiqueta-img:hover { transform: scale(1.02); }
-        .etiqueta-caption { margin-top: 20px; font-size: 0.75rem; letter-spacing: 2px; color: var(--color-kraft); text-transform: uppercase; font-weight: 500; }
+
+        .btn-secondary:hover {
+            border-color: var(--color-kraft);
+            color: var(--color-kraft);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+        }
+        .hero-stat {
+            padding-left: 16px;
+            border-left: 2px solid var(--color-kraft);
+        }
+
+        .hero-stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-kraft);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            color: var(--color-gray);
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .etiqueta-container {
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .etiqueta-img {
+            width: 100%;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+        .etiqueta-img:hover {
+            transform: scale(1.02);
+        }
+        .etiqueta-caption {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--color-kraft);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
 
         /* TRUSTED */
-        .trusted { padding: 40px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); background: var(--color-charcoal); }
-        .trusted-label { text-align: center; font-size: 0.8rem; color: var(--color-kraft); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 24px; font-weight: 500; }
-        .trusted-logos { display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
-        .trusted-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--color-gray-light); }
-        .trusted-item i { color: var(--color-gold); }
+        .trusted {
+            padding: 40px 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            background: var(--color-charcoal);
+        }
+
+        .trusted-label {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-kraft);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .trusted-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .trusted-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--color-gray-light);
+        }
+
+        .trusted-item i {
+            color: var(--color-gold);
+        }
 
         /* SECTION HEADERS */
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-        .section-label { display: inline-flex; align-items: center; gap: 12px; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--color-kraft); margin-bottom: 16px; font-weight: 600; }
-        .section-label::before, .section-label::after { content: ''; width: 40px; height: 1px; background: var(--color-kraft); }
-        .section-title { font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 16px; letter-spacing: 1px; }
-        .section-subtitle { font-size: 1.05rem; color: var(--color-gray); line-height: 1.7; }
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 64px;
+        }
 
-        /* FEATURES */
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .feature-card { background: var(--color-charcoal); border: 1px solid var(--color-border); padding: 40px 32px; text-align: center; transition: var(--transition); }
-        .feature-card:hover { border-color: var(--color-kraft); transform: translateY(-4px); }
-        .feature-icon { width: 64px; height: 64px; margin: 0 auto 24px; background: rgba(201, 184, 150, 0.08); border: 1px solid rgba(201, 184, 150, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-gold); }
-        .feature-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; letter-spacing: 1px; color: var(--color-kraft); }
-        .feature-description { font-size: 0.95rem; color: var(--color-gray-light); line-height: 1.7; }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-kraft);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--color-kraft);
+        }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--color-gray);
+            line-height: 1.7;
+        }
+
+        /* GRID STRUCTURES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--color-charcoal);
+            border: 1px solid var(--color-border);
+            padding: 40px 32px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: var(--color-kraft);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: rgba(201, 184, 150, 0.08);
+            border: 1px solid rgba(201, 184, 150, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gold);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            color: var(--color-kraft);
+        }
+
+        .feature-description {
+            font-size: 0.95rem;
+            color: var(--color-gray-light);
+            line-height: 1.7;
+        }
 
         /* FLAVORS */
-        .flavors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .flavor-card { background: var(--color-charcoal); border: 1px solid var(--color-border); overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
-        .flavor-card:hover { border-color: var(--color-kraft); transform: translateY(-4px); }
-        .flavor-image { width: 100%; aspect-ratio: 1.4; background: linear-gradient(135deg, var(--color-dark), #182218); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
-        .flavor-content { padding: 30px 24px; border-top: 1px solid var(--color-border); text-align: left; }
-        .flavor-meta { display: flex; justify-content: space-between; color: var(--color-gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; font-weight: 600; }
-        .flavor-name { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 12px; color: var(--color-kraft); }
-        .flavor-description { font-size: 0.9rem; color: var(--color-gray-light); line-height: 1.6; margin-bottom: 20px; }
-        .specs-list { list-style: none; border-top: 1px solid var(--color-border); padding-top: 15px; }
-        .specs-list li { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; color: var(--color-gray); }
-        .specs-list li span:last-child { color: var(--color-white); font-weight: 500; }
+        .flavors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
 
-        /* ABOUT */
-        .about { background: var(--color-dark); }
-        .about .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .about-image-main { width: 100%; aspect-ratio: 4/5; background: linear-gradient(135deg, var(--color-charcoal), var(--color-black)); border: 1px solid var(--color-border); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .about-image-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .about-image-main i { color: var(--color-gold); opacity: 0.25; margin-bottom: 16px; }
-        .about-content .section-header { text-align: left; margin: 0 0 32px; }
-        .about-list { list-style: none; display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
-        .about-list li { display: flex; align-items: flex-start; gap: 16px; }
-        .about-list-icon { width: 24px; height: 24px; background: rgba(201, 184, 150, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-        .about-list-icon i { width: 14px; height: 14px; color: var(--color-kraft); }
-        .about-list-text h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; letter-spacing: 1px; color: var(--color-kraft); }
-        .about-list-text p { font-size: 0.9rem; color: var(--color-gray-light); line-height: 1.6; }
+        .flavor-card {
+            background: var(--color-charcoal);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .flavor-card:hover {
+            border-color: var(--color-kraft);
+            transform: translateY(-4px);
+        }
+
+        .flavor-image {
+            width: 100%;
+            aspect-ratio: 1.4;
+            background: linear-gradient(135deg, var(--color-dark), #182218);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .flavor-content {
+            padding: 30px 24px;
+            border-top: 1px solid var(--color-border);
+            text-align: left;
+        }
+
+        .flavor-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--color-gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .flavor-name {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--color-kraft);
+        }
+
+        .flavor-description {
+            font-size: 0.9rem;
+            color: var(--color-gray-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .specs-list {
+            list-style: none;
+            border-top: 1px solid var(--color-border);
+            padding-top: 15px;
+        }
+
+        .specs-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--color-gray);
+        }
+
+        .specs-list li span:last-child {
+            color: var(--color-white);
+            font-weight: 500;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background: var(--color-dark);
+        }
+
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image-main {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--color-charcoal), var(--color-black));
+            border: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .about-image-main i {
+            color: var(--color-gold);
+            opacity: 0.25;
+            margin-bottom: 16px;
+        }
+
+        .about-content .section-header {
+            text-align: left;
+            margin: 0 0 32px;
+        }
+
+        .about-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .about-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .about-list-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(201, 184, 150, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .about-list-icon i {
+            width: 14px;
+            height: 14px;
+            color: var(--color-kraft);
+        }
+
+        .about-list-text h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+            color: var(--color-kraft);
+        }
+
+        .about-list-text p {
+            font-size: 0.9rem;
+            color: var(--color-gray-light);
+            line-height: 1.6;
+        }
 
         /* LIFESTYLE */
-        .lifestyle-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .lifestyle-card { background: var(--color-charcoal); border: 1px solid var(--color-border); padding: 40px; display: flex; gap: 24px; align-items: flex-start; transition: var(--transition); }
-        .lifestyle-card:hover { border-color: var(--color-kraft); }
-        .lifestyle-icon { width: 56px; height: 56px; background: rgba(46, 92, 46, 0.1); border: 1px solid rgba(46, 92, 46, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-gold); flex-shrink: 0; }
-        .lifestyle-content h3 { font-size: 1.2rem; margin-bottom: 8px; letter-spacing: 1px; color: var(--color-kraft); }
-        .lifestyle-content p { font-size: 0.95rem; color: var(--color-gray-light); line-height: 1.7; }
+        .lifestyle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .lifestyle-card {
+            background: var(--color-charcoal);
+            border: 1px solid var(--color-border);
+            padding: 40px;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
+
+        .lifestyle-card:hover {
+            border-color: var(--color-kraft);
+        }
+
+        .lifestyle-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(46, 92, 46, 0.1);
+            border: 1px solid rgba(46, 92, 46, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gold);
+            flex-shrink: 0;
+        }
+
+        .lifestyle-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            color: var(--color-kraft);
+        }
+
+        .lifestyle-content p {
+            font-size: 0.95rem;
+            color: var(--color-gray-light);
+            line-height: 1.7;
+        }
 
         /* CTA */
-        .cta-section { background: linear-gradient(180deg, var(--color-black) 0%, var(--color-dark) 100%); padding: 120px 0; text-align: center; }
-        .cta-box { max-width: 600px; margin: 0 auto; }
-        .cta-title { font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 16px; color: var(--color-kraft); }
-        .cta-subtitle { font-size: 1.05rem; color: var(--color-gray-light); margin-bottom: 40px; line-height: 1.7; }
-        .cta-form { display: flex; flex-direction: column; gap: 16px; text-align: left; }
-        .cta-input { width: 100%; padding: 16px 24px; background: var(--color-charcoal); border: 1px solid var(--color-border); color: var(--color-white); font-size: 0.95rem; font-family: var(--font-sans); outline: none; transition: var(--transition); }
-        .cta-input:focus { border-color: var(--color-kraft); }
+        .cta-section {
+            background: linear-gradient(180deg, var(--color-black) 0%, var(--color-dark) 100%);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            margin-bottom: 16px;
+            color: var(--color-kraft);
+        }
+
+        .cta-subtitle {
+            font-size: 1.05rem;
+            color: var(--color-gray-light);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .cta-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .cta-input {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--color-charcoal);
+            border: 1px solid var(--color-border);
+            color: var(--color-white);
+            font-size: 0.95rem;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .cta-input:focus {
+            border-color: var(--color-kraft);
+        }
 
         /* FOOTER */
-        .footer { padding: 80px 0 40px; background: var(--color-black); border-top: 1px solid var(--color-border); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
-        .footer-brand p { font-size: 0.9rem; color: var(--color-gray); line-height: 1.7; margin-top: 12px; }
-        .footer-logo { height: 45px; width: auto; }
-        .footer-column h4 { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; color: var(--color-kraft); }
-        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .footer-links a { color: var(--color-gray); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
-        .footer-links a:hover { color: var(--color-kraft); }
-        .footer-bottom { padding-top: 40px; border-top: 1px solid var(--color-border); text-align: center; font-size: 0.85rem; color: var(--color-gray-dark); }
+        .footer {
+            padding: 80px 0 40px;
+            background: var(--color-black);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--color-gray);
+            line-height: 1.7;
+            margin-top: 12px;
+        }
+        .footer-logo {
+            height: 45px;
+            width: auto;
+        }
+
+        .footer-column h4 {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--color-kraft);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: var(--color-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-kraft);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-gray-dark);
+        }
 
         @media (max-width: 1024px) {
-            .hero .container, .about .container { grid-template-columns: 1fr; gap: 60px; }
+            .hero .container,
+            .about .container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
             .hero-visual { order: -1; }
             .features-grid, .flavors-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -645,6 +1134,7 @@
                         <p class="flavor-description">
                             Uma celebração apaixonante e encorpada. O encontro perfeito do toque aveludado da uva com a vibração floral do hibisco.
                         </p>
+                        
                         <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
                             <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
                             <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
@@ -654,11 +1144,13 @@
                                 <li style="margin-bottom: 4px;">• Grãos selecionados de Pimenta Preta</li>
                             </ul>
                         </div>
+
                         <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
                             <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
                                 <strong>Conselho do Mestre:</strong> O azedinho do hibisco equilibra perfeitamente o dulçor natural da beterraba, criando a ilusão sensorial de um bom vinho tinto encorpado e festivo.
                             </p>
                         </div>
+
                         <ul class="specs-list">
                             <li><span>Base Cultivada</span> <span>Chá Preto</span></li>
                             <li><span>Perfil de Sabor</span> <span>Encorpado e Equilibrado</span></li>
@@ -679,6 +1171,7 @@
                         <p class="flavor-description">
                             Um gole de puro sol e frescor. Uma combinação revigorante que desperta o corpo e traz uma sensação reconfortante de frescor e vitalidade ativa.
                         </p>
+                        
                         <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
                             <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
                             <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
@@ -688,11 +1181,13 @@
                                 <li style="margin-bottom: 4px;">• Splash cítrico de Laranja para dar brilho</li>
                             </ul>
                         </div>
+
                         <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
                             <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
                                 <strong>Conselho do Mestre:</strong> A pimenta preta é o nosso segredo natural de ouro: a piperina ativa e potencializa de forma extraordinária a absorção e os aromas da cúrcuma no organismo.
                             </p>
                         </div>
+
                         <ul class="specs-list">
                             <li><span>Base Cultivada</span> <span>Chá Verde</span></li>
                             <li><span>Perfil de Sabor</span> <span>Especiarias Vibrantes</span></li>
@@ -713,6 +1208,7 @@
                         <p class="flavor-description">
                             A essência mais pura e refrescante da natureza verde. Uma infusão leve e revigorante feita para clarear os pensamentos e trazer foco para o dia.
                         </p>
+                        
                         <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
                             <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
                             <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
@@ -722,11 +1218,13 @@
                                 <li style="margin-bottom: 4px;">• Spirulina (cor esmeralda)</li>
                             </ul>
                         </div>
+
                         <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
                             <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
                                 <strong>Conselho do Mestre:</strong> O frescor cítrico do limão siciliano envolve o perfil intensamente herbáceo da moringa, transformando esse superalimento em um brinde muito refrescante.
                             </p>
                         </div>
+
                         <ul class="specs-list">
                             <li><span>Base Cultivada</span> <span>Chá Verde</span></li>
                             <li><span>Perfil de Sabor</span> <span>Botânico Herbáceo & Refrescante</span></li>
@@ -819,13 +1317,10 @@
                    Respeitamos o tempo e a maturação natural de cada blend. Nossas garrafas são envasadas em pequenos lotes safrados e, assim que é liberada a nova leva, nós avisamos primeiro quem está por aqui. Deixe seu contato para acompanhar os bastidores e saber quando o próximo lote estiver pronto.
                 </p>
                 <form class="cta-form" id="leadsForm" onsubmit="handleSubmit(event)">
-                    <!-- Campo oculto para rastrear a origem do lead -->
-                    <input type="hidden" id="leadSource" name="source" value="direct">
-
                     <input type="text" id="formNome" class="cta-input" placeholder="Como quer ser chamado?" required>
                     <input type="email" id="formEmail" class="cta-input" placeholder="Seu e-mail" required>
                     <input type="tel" id="formWorkspace" class="cta-input" placeholder="O seu melhor contato" required>
-                    <textarea id="formMensagem" class="cta-input" placeholder="Qual a sua preferência?" rows="3" style="resize: none; font-family: var(--font-sans);"></textarea>
+					<textarea id="formMensagem" class="cta-input" placeholder="Qual a sua preferência?" rows="3" style="resize: none; font-family: var(--font-sans);"></textarea>
                     <button type="submit" class="btn-primary" style="width: 100%;">
                         <span>Me avise quando estiver pronto</span>
                         <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
@@ -868,108 +1363,27 @@
     <script>
         lucide.createIcons();
 
-        // Configuração do Supabase
+        // ==================== CONEXÃO REAL DO BANCO DO MARCOS ====================
         const SUPABASE_URL = "https://mimwktbuhkqxrvbqgjgq.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1pbXdrdGJ1aGtxeHJ2YnFnamdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwODE0MzMsImV4cCI6MjA5NDY1NzQzM30.uk91bi71OMqkTZAlfO-DC-wlnT64JU2P71Czqhi5Eow";
-
-        // Capturar a origem (source) da URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const sourceParam = urlParams.get('source') || 'direct';
-        document.getElementById('leadSource').value = sourceParam;
-
-        // Função de envio (segura, sem token exposto)
-        async function handleSubmit(e) {
-            e.preventDefault();
-
-            const btn = e.target.querySelector('button');
-            const feedback = document.getElementById('formFeedback');
-            const originalText = btn.innerHTML;
-
-            const nome = document.getElementById('formNome').value.trim();
-            const email = document.getElementById('formEmail').value.trim();
-            const whatsapp = document.getElementById('formWorkspace').value.trim();
-            const mensagem = document.getElementById('formMensagem').value.trim();
-            const source = document.getElementById('leadSource').value;
-
-            if (feedback) feedback.style.display = 'none';
-            btn.innerHTML = '<span>Preparando seu lugar...</span>';
-            btn.disabled = true;
-
-            try {
-                // 1. Salvar no Supabase
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/leads_essentia`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify({
-                        nome: nome,
-                        email: email,
-                        whatsapp: whatsapp,
-                        mensagem: mensagem || null,
-                        source: source
-                    })
-                });
-
-                if (!response.ok && response.status !== 201) {
-                    throw new Error('Erro ao salvar lead no Supabase');
-                }
-
-                // 2. Disparar Facebook Pixel (se existir)
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'Lead', {
-                        content_name: 'Lista VIP ESSENTIA',
-                        source: source
-                    });
-                }
-
-                // 3. Enviar notificação para a API segura (que envia ao Telegram)
-                fetch('/api/send-lead', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        nome: nome,
-                        email: email,
-                        whatsapp: whatsapp,
-                        mensagem: mensagem,
-                        source: source
-                    })
-                }).catch(() => {
-                    // Erro silencioso: não quebra o fluxo principal
-                });
-
-                // 4. Feedback de sucesso
-                btn.innerHTML = '<span>Reserva Confirmada! ✓</span>';
-                btn.style.background = '#2e5c2e';
-                btn.style.color = '#f7faf7';
-
-                if (feedback) {
-                    feedback.style.backgroundColor = 'rgba(201, 184, 150, 0.1)';
-                    feedback.style.borderColor = '#c9b896';
-                    feedback.style.color = '#c9b896';
-                    feedback.innerText = '🎉 Que alegria! Seu cadastro foi realizado com sucesso. Aguarde o próximo envase. Nos vemos em breve!';
-                    feedback.style.display = 'block';
-                }
-                e.target.reset();
-
-            } catch (error) {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                if (feedback) {
-                    feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                    feedback.style.borderColor = '#ef4444';
-                    feedback.style.color = '#ef4444';
-                    feedback.innerText = 'Contratempo técnico na conexão. Por favor, tente novamente em instantes.';
-                    feedback.style.display = 'block';
-                }
-            } finally {
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
-            }
+        
+        async function sendToSupabase(nome, email, whatsapp) {
+            const endpoint = `${SUPABASE_URL}/rest/v1/leads_essentia`;
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                    nome: nome,
+                    email: email,
+                    whatsapp: whatsapp
+                })
+            });
+            return response;
         }
 
         // Navbar scroll
@@ -982,7 +1396,7 @@
             }
         });
 
-        // Menu mobile
+        // Mobile menu
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         menuToggle.addEventListener('click', () => {
@@ -997,18 +1411,118 @@
                 }
             });
         }, { threshold: 0.1 });
+
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
             observer.observe(el);
         });
 
-        // Smooth scroll para âncoras
+        // Form submission real para o Supabase com Alerta Blindado no Telegram
+       // FORMATO ATUALIZADO COM CAPTURA DE MENSAGEM E COMPATIBILIDADE BLINDADA
+async function handleSubmit(e) {
+    e.preventDefault();
+    
+    const btn = e.target.querySelector('button');
+    const feedback = document.getElementById('formFeedback');
+    const originalText = btn.innerHTML;
+    
+    const nome = document.getElementById('formNome').value.trim();
+    const email = document.getElementById('formEmail').value.trim();
+    const whatsapp = document.getElementById('formWorkspace').value.trim();
+    const mensagem = document.getElementById('formMensagem').value.trim(); // Captura a mensagem
+
+    if (feedback) feedback.style.display = 'none';
+    btn.innerHTML = '<span>Preparando seu lugar...</span>';
+    btn.disabled = true;
+
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/leads_essentia`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({
+                nome: nome,
+                email: email,
+                whatsapp: whatsapp,
+                mensagem: mensagem // Envia para a nova coluna do Supabase
+            })
+        });
+        
+        if (response.ok || response.status === 201) {
+            try {
+                const t1 = "8860353221:AAGk8W1_8-Kv1UTP"; 
+                const t2 = "sXqfmOLPu8xyyUG4ZWY"; 
+                const tokenBot = t1 + t2;
+                const canalId = "@essentia_alertas"; 
+                const whatsappLimpo = whatsapp.replace(/\D/g, ''); 
+                
+                // Card do Telegram atualizado incluindo a mensagem se o cliente preencher
+                const textoAlerta = `🍇 *NOVO INTERESSADO NO PRÓXIMO LOTE!* \n\n` +
+                                    `👤 *Nome:* ${nome}\n` +
+                                    `✉️ *E-mail:* ${email}\n` +
+                                    `📱 *WhatsApp:* ${whatsapp}\n` +
+                                    `💬 *Mensagem:* ${mensagem ? mensagem : '_Nenhuma mensagem enviada_'}\n\n` +
+                                    `👉 *Chamar no WhatsApp:* https://wa.me/55${whatsappLimpo}`;
+
+                fetch(`https://api.telegram.org/bot${tokenBot}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: canalId,
+                        text: textoAlerta,
+                        parse_mode: 'Markdown'
+                    })
+                }).catch(fErr => console.error('Erro no fetch do Telegram:', fErr));
+            } catch (telegramErr) {
+                console.error('Erro interno na montagem do Telegram:', telegramErr);
+            }
+
+            btn.innerHTML = '<span>Reserva Confirmada! ✓</span>';
+            btn.style.background = '#2e5c2e';
+            btn.style.color = '#f7faf7';
+            
+            if (feedback) {
+                feedback.style.backgroundColor = 'rgba(201, 184, 150, 0.1)';
+                feedback.style.borderColor = '#c9b896';
+                feedback.style.color = '#c9b896';
+                feedback.innerText = '🎉 Que alegria! Seu cadastro foi realizado com sucesso. Aguarde o próximo envase. Nos vemos em breve!';
+                feedback.style.display = 'block';
+            }
+            e.target.reset();
+        } else {
+            throw new Error('Falha no registro.');
+                }
+    } catch (error) {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        if (feedback) {
+            feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+            feedback.style.borderColor = '#ef4444';
+            feedback.style.color = '#ef4444';
+            feedback.innerText = 'Contratempo técnico na conexão. Por favor, tente novamente em instantes.';
+            feedback.style.display = 'block';
+        }
+    } finally {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }
+}
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    if (navLinks) navLinks.classList.remove('active');
+                    const navLinks = document.getElementById('navLinks');
+                    if (navLinks) {
+                        navLinks.classList.remove('active');
+                    }
                 }
             });
         });
