@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSENTIA · Nossos Links</title>
+    <meta name="robots" content="noindex, follow">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #080a08;
+            color: #f7faf7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 32px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            border-radius: 50%;
+            border: 2px solid rgba(201, 184, 150, 0.3);
+            padding: 8px;
+            background: #101410;
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #c9b896;
+            margin-top: 12px;
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            color: #9bb09b;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 32px 0;
+        }
+
+        .btn-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: #141a14;
+            border: 1px solid #1f2b1f;
+            border-radius: 12px;
+            color: #f7faf7;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .btn-link:hover {
+            border-color: #c9b896;
+            transform: translateY(-2px);
+            background: #1a221a;
+        }
+
+        .btn-link .icon {
+            font-size: 1.3rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .btn-link .arrow {
+            margin-left: auto;
+            color: #485c48;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-link:hover .arrow {
+            transform: translateX(4px);
+            color: #c9b896;
+        }
+
+        .btn-primary {
+            background: #c9b896;
+            color: #080a08;
+            border-color: #c9b896;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: #d4a853;
+            border-color: #d4a853;
+            color: #080a08;
+        }
+
+        .btn-primary .arrow {
+            color: #080a08;
+        }
+
+        .btn-primary:hover .arrow {
+            color: #080a08;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(201, 184, 150, 0.12);
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #c9b896;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 32px;
+            font-size: 0.7rem;
+            color: #485c48;
+            letter-spacing: 1px;
+        }
+
+        .footer a {
+            color: #9bb09b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #c9b896;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: #1f2b1f;
+            margin: 16px auto;
+        }
+
+        @media (max-width: 480px) {
+            .logo img { width: 100px; }
+            .btn-link { padding: 14px 16px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Logo -->
+    <div class="logo">
+        <img src="logo_ESSENTIA.png" alt="ESSENTIA">
+        <h1>ESSENTIA</h1>
+        <p>Kombucha Artesanal Viva</p>
+    </div>
+
+    <!-- Links -->
+    <div class="links">
+
+        <!-- Link 1: Site principal -->
+        <a href="https://www.essentiaoficial.com.br?source=linktree_site" class="btn-link">
+            <span class="icon">🌿</span>
+            Conhecer a ESSENTIA
+            <span class="arrow">→</span>
+        </a>
+
+        <!-- Link 2: Lista VIP (com âncora) -->
+        <a href="https://www.essentiaoficial.com.br#lista-vip?source=linktree_vip" class="btn-link btn-primary">
+            <span class="icon">📝</span>
+            Entrar na Lista VIP
+            <span class="badge">Novo lote</span>
+            <span class="arrow">→</span>
+        </a>
+
+        <!-- Link 3: Sabores -->
+        <a href="https://www.essentiaoficial.com.br#edicoes?source=linktree_sabores" class="btn-link">
+            <span class="icon">🍷</span>
+            Conhecer os Sabores
+            <span class="arrow">→</span>
+        </a>
+
+        <!-- Link 4: WhatsApp -->
+        <a href="https://wa.me/5561XXXXXXXX?text=Olá!%20Quero%20saber%20mais%20sobre%20a%20ESSENTIA" class="btn-link" target="_blank">
+            <span class="icon">💬</span>
+            Falar no WhatsApp
+            <span class="arrow">→</span>
+        </a>
+
+        <!-- Link 5: Instagram -->
+        <a href="https://instagram.com/essentia.bio" class="btn-link" target="_blank">
+            <span class="icon">📸</span>
+            Seguir no Instagram
+            <span class="arrow">→</span>
+        </a>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Feito com 🖤 em Brasília • <a href="https://www.essentiaoficial.com.br" target="_blank">essentiaoficial.com.br</a></p>
+    </div>
+</div>
+
+</body>
+</html>
