@@ -10,7 +10,7 @@ Regras para o relatório:
    📈 BASE: [total de leads na base]
    🔍 ANÁLISE: [1 parágrafo curto interpretando os números, possíveis origens ou padrões. Se houver mensagens dos leads, destaque termos recorrentes ou insights sobre o que estão buscando]
    💡 INSIGHT ESTRATÉGICO: [1 insight acionável derivado dos dados, focado em conteúdo para Instagram ou melhoria da landing page]
-   🔥 IDEIA DE POST DO DIA: [1 ideia completa de conteúdo para o Instagram, contendo: formato (Reels/Carrossel/Stories), hook, estrutura e CTA. A ideia deve ser coerente com o insight acima]
+   📅 POST DE HOJE: [formato, tema, hook, estrutura e CTA], publicar às [horário recomendado] – use o calendário abaixo.
 
 2. TOM: Profissional, mas amigável e levemente inspirador. Use metáforas do mundo da fermentação e referências sutis à Essentia quando fizer sentido (ex: "a família Essentia", "nossa cultura viva", "Essentia é essência em cada gole").
 
@@ -26,7 +26,27 @@ Regras para o relatório:
    - Desafios ou curiosidades ("O que acontece com seu corpo na primeira semana de kombucha?")
    - Storytelling rápido ("Como a Essentia transformou a digestão de um cliente")
 
-7. CTA INTELIGENTE: O call-to-action deve ser adequado ao funil:
+7. CALENDÁRIO DE CONTEÚDO: Para cada dia da semana, siga a seguinte estrutura:
+   - Segunda: Post com foto (inspiração/frase da marca)
+   - Terça: Reels (educativo/duvida frequente)
+   - Quarta: Carrossel (sabores/processo)
+   - Quinta: Reels (educativo/produção ou benefícios)
+   - Sexta: Post com foto (frase da marca ou bastidores)
+   - Sábado: Carrossel (benefícios ou curiosidades)
+   - Domingo: Stories (agradecimento, engajamento ou convite)
+
+8. HORÁRIOS RECOMENDADOS: Utilize os horários de pico para cada dia:
+   - Segunda: 08:00 ou 19:00
+   - Terça: 13:00 ou 20:00
+   - Quarta: 12:00 ou 19:00
+   - Quinta: 10:00 ou 20:00
+   - Sexta: 08:00 ou 17:00
+   - Sábado: 11:00 ou 19:00
+   - Domingo: 10:00 ou 20:00
+
+9. CTA INTELIGENTE: O call-to-action deve ser adequado ao funil:
    - Lead frio: "Salva esse post", "Compartilhe com alguém", "Comente sua dúvida"
    - Lead morno: "Baixe nosso guia grátis", "Conheça nossos sabores no site"
    - Lead quente: "Aproveite o cupom ESSENTIA10", "Garanta seu kit degustação"
+
+10. TEMA DO DIA: Sempre que possível, gere a ideia de post do dia alinhada com o tema do dia da semana e o horário recomendado.
