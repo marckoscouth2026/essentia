@@ -123,7 +123,6 @@ src="https://www.facebook.com/tr?id=1011169508072115&ev=PageView&noscript=1"
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* ===== SEU CSS COMPLETO (exatamente igual ao que já estava) ===== */
         :root {
             --color-black: #080a08;
             --color-dark: #101410;
@@ -631,118 +630,123 @@ src="https://www.facebook.com/tr?id=1011169508072115&ev=PageView&noscript=1"
                     Micro-lotes exclusivos e limitados, criados artesanalmente para nutrir seu corpo com alegria, energia e bem-estar.
                 </p>
             </div>
+
+            <!-- GRID DOS SABORES FIXOS -->
             <div class="flavors-grid">  
-                
-                <!-- SABOR LIMITADO (dinâmico) -->
-<div id="sabor-limitado-container" style="display: none; margin-top: 48px; border-top: 2px solid var(--color-border); padding-top: 40px;">
-    <div class="section-header" style="margin-bottom: 32px;">
-        <div class="section-label">✨ Edição Limitada</div>
-        <h2 class="section-title" style="font-size: 2rem;">Sabor do Mês</h2>
-    </div>
-    <div class="flavors-grid" id="sabor-limitado-grid">
-        <!-- O card será inserido aqui via JavaScript -->
-    </div>
-</div>
-               <div class="flavor-card animate-on-scroll">
- <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #2a1a2a);">
-        <img src="blend_uva.jpg" alt="ESSENTIA Deep Red" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
-    </div>
-    <div class="flavor-content">
-        <div class="flavor-meta">
-            <span>Carro-Chefe</span>
-            <span>Doçura & Toque Tânico</span>
-        </div>
-        <h3 class="flavor-name">ESSENTIA Deep Red</h3>
-        <p class="flavor-description">
-            Uma celebração pura e intensa da uva. O encontro perfeito da doçura natural da uva integral com o toque tânico que remete a um bom vinho tinto, sem álcool.
-        </p>
-        <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
-            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
-            <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
-                <li style="margin-bottom: 4px;">• Uva Integral</li>
-                <li style="margin-bottom: 4px;">• Suco de Uva Orgânico</li>
-                <li style="margin-bottom: 4px;">• Um toque de Canela</li>
-            </ul>
-        </div>
-        <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
-            <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
-                <strong>Conselho do Mestre:</strong> A doçura da uva é equilibrada pelo toque sutil da canela, criando uma experiência que aquece a alma e refresca o paladar.
-            </p>
-        </div>
-        <ul class="specs-list">
-            <li><span>Base Cultivada</span> <span>Chá Verde</span></li>
-            <li><span>Perfil de Sabor</span> <span>Doce, Frutado, com leve tanino</span></li>
-        </ul>
-    </div>
-</div>
-               <div class="flavor-card animate-on-scroll">
-    <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #1a2a1a);">
-        <img src="blend_maracuja.jpg" alt="ESSENTIA Tropical Passion" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
-    </div>
-    <div class="flavor-content">
-        <div class="flavor-meta">
-            <span>Edição Tropical</span>
-            <span>Vibrante & Refrescante</span>
-        </div>
-        <h3 class="flavor-name">ESSENTIA Maracujá Tropical Passion</h3>
-        <p class="flavor-description">
-            Uma explosão de frescor tropical. O maracujá traz uma acidez vibrante que desperta os sentidos e te transporta para um paraíso de sabores.
-        </p>
-        <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
-            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
-            <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
-                <li style="margin-bottom: 4px;">• Polpa de Maracujá</li>
-                <li style="margin-bottom: 4px;">• Suco de Manga</li>
-                <li style="margin-bottom: 4px;">• Gengibre fresco</li>
-                <li style="margin-bottom: 4px;">• Um toque de Hortelã</li>
-            </ul>
-        </div>
-        <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
-            <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
-                <strong>Conselho do Mestre:</strong> A acidez do maracujá é domada pela doçura da manga, e o gengibre dá aquele arrepio refrescante que faz você querer mais um gole.
-            </p>
-        </div>
-        <ul class="specs-list">
-            <li><span>Base Cultivada</span> <span>Chá Verde</span></li>
-            <li><span>Perfil de Sabor</span> <span>Tropical, Refrescante, Levemente Ácido</span></li>
-        </ul>
-    </div>
-</div>
-               <div class="flavor-card animate-on-scroll">
-    <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #1a2a1a);">
-        <img src="blend_limao.jpg" alt="ESSENTIA Citrus Clear" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
-    </div>
-    <div class="flavor-content">
-        <div class="flavor-meta">
-            <span>Safra Cítrica</span>
-            <span>Leveza & Energia</span>
-        </div>
-        <h3 class="flavor-name">ESSENTIA Citrus Clear</h3>
-        <p class="flavor-description">
-            Uma infusão cítrica e revigorante. O limão siciliano se une à leveza do chá verde para criar uma bebida que limpa a mente e desperta a energia para o dia.
-        </p>
-        <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
-            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
-            <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
-                <li style="margin-bottom: 4px;">• Limão Siciliano</li>
-                <li style="margin-bottom: 4px;">• Limão Tahiti</li>
-                <li style="margin-bottom: 4px;">• Capim-Limão</li>
-                <li style="margin-bottom: 4px;">• Hortelã fresca</li>
-                <li style="margin-bottom: 4px;">• Um toque de Gengibre</li>
-            </ul>
-        </div>
-        <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
-            <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
-                <strong>Conselho do Mestre:</strong> O limão siciliano traz a acidez nobre, enquanto o capim-limão e a hortelã criam um frescor duradouro. É como um banho de luz para o paladar.
-            </p>
-        </div>
-        <ul class="specs-list">
-            <li><span>Base Cultivada</span> <span>Chá Verde</span></li>
-            <li><span>Perfil de Sabor</span> <span>Cítrico, Herbáceo, Revigorante</span></li>
-        </ul>
-    </div>
-</div>
+                <div class="flavor-card animate-on-scroll">
+                    <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #2a1a2a);">
+                        <img src="blend_uva.jpg" alt="ESSENTIA Deep Red" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                    </div>
+                    <div class="flavor-content">
+                        <div class="flavor-meta">
+                            <span>Carro-Chefe</span>
+                            <span>Doçura & Toque Tânico</span>
+                        </div>
+                        <h3 class="flavor-name">ESSENTIA Deep Red</h3>
+                        <p class="flavor-description">
+                            Uma celebração pura e intensa da uva. O encontro perfeito da doçura natural da uva integral com o toque tânico que remete a um bom vinho tinto, sem álcool.
+                        </p>
+                        <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
+                            <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
+                                <li style="margin-bottom: 4px;">• Uva Integral</li>
+                                <li style="margin-bottom: 4px;">• Suco de Uva Orgânico</li>
+                                <li style="margin-bottom: 4px;">• Um toque de Canela</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
+                            <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
+                                <strong>Conselho do Mestre:</strong> A doçura da uva é equilibrada pelo toque sutil da canela, criando uma experiência que aquece a alma e refresca o paladar.
+                            </p>
+                        </div>
+                        <ul class="specs-list">
+                            <li><span>Base Cultivada</span> <span>Chá Verde</span></li>
+                            <li><span>Perfil de Sabor</span> <span>Doce, Frutado, com leve tanino</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flavor-card animate-on-scroll">
+                    <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #1a2a1a);">
+                        <img src="blend_maracuja.jpg" alt="ESSENTIA Tropical Passion" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                    </div>
+                    <div class="flavor-content">
+                        <div class="flavor-meta">
+                            <span>Edição Tropical</span>
+                            <span>Vibrante & Refrescante</span>
+                        </div>
+                        <h3 class="flavor-name">ESSENTIA Maracujá Tropical Passion</h3>
+                        <p class="flavor-description">
+                            Uma explosão de frescor tropical. O maracujá traz uma acidez vibrante que desperta os sentidos e te transporta para um paraíso de sabores.
+                        </p>
+                        <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
+                            <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
+                                <li style="margin-bottom: 4px;">• Polpa de Maracujá</li>
+                                <li style="margin-bottom: 4px;">• Suco de Manga</li>
+                                <li style="margin-bottom: 4px;">• Gengibre fresco</li>
+                                <li style="margin-bottom: 4px;">• Um toque de Hortelã</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
+                            <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
+                                <strong>Conselho do Mestre:</strong> A acidez do maracujá é domada pela doçura da manga, e o gengibre dá aquele arrepio refrescante que faz você querer mais um gole.
+                            </p>
+                        </div>
+                        <ul class="specs-list">
+                            <li><span>Base Cultivada</span> <span>Chá Verde</span></li>
+                            <li><span>Perfil de Sabor</span> <span>Tropical, Refrescante, Levemente Ácido</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flavor-card animate-on-scroll">
+                    <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #1a2a1a);">
+                        <img src="blend_limao.jpg" alt="ESSENTIA Citrus Clear" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                    </div>
+                    <div class="flavor-content">
+                        <div class="flavor-meta">
+                            <span>Safra Cítrica</span>
+                            <span>Leveza & Energia</span>
+                        </div>
+                        <h3 class="flavor-name">ESSENTIA Citrus Clear</h3>
+                        <p class="flavor-description">
+                            Uma infusão cítrica e revigorante. O limão siciliano se une à leveza do chá verde para criar uma bebida que limpa a mente e desperta a energia para o dia.
+                        </p>
+                        <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
+                            <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
+                                <li style="margin-bottom: 4px;">• Limão Siciliano</li>
+                                <li style="margin-bottom: 4px;">• Limão Tahiti</li>
+                                <li style="margin-bottom: 4px;">• Capim-Limão</li>
+                                <li style="margin-bottom: 4px;">• Hortelã fresca</li>
+                                <li style="margin-bottom: 4px;">• Um toque de Gengibre</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
+                            <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
+                                <strong>Conselho do Mestre:</strong> O limão siciliano traz a acidez nobre, enquanto o capim-limão e a hortelã criam um frescor duradouro. É como um banho de luz para o paladar.
+                            </p>
+                        </div>
+                        <ul class="specs-list">
+                            <li><span>Base Cultivada</span> <span>Chá Verde</span></li>
+                            <li><span>Perfil de Sabor</span> <span>Cítrico, Herbáceo, Revigorante</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
+            <!-- SABOR LIMITADO (fora do grid, com largura total) -->
+            <div id="sabor-limitado-container" style="display: none; margin-top: 48px; border-top: 2px solid var(--color-border); padding-top: 40px;">
+                <div class="section-header" style="margin-bottom: 32px;">
+                    <div class="section-label">✨ Edição Limitada</div>
+                    <h2 class="section-title" style="font-size: 2rem;">Sabor do Mês</h2>
+                </div>
+                <div class="flavors-grid" id="sabor-limitado-grid">
+                    <!-- O card será inserido aqui via JavaScript -->
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -847,56 +851,50 @@ src="https://www.facebook.com/tr?id=1011169508072115&ev=PageView&noscript=1"
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-    <!-- Coluna 1: Marca + Instagram -->
-    <div class="footer-brand">
-        <img src="logo_ESSENTIA.png" alt="ESSENTIA" class="footer-logo">
-        <p>Bebida artesanal viva, feita à mão para trazer alegria, saúde e refrescância para a sua mesa.</p>
-        
-        <!-- Link do Instagram com ícone oficial -->
-        <div style="margin-top: 20px; display: flex; align-items: center; gap: 12px;">
-            <a href="https://instagram.com/essentiabsb" target="_blank" rel="noopener noreferrer" 
-               style="display: flex; align-items: center; gap: 10px; color: var(--color-gray); text-decoration: none; transition: color 0.3s ease; font-size: 0.95rem;"
-               onmouseover="this.style.color='#c9b896'" 
-               onmouseout="this.style.color='var(--color-gray)'">
-                <!-- Ícone oficial do Instagram (SVG com gradiente) -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
-                    <defs>
-                        <linearGradient id="instaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#feda75" />
-                            <stop offset="25%" style="stop-color:#fa7e1e" />
-                            <stop offset="50%" style="stop-color:#d62976" />
-                            <stop offset="75%" style="stop-color:#962fbf" />
-                            <stop offset="100%" style="stop-color:#4f5bd5" />
-                        </linearGradient>
-                    </defs>
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#instaGrad)"/>
-                    <circle cx="12" cy="12" r="4.5" fill="white"/>
-                    <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
-                </svg>
-                <span>Siga-nos no Instagram</span>
-            </a>
-        </div>
-    </div>
+                <div class="footer-brand">
+                    <img src="logo_ESSENTIA.png" alt="ESSENTIA" class="footer-logo">
+                    <p>Bebida artesanal viva, feita à mão para trazer alegria, saúde e refrescância para a sua mesa.</p>
+                    <div style="margin-top: 20px; display: flex; align-items: center; gap: 12px;">
+                        <a href="https://instagram.com/essentiabsb" target="_blank" rel="noopener noreferrer" 
+                           style="display: flex; align-items: center; gap: 10px; color: var(--color-gray); text-decoration: none; transition: color 0.3s ease; font-size: 0.95rem;"
+                           onmouseover="this.style.color='#c9b896'" 
+                           onmouseout="this.style.color='var(--color-gray)'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
+                                <defs>
+                                    <linearGradient id="instaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#feda75" />
+                                        <stop offset="25%" style="stop-color:#fa7e1e" />
+                                        <stop offset="50%" style="stop-color:#d62976" />
+                                        <stop offset="75%" style="stop-color:#962fbf" />
+                                        <stop offset="100%" style="stop-color:#4f5bd5" />
+                                    </linearGradient>
+                                </defs>
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#instaGrad)"/>
+                                <circle cx="12" cy="12" r="4.5" fill="white"/>
+                                <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
+                            </svg>
+                            <span>Siga-nos no Instagram</span>
+                        </a>
+                    </div>
+                </div>
 
-    <!-- Coluna 2: Filosofia -->
-    <div class="footer-column">
-        <h4>Filosofia</h4>
-        <ul class="footer-links">
-            <li><a href="#filosofia">Nosso Cuidado</a></li>
-            <li><a href="#cuidado">Produção Afetiva</a></li>
-        </ul>
-    </div>
+                <div class="footer-column">
+                    <h4>Filosofia</h4>
+                    <ul class="footer-links">
+                        <li><a href="#filosofia">Nosso Cuidado</a></li>
+                        <li><a href="#cuidado">Produção Afetiva</a></li>
+                    </ul>
+                </div>
 
-    <!-- Coluna 3: Nossas Edições (atualizado) -->
-    <div class="footer-column">
-        <h4>Nossas Edições</h4>
-        <ul class="footer-links">
-            <li><a href="#edicoes">Essentia Deep Red (Uva)</a></li>
-            <li><a href="#edicoes">Essentia Tropical Passion (Maracujá)</a></li>
-            <li><a href="#edicoes">Essentia Citrus Clear (Limão)</a></li>
-        </ul>
-    </div>
-</div>
+                <div class="footer-column">
+                    <h4>Nossas Edições</h4>
+                    <ul class="footer-links">
+                        <li><a href="#edicoes">Essentia Deep Red (Uva)</a></li>
+                        <li><a href="#edicoes">Essentia Tropical Passion (Maracujá)</a></li>
+                        <li><a href="#edicoes">Essentia Citrus Clear (Limão)</a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 ESSENTIA. Celebrando a Vida e a Saúde. Todos os direitos reservados.</p>
             </div>
@@ -905,83 +903,73 @@ src="https://www.facebook.com/tr?id=1011169508072115&ev=PageView&noscript=1"
 
     <script>
         // === SABOR LIMITADO ===
-async function carregarSaborLimitado() {
-    try {
-        const response = await fetch('/limitada.json');
-        if (!response.ok) throw new Error('Arquivo não encontrado');
-        
-        const data = await response.json();
-        const container = document.getElementById('sabor-limitado-container');
-        const grid = document.getElementById('sabor-limitado-grid');
-        
-        if (data.active && data.sabor) {
-            // Mostra o container
-            container.style.display = 'block';
-            
-            // Cria o card
-            const sabor = data.sabor;
-            grid.innerHTML = `
-                <div class="flavor-card animate-on-scroll">
-                    <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #1a1a2a);">
-                        <img src="${sabor.imagem}" alt="${sabor.nome}" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
-                    </div>
-                    <div class="flavor-content">
-                        <div class="flavor-meta">
-                            <span>${sabor.meta || 'Edição Limitada'}</span>
-                            <span>Exclusivo</span>
+        async function carregarSaborLimitado() {
+            try {
+                const response = await fetch('/limitada.json');
+                if (!response.ok) throw new Error('Arquivo não encontrado');
+                
+                const data = await response.json();
+                const container = document.getElementById('sabor-limitado-container');
+                const grid = document.getElementById('sabor-limitado-grid');
+                
+                if (data.active && data.sabor) {
+                    container.style.display = 'block';
+                    const sabor = data.sabor;
+                    grid.innerHTML = `
+                        <div class="flavor-card animate-on-scroll">
+                            <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #1a1a2a);">
+                                <img src="${sabor.imagem}" alt="${sabor.nome}" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                            </div>
+                            <div class="flavor-content">
+                                <div class="flavor-meta">
+                                    <span>${sabor.meta || 'Edição Limitada'}</span>
+                                    <span>Exclusivo</span>
+                                </div>
+                                <h3 class="flavor-name">${sabor.nome}</h3>
+                                <p class="flavor-description">${sabor.descricao}</p>
+                                <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
+                                    <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
+                                    <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
+                                        ${sabor.power_blend.map(item => `<li style="margin-bottom: 4px;">• ${item}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
+                                    <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
+                                        <strong>Conselho do Mestre:</strong> ${sabor.conselho_mestre}
+                                    </p>
+                                </div>
+                                <ul class="specs-list">
+                                    <li><span>Base Cultivada</span> <span>${sabor.base}</span></li>
+                                    <li><span>Perfil de Sabor</span> <span>${sabor.perfil}</span></li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3 class="flavor-name">${sabor.nome}</h3>
-                        <p class="flavor-description">${sabor.descricao}</p>
-                        <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
-                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
-                            <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
-                                ${sabor.power_blend.map(item => `<li style="margin-bottom: 4px;">• ${item}</li>`).join('')}
-                            </ul>
-                        </div>
-                        <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
-                            <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
-                                <strong>Conselho do Mestre:</strong> ${sabor.conselho_mestre}
-                            </p>
-                        </div>
-                        <ul class="specs-list">
-                            <li><span>Base Cultivada</span> <span>${sabor.base}</span></li>
-                            <li><span>Perfil de Sabor</span> <span>${sabor.perfil}</span></li>
-                        </ul>
-                    </div>
-                </div>
-            `;
-            
-            // Reaplica a animação de scroll
-            document.querySelectorAll('#sabor-limitado-grid .animate-on-scroll').forEach(el => {
-                observer.observe(el);
-            });
-            
-        } else {
-            // Esconde o container se não estiver ativo
-            container.style.display = 'none';
+                    `;
+                    document.querySelectorAll('#sabor-limitado-grid .animate-on-scroll').forEach(el => {
+                        observer.observe(el);
+                    });
+                } else {
+                    container.style.display = 'none';
+                }
+            } catch (error) {
+                console.warn('Sabor limitado não encontrado ou erro ao carregar:', error);
+                const container = document.getElementById('sabor-limitado-container');
+                if (container) container.style.display = 'none';
+            }
         }
-    } catch (error) {
-        console.warn('Sabor limitado não encontrado ou erro ao carregar:', error);
-        // Se o arquivo não existir, apenas esconde o container
-        const container = document.getElementById('sabor-limitado-container');
-        if (container) container.style.display = 'none';
-    }
-}
 
-// Chama a função após a página carregar
-document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
+        document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
+
         lucide.createIcons();
 
         // Configuração do Supabase
         const SUPABASE_URL = "https://mimwktbuhkqxrvbqgjgq.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1pbXdrdGJ1aGtxeHJ2YnFnamdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwODE0MzMsImV4cCI6MjA5NDY1NzQzM30.uk91bi71OMqkTZAlfO-DC-wlnT64JU2P71Czqhi5Eow";
 
-        // Capturar a origem (source) da URL
         const urlParams = new URLSearchParams(window.location.search);
         const sourceParam = urlParams.get('source') || 'direct';
         document.getElementById('leadSource').value = sourceParam;
 
-        // Função de envio (segura, sem token exposto)
         async function handleSubmit(e) {
             e.preventDefault();
 
@@ -1000,7 +988,6 @@ document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
             btn.disabled = true;
 
             try {
-                // 1. Salvar no Supabase
                 const response = await fetch(`${SUPABASE_URL}/rest/v1/leads_essentia`, {
                     method: 'POST',
                     headers: {
@@ -1022,7 +1009,6 @@ document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
                     throw new Error('Erro ao salvar lead no Supabase');
                 }
 
-                // 2. Disparar Facebook Pixel (se existir)
                 if (typeof fbq !== 'undefined') {
                     fbq('track', 'Lead', {
                         content_name: 'Lista VIP ESSENTIA',
@@ -1030,7 +1016,6 @@ document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
                     });
                 }
 
-                // 3. Enviar notificação para a API segura (que envia ao Telegram)
                 fetch('/api/send-lead', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1041,11 +1026,8 @@ document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
                         mensagem: mensagem,
                         source: source
                     })
-                }).catch(() => {
-                    // Erro silencioso: não quebra o fluxo principal
-                });
+                }).catch(() => {});
 
-                // 4. Feedback de sucesso
                 btn.innerHTML = '<span>Reserva Confirmada! ✓</span>';
                 btn.style.background = '#2e5c2e';
                 btn.style.color = '#f7faf7';
@@ -1076,7 +1058,6 @@ document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
             }
         }
 
-        // Navbar scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 50) {
@@ -1086,14 +1067,12 @@ document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
             }
         });
 
-        // Menu mobile
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
 
-        // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1105,7 +1084,6 @@ document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
             observer.observe(el);
         });
 
-        // Smooth scroll para âncoras
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
