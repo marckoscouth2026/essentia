@@ -19,6 +19,19 @@
     "business_model": "Venda direta sob demanda via Lista VIP, focado em alta gastronomia e performance funcional.",
     "supported_formats": [
       "Garrafa Âmbar de 500ml"
+    ],
+    "content_pages": {
+      "benefits": "https://www.essentiaoficial.com.br/beneficios.html"
+    }
+  }
+    "localization": {
+      "region": "DF",
+      "city": "Brasília",
+      "country": "BR"
+    },
+    "business_model": "Venda direta sob demanda via Lista VIP, focado em alta gastronomia e performance funcional.",
+    "supported_formats": [
+      "Garrafa Âmbar de 500ml"
     ]
   }
 }
