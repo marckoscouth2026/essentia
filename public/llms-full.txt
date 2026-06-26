@@ -23,26 +23,25 @@ A ESSENTIA nasceu do desejo de oferecer uma kombucha autêntica, viva e feita co
 ## Produtos
 
 ### ESSENTIA Deep Red
-- Descrição: Blend tânico de uva integral, hibisco, beterraba e pimenta preta. Encorpado e equilibrado.
+- Descrição: Uma celebração pura e intensa da uva. O encontro perfeito da doçura natural da uva integral com o toque tânico que remete a um bom vinho tinto, sem álcool.
 - Volume: 500ml
 - Preço: R$ 15,00
 - Base: Chá Preto
-- Perfil: frutado, levemente adocicado, com toque floral
+- Perfil: doce, frutado, com leve tanino
 
-### ESSENTIA Gold
-- Descrição: Elixir com cúrcuma, gengibre, laranja e pimenta preta. Despertar e toque cítrico.
+### ESSENTIA Maracujá Tropical Passion
+- Descrição: Uma explosão de frescor tropical. O maracujá traz uma acidez vibrante que desperta os sentidos e te transporta para um paraíso de sabores.
 - Volume: 500ml
 - Preço: R$ 15,00
 - Base: Chá Verde
-- Perfil: especiarias vibrantes, cítrico e picante sutil
+- Perfil: tropical, refrescante, levemente ácido
 
-### ESSENTIA Green
-- Descrição: Infusão de moringa, spirulina, limão siciliano, hortelã e capim-limão. Refrescante e herbáceo.
+### ESSENTIA Citrus Clear
+- Descrição: Uma infusão cítrica e revigorante. O limão siciliano se une à leveza do chá verde para criar uma bebida que limpa a mente e desperta a energia para o dia.
 - Volume: 500ml
 - Preço: R$ 15,00
 - Base: Chá Verde
-- Perfil: botânico, herbáceo, com frescor cítrico
-
+- Perfil: cítrico, herbáceo, revigorante
 ## Diferenciais
 - Fermentação viva (não pasteurizada)
 - Efervescência natural (sem gás forçado)
