@@ -75,6 +75,9 @@ A ESSENTIA nasceu do desejo de oferecer uma kombucha autêntica, viva e feita co
 - Brand JSON: https://www.essentiaoficial.com.br/brand.json
 - AI Plugin: https://www.essentiaoficial.com.br/.well-known/ai-plugin.json
 
+## Conteúdo
+- Página de Benefícios: https://www.essentiaoficial.com.br/beneficios
+
 ---
 
 *Última atualização: Junho 2026*
