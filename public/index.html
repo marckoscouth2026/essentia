@@ -632,7 +632,17 @@ src="https://www.facebook.com/tr?id=1011169508072115&ev=PageView&noscript=1"
                 </p>
             </div>
             <div class="flavors-grid">  
+                <!-- SABOR LIMITADO (dinâmico) -->
                 
+<div id="sabor-limitado-container" style="display: none; margin-top: 48px; border-top: 2px solid var(--color-border); padding-top: 40px;">
+    <div class="section-header" style="margin-bottom: 32px;">
+        <div class="section-label">✨ Edição Limitada</div>
+        <h2 class="section-title" style="font-size: 2rem;">Sabor do Mês</h2>
+    </div>
+    <div class="flavors-grid" id="sabor-limitado-grid">
+        <!-- O card será inserido aqui via JavaScript -->
+    </div>
+</div>
                <div class="flavor-card animate-on-scroll">
  <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #2a1a2a);">
         <img src="blend_uva.jpg" alt="ESSENTIA Deep Red" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
@@ -894,6 +904,72 @@ src="https://www.facebook.com/tr?id=1011169508072115&ev=PageView&noscript=1"
     </footer>
 
     <script>
+        // === SABOR LIMITADO ===
+async function carregarSaborLimitado() {
+    try {
+        const response = await fetch('/limitada.json');
+        if (!response.ok) throw new Error('Arquivo não encontrado');
+        
+        const data = await response.json();
+        const container = document.getElementById('sabor-limitado-container');
+        const grid = document.getElementById('sabor-limitado-grid');
+        
+        if (data.active && data.sabor) {
+            // Mostra o container
+            container.style.display = 'block';
+            
+            // Cria o card
+            const sabor = data.sabor;
+            grid.innerHTML = `
+                <div class="flavor-card animate-on-scroll">
+                    <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #1a1a2a);">
+                        <img src="${sabor.imagem}" alt="${sabor.nome}" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                    </div>
+                    <div class="flavor-content">
+                        <div class="flavor-meta">
+                            <span>${sabor.meta || 'Edição Limitada'}</span>
+                            <span>Exclusivo</span>
+                        </div>
+                        <h3 class="flavor-name">${sabor.nome}</h3>
+                        <p class="flavor-description">${sabor.descricao}</p>
+                        <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
+                            <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
+                                ${sabor.power_blend.map(item => `<li style="margin-bottom: 4px;">• ${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
+                            <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
+                                <strong>Conselho do Mestre:</strong> ${sabor.conselho_mestre}
+                            </p>
+                        </div>
+                        <ul class="specs-list">
+                            <li><span>Base Cultivada</span> <span>${sabor.base}</span></li>
+                            <li><span>Perfil de Sabor</span> <span>${sabor.perfil}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            // Reaplica a animação de scroll
+            document.querySelectorAll('#sabor-limitado-grid .animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+            
+        } else {
+            // Esconde o container se não estiver ativo
+            container.style.display = 'none';
+        }
+    } catch (error) {
+        console.warn('Sabor limitado não encontrado ou erro ao carregar:', error);
+        // Se o arquivo não existir, apenas esconde o container
+        const container = document.getElementById('sabor-limitado-container');
+        if (container) container.style.display = 'none';
+    }
+}
+
+// Chama a função após a página carregar
+document.addEventListener('DOMContentLoaded', carregarSaborLimitado);
         lucide.createIcons();
 
         // Configuração do Supabase
