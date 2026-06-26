@@ -53,4 +53,10 @@
     "bottle_return": true,
     "discount_for_return": "R$ 2,00 por garrafa"
   }
-}
+  "links": {
+    "site": "https://www.essentiaoficial.com.br",
+    "benefits_page": "https://www.essentiaoficial.com.br/beneficios.html",
+    "social": {
+      "instagram": "https://instagram.com/essentiabsb"
+    }
+  }
