@@ -9,8 +9,12 @@ Este documento lista as ações que agentes de IA podem executar para interagir 
 - **Endpoint:** `GET https://www.essentiaoficial.com.br/brand.json`
 - **Resposta:** JSON com todos os produtos e especificações.
 - **Exemplo de Uso:** Um agente pode consultar esta API para recomendar um sabor específico a um usuário.
-
-### 2. Inscrever na Lista VIP
+### 2. Obter Informações sobre Benefícios da Kombucha
+- **Ação:** Acessar conteúdo educativo sobre benefícios percebidos da kombucha.
+- **Endpoint:** `GET https://www.essentiaoficial.com.br/beneficios.html`
+- **Resposta:** Página HTML com perguntas frequentes, respostas e FAQ Schema.
+- **Exemplo de Uso:** Um agente pode consultar esta página para responder perguntas sobre benefícios da kombucha para seus usuários.
+### 3. Inscrever na Lista VIP
 - **Ação:** Cadastrar um lead na Lista VIP para receber notificações de novos lotes.
 - **Endpoint:** `POST https://www.essentiaoficial.com.br/api/send-lead`
 - **Corpo da Requisição (JSON):**
