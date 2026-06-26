@@ -1,0 +1,18 @@
+{
+  "active": false,
+  "sabor": {
+    "nome": "ESSENTIA Mel & Canela",
+    "descricao": "Uma edição especial que aquece o coração. O mel orgânico e a canela criam um abraço doce e levemente picante, perfeito para os dias mais frios.",
+    "power_blend": [
+      "Mel Orgânico",
+      "Canela em pau",
+      "Cravo-da-índia",
+      "Laranja"
+    ],
+    "conselho_mestre": "O mel traz a doçura natural, enquanto a canela e o cravo criam um toque de conforto. É o remédio da alma em forma de kombucha.",
+    "base": "Chá Preto",
+    "perfil": "Doce, Aveludado, com toque picante",
+    "imagem": "blend_mel_canela.png",
+    "meta": "Edição Limitada • Inverno 2026"
+  }
+}
