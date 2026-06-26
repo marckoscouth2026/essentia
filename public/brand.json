@@ -9,35 +9,35 @@
     "state": "DF",
     "country": "BR"
   },
-  "products": [
-    {
-      "id": "deep-red",
-      "name": "Deep Red",
-      "volume_ml": 500,
-      "price_brl": 15.00,
-      "ingredients": ["uva integral", "hibisco", "beterraba", "pimenta preta"],
-      "base_tea": "preto",
-      "flavor_profile": "encorpado e equilibrado"
-    },
-    {
-      "id": "gold",
-      "name": "Gold",
-      "volume_ml": 500,
-      "price_brl": 15.00,
-      "ingredients": ["cúrcuma", "gengibre", "laranja", "pimenta preta"],
-      "base_tea": "verde",
-      "flavor_profile": "especiarias vibrantes"
-    },
-    {
-      "id": "green",
-      "name": "Green",
-      "volume_ml": 500,
-      "price_brl": 15.00,
-      "ingredients": ["moringa", "spirulina", "limão siciliano", "hortelã", "capim-limão"],
-      "base_tea": "verde",
-      "flavor_profile": "botânico herbáceo e refrescante"
-    }
-  ],
+ "products": [
+  {
+    "id": "deep-red",
+    "name": "Deep Red",
+    "volume_ml": 500,
+    "price_brl": 15.00,
+    "ingredients": ["uva integral", "suco de uva orgânico", "canela"],
+    "base_tea": "preto",
+    "flavor_profile": "doce, frutado, com leve tanino"
+  },
+  {
+    "id": "maracujá-tropical-passion",
+    "name": "Maracujá Tropical Passion",
+    "volume_ml": 500,
+    "price_brl": 15.00,
+    "ingredients": ["polpa de maracujá", "suco de manga", "gengibre", "hortelã"],
+    "base_tea": "verde",
+    "flavor_profile": "tropical, refrescante, levemente ácido"
+  },
+  {
+    "id": "citrus-clear",
+    "name": "Citrus Clear",
+    "volume_ml": 500,
+    "price_brl": 15.00,
+    "ingredients": ["limão siciliano", "limão tahiti", "capim-limão", "hortelã", "gengibre"],
+    "base_tea": "verde",
+    "flavor_profile": "cítrico, herbáceo, revigorante"
+  }
+]
   "technical_specs": {
     "ph_range": "3.2 - 3.5",
     "carbonation": "natural (F2)",
