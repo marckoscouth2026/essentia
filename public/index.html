@@ -837,26 +837,56 @@ src="https://www.facebook.com/tr?id=1011169508072115&ev=PageView&noscript=1"
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <img src="logo_ESSENTIA.png" alt="ESSENTIA" class="footer-logo">
-                    <p>Bebida artesanal viva, feita à mão para trazer alegria, saúde e refrescância para a sua mesa.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Filosofia</h4>
-                    <ul class="footer-links">
-                        <li><a href="#filosofia">Nosso Cuidado</a></li>
-                        <li><a href="#cuidado">Produção Afetiva</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Nossas Edições</h4>
-                    <ul class="footer-links">
-                        <li><a href="#edicoes">Essentia Deep Red (Uva Integral)</a></li>
-                        <li><a href="#edicoes">Essentia Gold</a></li>
-                        <li><a href="#edicoes">Essentia Green</a></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Coluna 1: Marca + Instagram -->
+    <div class="footer-brand">
+        <img src="logo_ESSENTIA.png" alt="ESSENTIA" class="footer-logo">
+        <p>Bebida artesanal viva, feita à mão para trazer alegria, saúde e refrescância para a sua mesa.</p>
+        
+        <!-- Link do Instagram com ícone oficial -->
+        <div style="margin-top: 20px; display: flex; align-items: center; gap: 12px;">
+            <a href="https://instagram.com/essentiabsb" target="_blank" rel="noopener noreferrer" 
+               style="display: flex; align-items: center; gap: 10px; color: var(--color-gray); text-decoration: none; transition: color 0.3s ease; font-size: 0.95rem;"
+               onmouseover="this.style.color='#c9b896'" 
+               onmouseout="this.style.color='var(--color-gray)'">
+                <!-- Ícone oficial do Instagram (SVG com gradiente) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
+                    <defs>
+                        <linearGradient id="instaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#feda75" />
+                            <stop offset="25%" style="stop-color:#fa7e1e" />
+                            <stop offset="50%" style="stop-color:#d62976" />
+                            <stop offset="75%" style="stop-color:#962fbf" />
+                            <stop offset="100%" style="stop-color:#4f5bd5" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#instaGrad)"/>
+                    <circle cx="12" cy="12" r="4.5" fill="white"/>
+                    <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
+                </svg>
+                <span>Siga-nos no Instagram</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Coluna 2: Filosofia -->
+    <div class="footer-column">
+        <h4>Filosofia</h4>
+        <ul class="footer-links">
+            <li><a href="#filosofia">Nosso Cuidado</a></li>
+            <li><a href="#cuidado">Produção Afetiva</a></li>
+        </ul>
+    </div>
+
+    <!-- Coluna 3: Nossas Edições (atualizado) -->
+    <div class="footer-column">
+        <h4>Nossas Edições</h4>
+        <ul class="footer-links">
+            <li><a href="#edicoes">Essentia Deep Red (Uva)</a></li>
+            <li><a href="#edicoes">Essentia Tropical Passion (Maracujá)</a></li>
+            <li><a href="#edicoes">Essentia Citrus Clear (Limão)</a></li>
+        </ul>
+    </div>
+</div>
             <div class="footer-bottom">
                 <p>&copy; 2026 ESSENTIA. Celebrando a Vida e a Saúde. Todos os direitos reservados.</p>
             </div>
