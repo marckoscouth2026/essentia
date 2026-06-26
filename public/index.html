@@ -915,36 +915,36 @@ src="https://www.facebook.com/tr?id=1011169508072115&ev=PageView&noscript=1"
                 if (data.active && data.sabor) {
                     container.style.display = 'block';
                     const sabor = data.sabor;
-                    grid.innerHTML = `
-                        <div class="flavor-card animate-on-scroll">
-                            <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 24px; background: linear-gradient(135deg, var(--color-dark), #1a1a2a);">
-                                <img src="${sabor.imagem}" alt="${sabor.nome}" style="max-height: 220px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
-                            </div>
-                            <div class="flavor-content">
-                                <div class="flavor-meta">
-                                    <span>${sabor.meta || 'Edição Limitada'}</span>
-                                    <span>Exclusivo</span>
-                                </div>
-                                <h3 class="flavor-name">${sabor.nome}</h3>
-                                <p class="flavor-description">${sabor.descricao}</p>
-                                <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
-                                    <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
-                                    <ul style="list-style: none; font-size: 0.85rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.5;">
-                                        ${sabor.power_blend.map(item => `<li style="margin-bottom: 4px;">• ${item}</li>`).join('')}
-                                    </ul>
-                                </div>
-                                <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 12px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
-                                    <p style="font-size: 0.8rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.4;">
-                                        <strong>Conselho do Mestre:</strong> ${sabor.conselho_mestre}
-                                    </p>
-                                </div>
-                                <ul class="specs-list">
-                                    <li><span>Base Cultivada</span> <span>${sabor.base}</span></li>
-                                    <li><span>Perfil de Sabor</span> <span>${sabor.perfil}</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    `;
+                   grid.innerHTML = `
+    <div class="flavor-card animate-on-scroll" style="grid-column: 1 / -1; max-width: 100%;">
+        <div class="flavor-image" style="display: flex; justify-content: center; align-items: center; padding: 32px; background: linear-gradient(135deg, var(--color-dark), #1a1a2a); min-height: 300px;">
+            <img src="${sabor.imagem}" alt="${sabor.nome}" style="max-height: 280px; width: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+        </div>
+        <div class="flavor-content" style="padding: 40px 32px;">
+            <div class="flavor-meta">
+                <span>${sabor.meta || 'Edição Limitada'}</span>
+                <span>Exclusivo</span>
+            </div>
+            <h3 class="flavor-name" style="font-size: 1.8rem;">${sabor.nome}</h3>
+            <p class="flavor-description" style="font-size: 1rem; max-width: 800px; margin: 0 auto;">${sabor.descricao}</p>
+            <div style="margin-bottom: 16px; border-top: 1px solid var(--color-border); padding-top: 12px;">
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-kraft); letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 6px;">O Power Blend:</span>
+                <ul style="list-style: none; font-size: 0.95rem; color: var(--color-gray-light); padding-left: 0; line-height: 1.8;">
+                    ${sabor.power_blend.map(item => `<li style="margin-bottom: 4px;">• ${item}</li>`).join('')}
+                </ul>
+            </div>
+            <div style="background: rgba(212, 168, 83, 0.04); border-left: 2px solid var(--color-gold); padding: 16px; margin-bottom: 16px; border-radius: 0 4px 4px 0; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 0.9rem; font-style: italic; color: var(--color-gold); margin: 0; line-height: 1.5;">
+                    <strong>Conselho do Mestre:</strong> ${sabor.conselho_mestre}
+                </p>
+            </div>
+            <ul class="specs-list" style="max-width: 800px; margin: 0 auto;">
+                <li><span>Base Cultivada</span> <span>${sabor.base}</span></li>
+                <li><span>Perfil de Sabor</span> <span>${sabor.perfil}</span></li>
+            </ul>
+        </div>
+    </div>
+`;
                     document.querySelectorAll('#sabor-limitado-grid .animate-on-scroll').forEach(el => {
                         observer.observe(el);
                     });
