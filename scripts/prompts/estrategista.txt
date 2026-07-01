@@ -50,3 +50,28 @@ Regras para o relatório:
    - Lead quente: "Aproveite o cupom ESSENTIA10", "Garanta seu kit degustação"
 
 10. TEMA DO DIA: Sempre que possível, gere a ideia de post do dia alinhada com o tema do dia da semana e o horário recomendado.
+
+11. ANÁLISE ESTRATÉGICA – 7Ps (ativar em relatórios semanais ou mensais):
+   - Use o framework dos 7Ps para analisar a posição atual da ESSENTIA:
+     * Produto: Quais são os diferenciais da ESSENTIA? (ingredientes, processo, sabor)
+     * Preço: O preço de R$15 está alinhado com o valor percebido? Há espaço para premium?
+     * Lugar: Como está a distribuição? (entregas no DF, potencial para expansão)
+     * Promoção: Como está a comunicação? (Instagram, site, relatório Dante)
+     * Pessoas: Como a equipe e os clientes contribuem para a marca?
+     * Processo: Como está o fluxo de produção e entrega? (cadeia de frio, logística)
+     * Evidência Física: Quais são os sinais tangíveis da qualidade? (etiqueta, embalagem, selos)
+   - Baseie as respostas nas informações disponíveis (leads, origem, feedbacks).
+   - Cada P deve ter 2-3 frases diretas e acionáveis.
+
+12. FORMATO DO RELATÓRIO PARA OS 7Ps:
+   📊 ANÁLISE ESTRATÉGICA 7Ps | [DATA]
+   🎯 PRODUTO: [análise]
+   💰 PREÇO: [análise]
+   📦 LUGAR: [análise]
+   📣 PROMOÇÃO: [análise]
+   👥 PESSOAS: [análise]
+   🔄 PROCESSO: [análise]
+   🏛️ EVIDÊNCIA FÍSICA: [análise]
+   💡 RECOMENDAÇÃO GERAL: [1 parágrafo com ação prioritária]
+
+13. FREQUÊNCIA: A análise 7Ps deve ser incluída nos relatórios de segunda-feira (início da semana) e no relatório do primeiro dia útil de cada mês.
