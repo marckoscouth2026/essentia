@@ -4,7 +4,42 @@ from groq import Groq
 import requests
 import time
 import re
+import json
+def gerar_texto_gemini(system_prompt, user_message, temperature=0.7, max_tokens=800):
+    """Gera texto usando o Google Gemini (Generative Language API)."""
+    if not GOOGLE_API_KEY:
+        print("GOOGLE_API_KEY não configurada. Pulando geração de texto.")
+        return ""
 
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GOOGLE_API_KEY}"
+    headers = {"Content-Type": "application/json"}
+
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": system_prompt + "\n\n" + user_message}
+                ]
+            }
+        ],
+        "generationConfig": {
+            "temperature": temperature,
+            "maxOutputTokens": max_tokens
+        }
+    }
+
+    print(f"Gerando texto com Gemini (temp={temperature}, max_tokens={max_tokens})...")
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=90)
+        if response.status_code == 200:
+            data = response.json()
+            return data["candidates"][0]["content"]["parts"][0]["text"]
+        else:
+            print(f"Erro no Gemini (status {response.status_code}): {response.text[:200]}")
+            return ""
+    except Exception as e:
+        print(f"Erro na geração com Gemini: {e}")
+        return ""
 # ------------------------------------------------------------------
 # Variáveis de ambiente
 # ------------------------------------------------------------------
@@ -14,7 +49,7 @@ TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 HF_API_KEY = os.environ.get("HF_API_KEY")
-
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 # Inicializa clientes
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 groq_client = Groq(api_key=GROQ_API_KEY)
@@ -61,12 +96,9 @@ prompt_designer = load_prompt("designer.txt")
 # 3. Estrategista
 # ------------------------------------------------------------------
 user_estrategista = f"Dados dos leads:\n{dados_brutos}\nTotal na base: {total_leads}"
-resp_estrategista = groq_client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
-    messages=[
-        {"role": "system", "content": prompt_estrategista},
-        {"role": "user", "content": user_estrategista}
-    ],
+relatorio_estrategista = gerar_texto_gemini(
+    prompt_estrategista,
+    user_estrategista,
     temperature=0.7,
     max_tokens=800
 )
@@ -77,14 +109,12 @@ relatorio_estrategista = resp_estrategista.choices[0].message.content
 # 4. Redator
 # ------------------------------------------------------------------
 user_redator = f"Relatório estratégico:\n{relatorio_estrategista}\n\nGere 3 legendas baseadas nesse insight."
-resp_redator = groq_client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
-    messages=[
-        {"role": "system", "content": prompt_redator},
-        {"role": "user", "content": user_redator}
-    ],
+legendas = gerar_texto_gemini(
+    prompt_redator,
+    user_redator,
     temperature=0.8,
     max_tokens=1200
+
 )
 legendas = resp_redator.choices[0].message.content
 
@@ -93,14 +123,12 @@ legendas = resp_redator.choices[0].message.content
 # 5. Designer (prompt visual)
 # ------------------------------------------------------------------
 user_designer = f"Legendas criadas:\n{legendas}\n\nGere um prompt de imagem ou storyboard visual para a primeira legenda."
-resp_designer = groq_client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
-    messages=[
-        {"role": "system", "content": prompt_designer},
-        {"role": "user", "content": user_designer}
-    ],
+visual = gerar_texto_gemini(
+    prompt_designer,
+    user_designer,
     temperature=0.7,
     max_tokens=900
+
 )
 visual = resp_designer.choices[0].message.content
 
