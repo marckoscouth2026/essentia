@@ -62,7 +62,7 @@ prompt_designer = load_prompt("designer.txt")
 # ------------------------------------------------------------------
 user_estrategista = f"Dados dos leads:\n{dados_brutos}\nTotal na base: {total_leads}"
 resp_estrategista = groq_client.chat.completions.create(
-    model="llama-3.1-8b-instant",
+    model="llama-3.3-70b-versatile",
     messages=[
         {"role": "system", "content": prompt_estrategista},
         {"role": "user", "content": user_estrategista}
@@ -78,7 +78,7 @@ relatorio_estrategista = resp_estrategista.choices[0].message.content
 # ------------------------------------------------------------------
 user_redator = f"Relatório estratégico:\n{relatorio_estrategista}\n\nGere 3 legendas baseadas nesse insight."
 resp_redator = groq_client.chat.completions.create(
-    model="llama-3.1-8b-instant",
+    model="llama-3.3-70b-versatile",
     messages=[
         {"role": "system", "content": prompt_redator},
         {"role": "user", "content": user_redator}
@@ -94,7 +94,7 @@ legendas = resp_redator.choices[0].message.content
 # ------------------------------------------------------------------
 user_designer = f"Legendas criadas:\n{legendas}\n\nGere um prompt de imagem ou storyboard visual para a primeira legenda."
 resp_designer = groq_client.chat.completions.create(
-    model="llama-3.1-8b-instant",
+    model="llama-3.3-70b-versatile",
     messages=[
         {"role": "system", "content": prompt_designer},
         {"role": "user", "content": user_designer}
