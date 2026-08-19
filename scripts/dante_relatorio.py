@@ -1,17 +1,35 @@
 import os
 from supabase import create_client
-from groq import Groq
 import requests
 import time
 import re
 import json
+
+# ------------------------------------------------------------------
+# Variáveis de ambiente
+# ------------------------------------------------------------------
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_KEY"]
+TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
+TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+HF_API_KEY = os.environ.get("HF_API_KEY")
+
+# Inicializa Supabase
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+# ------------------------------------------------------------------
+# Função de geração de texto via Gemini (Google AI Studio)
+# ------------------------------------------------------------------
 def gerar_texto_gemini(system_prompt, user_message, temperature=0.7, max_tokens=800):
-    """Gera texto usando o Google Gemini (Generative Language API)."""
+    """Gera texto usando o modelo Gemini 3.6 Flash (gratuito e estável)."""
     if not GOOGLE_API_KEY:
         print("GOOGLE_API_KEY não configurada. Pulando geração de texto.")
         return ""
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GOOGLE_API_KEY}"
+    # Modelo atualizado conforme sugestão da API
+    model = "models/gemini-3.6-flash"
+    url = f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={GOOGLE_API_KEY}"
     headers = {"Content-Type": "application/json"}
 
     payload = {
@@ -40,19 +58,6 @@ def gerar_texto_gemini(system_prompt, user_message, temperature=0.7, max_tokens=
     except Exception as e:
         print(f"Erro na geração com Gemini: {e}")
         return ""
-# ------------------------------------------------------------------
-# Variáveis de ambiente
-# ------------------------------------------------------------------
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_KEY"]
-TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
-GROQ_API_KEY = os.environ["GROQ_API_KEY"]
-HF_API_KEY = os.environ.get("HF_API_KEY")
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-# Inicializa clientes
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-groq_client = Groq(api_key=GROQ_API_KEY)
 
 
 # ------------------------------------------------------------------
@@ -96,41 +101,39 @@ prompt_designer = load_prompt("designer.txt")
 # 3. Estrategista
 # ------------------------------------------------------------------
 user_estrategista = f"Dados dos leads:\n{dados_brutos}\nTotal na base: {total_leads}"
+
 relatorio_estrategista = gerar_texto_gemini(
     prompt_estrategista,
     user_estrategista,
     temperature=0.7,
     max_tokens=800
 )
-relatorio_estrategista = resp_estrategista.choices[0].message.content
 
 
 # ------------------------------------------------------------------
 # 4. Redator
 # ------------------------------------------------------------------
 user_redator = f"Relatório estratégico:\n{relatorio_estrategista}\n\nGere 3 legendas baseadas nesse insight."
+
 legendas = gerar_texto_gemini(
     prompt_redator,
     user_redator,
     temperature=0.8,
     max_tokens=1200
-
 )
-legendas = resp_redator.choices[0].message.content
 
 
 # ------------------------------------------------------------------
 # 5. Designer (prompt visual)
 # ------------------------------------------------------------------
 user_designer = f"Legendas criadas:\n{legendas}\n\nGere um prompt de imagem ou storyboard visual para a primeira legenda."
+
 visual = gerar_texto_gemini(
     prompt_designer,
     user_designer,
     temperature=0.7,
     max_tokens=900
-
 )
-visual = resp_designer.choices[0].message.content
 
 
 # ------------------------------------------------------------------
@@ -138,20 +141,17 @@ visual = resp_designer.choices[0].message.content
 # ------------------------------------------------------------------
 def extrair_prompt_imagem(texto_visual):
     """Extrai o prompt de imagem do bloco do Designer."""
-    # 1. IMAGEM: texto
     match = re.search(r'IMAGEM:\s*(.+)', texto_visual, re.IGNORECASE)
     if match:
         prompt = match.group(1).strip().strip('*').strip()
         if prompt:
             print(f"Prompt extraído via IMAGEM: {prompt}")
             return prompt
-    # 2. Bloco ```prompt
     match = re.search(r'```prompt\s*\n(.*?)\n```', texto_visual, re.DOTALL | re.IGNORECASE)
     if match:
         prompt = match.group(1).strip()
         print(f"Prompt extraído via bloco: {prompt}")
         return prompt
-    # 3. Fallback em inglês
     match = re.search(
         r'(?:a|an|the)\s[\w\s,.\-()]{30,}(?:photorealistic|rustic|wooden|bottle|natural|lighting|kombucha)[\w\s,.\-()]*',
         texto_visual,
@@ -166,7 +166,7 @@ def extrair_prompt_imagem(texto_visual):
 
 
 def gerar_imagem_huggingface(prompt, width=1024, height=1024):
-    """Gera imagem via Hugging Face (Stable Diffusion) — gratuito e estável."""
+    """Gera imagem via Hugging Face (Stable Diffusion)."""
     if not HF_API_KEY:
         print("HF_API_KEY não configurada. Pulando geração de imagem.")
         return None
@@ -189,13 +189,11 @@ def gerar_imagem_huggingface(prompt, width=1024, height=1024):
         return None
 
 
-# --- Fluxo de geração da imagem ---
 prompt_imagem = extrair_prompt_imagem(visual)
 
 if prompt_imagem:
     img_data = gerar_imagem_huggingface(prompt_imagem)
     if img_data:
-        # Extrai primeira legenda
         if "**Opção" in legendas:
             primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0]
         else:
