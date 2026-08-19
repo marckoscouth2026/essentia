@@ -73,7 +73,7 @@ prompt_redator = load_prompt("redator.txt")
 prompt_designer = load_prompt("designer.txt")
 
 user_estrategista = f"Dados dos leads:\n{dados_brutos}\nTotal na base: {total_leads}"
-relatorio_estrategista = gerar_texto_gemini(prompt_estrategista, user_estrategista, 0.7, 800)
+relatorio_estrategista = gerar_texto_gemini(prompt_estrategista, user_estrategista, 0.7, 1500)
 
 if not relatorio_estrategista:
     data_atual = datetime.now().strftime("%d/%m/%Y")
@@ -84,7 +84,7 @@ if not relatorio_estrategista:
 💡 INSIGHT ESTRATÉGICO (fallback): Vamos criar um post interativo perguntando aos seguidores: 'Qual sabor de kombucha mais representa a sua essência?'"""
 
 user_redator = f"Relatório estratégico:\n{relatorio_estrategista}\n\nGere 3 legendas baseadas nesse insight."
-legendas = gerar_texto_gemini(prompt_redator, user_redator, 0.8, 1200)
+legendas = gerar_texto_gemini(prompt_redator, user_redator, 0.8, 1500)
 
 if not legendas:
     legendas = """**Opção 1**
@@ -97,7 +97,7 @@ Feita com cultura viva e ingredientes naturais, a Essentia é mais que uma bebid
 Qual sabor da Essentia mais combina com você? Comente abaixo e compartilhe sua experiência! #ComunidadeEssentia"""
 
 user_designer = f"Legendas criadas:\n{legendas}\n\nGere um prompt de imagem ou storyboard visual para a primeira legenda."
-visual = gerar_texto_gemini(prompt_designer, user_designer, 0.7, 900)
+visual = gerar_texto_gemini(prompt_designer, user_designer, 0.7, 1200)
 
 if not visual or "IMAGEM:" not in visual:
     visual = "IMAGEM: A modern minimalist product shot of a sleek glass bottle of artisanal kombucha with a clean, contemporary label, placed on a smooth light grey surface, with fresh fruit slices and mint leaves arranged elegantly around the base, bright but soft studio lighting, subtle reflections, airy and high-end aesthetic, high resolution."
