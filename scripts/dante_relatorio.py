@@ -49,15 +49,27 @@ def gerar_texto_gemini(system_prompt, user_message, temperature=0.7, max_tokens=
     print(f"Gerando texto com Gemini (temp={temperature}, max_tokens={max_tokens})...")
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=90)
-        if response.status_code == 200:
+               if response.status_code == 200:
             data = response.json()
-            return data["candidates"][0]["content"]["parts"][0]["text"]
+            try:
+                candidates = data.get("candidates", [])
+                if candidates:
+                    content = candidates[0].get("content", {})
+                    parts = content.get("parts", [])
+                    if parts:
+                        texto = parts[0].get("text", "")
+                        if texto:
+                            return texto
+                # Se não encontrou texto, loga a resposta completa para diagnóstico
+                print("Gemini retornou 200 mas sem texto. Resposta completa:")
+                print(json.dumps(data, indent=2)[:500])
+                return ""
+            except Exception as e:
+                print(f"Erro ao extrair texto do Gemini: {e}")
+                return ""
         else:
             print(f"Erro no Gemini (status {response.status_code}): {response.text[:200]}")
             return ""
-    except Exception as e:
-        print(f"Erro na geração com Gemini: {e}")
-        return ""
 
 
 # ------------------------------------------------------------------
