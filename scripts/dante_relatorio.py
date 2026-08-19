@@ -116,27 +116,49 @@ def extrair_prompt_imagem(texto_visual):
 
 prompt_imagem = extrair_prompt_imagem(visual)
 
-if prompt_imagem and HF_API_KEY:
-    url = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1"
-    headers = {"Authorization": f"Bearer {HF_API_KEY}"}
-    payload = {"inputs": prompt_imagem, "parameters": {"width": 1024, "height": 1024}}
+def gerar_imagem_gemini(prompt, width=1024, height=1024):
+    """Gera imagem usando o Google Gemini (Generative Language API)."""
+    if not GOOGLE_API_KEY:
+        print("GOOGLE_API_KEY não configurada. Pulando geração de imagem.")
+        return None
+
+    model = "models/gemini-2.5-flash-image-preview"  # ou gemini-2.0-flash-preview-image-generation
+    url = f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={GOOGLE_API_KEY}"
+    headers = {"Content-Type": "application/json"}
+
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": f"Generate a {width}x{height} photorealistic image: {prompt}"}
+                ]
+            }
+        ],
+        "generationConfig": {
+            "temperature": 0.7,
+            "maxOutputTokens": 2048
+        }
+    }
+
+    print(f"Gerando imagem com Gemini: {prompt[:80]}...")
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=90)
-        if r.status_code == 200:
-            img_data = r.content
-            if "**Opção" in legendas:
-                primeira_legenda = legendas.split("**Opção")[1].split("**Opção")[0]
-            else:
-                primeira_legenda = legendas
-            caption = f"🔥 IMAGEM DO POST\n\n{primeira_legenda[:500]}"
-            files = {"photo": ("post_essentia.png", img_data)}
-            requests.post(
-                f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto",
-                data={"chat_id": TELEGRAM_CHAT_ID, "caption": caption},
-                files=files
-            )
+        response = requests.post(url, headers=headers, json=payload, timeout=90)
+        if response.status_code == 200:
+            data = response.json()
+            for part in data.get("candidates", [{}])[0].get("content", {}).get("parts", []):
+                if "inlineData" in part:
+                    import base64
+                    image_bytes = base64.b64decode(part["inlineData"]["data"])
+                    print("Imagem gerada com sucesso via Gemini!")
+                    return image_bytes
+            print("Gemini não retornou imagem inline. Resposta:", json.dumps(data, indent=2)[:300])
+            return None
+        else:
+            print(f"Erro no Gemini (status {response.status_code}): {response.text[:200]}")
+            return None
     except Exception as e:
-        print(f"Erro ao gerar imagem: {e}")
+        print(f"Erro na geração com Gemini: {e}")
+        return None
 
 pack_final = f"""🧠 PACK CEREBRAL ESSENTIA
 
