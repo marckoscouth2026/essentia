@@ -100,7 +100,7 @@ user_designer = f"Legendas criadas:\n{legendas}\n\nGere um prompt de imagem ou s
 visual = gerar_texto_gemini(prompt_designer, user_designer, 0.7, 900)
 
 if not visual or "IMAGEM:" not in visual:
-    visual = "IMAGEM: A photorealistic rustic wooden table with a bottle of artisanal kombucha, fresh berries, soft natural light, warm earthy tones, cozy atmosphere."
+    visual = "IMAGEM: A modern minimalist product shot of a sleek glass bottle of artisanal kombucha with a clean, contemporary label, placed on a smooth light grey surface, with fresh fruit slices and mint leaves arranged elegantly around the base, bright but soft studio lighting, subtle reflections, airy and high-end aesthetic, high resolution."
 
 def extrair_prompt_imagem(texto_visual):
     match = re.search(r'IMAGEM:\s*(.+)', texto_visual, re.IGNORECASE)
