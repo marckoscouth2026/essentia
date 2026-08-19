@@ -114,12 +114,19 @@ prompt_designer = load_prompt("designer.txt")
 # ------------------------------------------------------------------
 user_estrategista = f"Dados dos leads:\n{dados_brutos}\nTotal na base: {total_leads}"
 
-relatorio_estrategista = gerar_texto_gemini(
-    prompt_estrategista,
-    user_estrategista,
-    temperature=0.7,
-    max_tokens=800
-)
+if not relatorio_estrategista:
+    from datetime import datetime
+    data_atual = datetime.now().strftime("%d/%m/%Y")
+    relatorio_estrategista = f"""🧪 RELATÓRIO MATINAL ESSENTIA | {data_atual}
+
+⚠️ O Google Gemini não retornou uma análise hoje. Possível bloqueio de segurança ou problema temporário.
+
+📊 LEADS: {len(leads)} novo(s)
+📈 BASE: {total_leads} leads na base
+
+💡 INSIGHT ESTRATÉGICO (fallback):
+Vamos criar um post interativo perguntando aos seguidores: 'Qual sabor de kombucha mais representa a sua essência?'
+"""
 
 
 # ------------------------------------------------------------------
